@@ -1,7 +1,8 @@
 \section{Requisiti e casi d'uso}
 
 \subsection{Use cases}
-Di seguito sono riportati i requisiti del sistema, suddivisi in base alla priorità di implementazione.
+Di seguito sono riportati i requisiti del sistema che si vuole implementare. Per ciascun caso si indica
+il codice del caso d'uso, il titolo e la user story al fine di facilitare la comprensione.
 
 \begin{itemize}
     \item \textbf{UC1 - Login}. Come utente voglio accedere al mio account
@@ -93,3 +94,17 @@ In particolare, nelle tabelle di seguito [\ref*{tab: alta-priorità},\ref*{tab: 
 \subsection{Use case diagram}
 I requisiti precedentemente elencati possono essere visualizzati graficamente tramite l'use case diagram riportato in figura.
 
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[scale=0.55]{immagini/UseCases.png}
+    \caption{Use cases}
+    \label{fig: usecases}
+  \end{figure}
+
+E' stata introdotta una generalizzazione sugli utenti per distinguere le funzionalità accessibili da un utente base
+rispetto a quelle di un organizzatore.
+I due attori Firebase e VisualCrossing sono coinvolti nei casi d'uso relativi all'autenticazione ed alla visualizzazione delle
+condizioni meteo sul luogo dell'evento.
+
+Inoltre, l'iscrizione ad un evento richiede l'esecuzione del caso d'uso algoritmo di iscrizione in quanto, come detto precedentemente,
+una volta raggiunto un massimo di iscritti solamente i primi N più qualificati saranno accettati all'evento.
