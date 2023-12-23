@@ -1,1 +1,95 @@
-\section{Casi d'uso}
+\section{Requisiti e casi d'uso}
+
+\subsection{Use cases}
+Di seguito sono riportati i requisiti del sistema, suddivisi in base alla priorità di implementazione.
+
+\begin{itemize}
+    \item \textbf{UC1 - Login}. Come utente voglio accedere al mio account
+    \item \textbf{UC2 - Signup}. Come utente voglio potermi registrare al sistema.
+    \item \textbf{UC3 - Logout}. Come utente voglio potermi disconnettere dal sistema.
+    \item \textbf{UC4 - Visualizzazione iscrizioni}. Come utente voglio visualizzare gli eventi ai quali sono iscritto.
+    \item \textbf{UC5 - Visualizzazione meteo}. Come utente voglio visualizzare il meteo entro 5 giorni dall’evento.
+    \item \textbf{UC6 - Visualizzazione consigliati}. Come utente voglio poter visualizzare gli eventi consigliati.
+    \item \textbf{UC7 - Ricerca eventi}. Come utente voglio poter cercare dei nuovi eventi, scegliendo degli opportuni parametri di ricerca.
+    \item \textbf{UC8 - Visualizzazione risultati ricerca.} - Come utente, voglio poter visualizzare tutti i risultati della ricerca.
+    \item \textbf{UC9 - Visualizzazione specifico risultato.} - Come utente, voglio poter consultare il singolo risultato della ricerca eseguita, visualizzando nei dettagli informazioni quali la località, la data e l’organizzatore.
+    \item \textbf{UC10 - Iscrizione ad un nuovo evento.} Come utente, voglio potermi iscrivere ad uno degli eventi disponibili.
+    \item \textbf{UC11 - Cancellazione iscrizione.} Come utente, voglio poter cancellare la mia iscrizione ad un evento.
+    \item \textbf{UC12 - Visualizzazione partecipanti.} Come utente, voglio poter visualizzare gli utenti che parteciperanno ad un evento.
+    \item \textbf{UC13 - Visualizzazione profilo utente.} Come utente, voglio poter visualizzare sul mio profilo le esperienze a cui ho preso parte e quelle a cui sono iscritto.
+    \item \textbf{UC14 - Visualizzazione profilo organizzatore.} Come utente organizzatore, voglio poter visualizzare sul mio profilo gli eventi passati da me organizzati e quelli futuri.
+    \item \textbf{UC15 - Algoritmo iscrizione.} Come utente, voglio che solo i profili più adeguati possano partecipare ad un evento, e che solamente gli N profili più adeguati vengano accettati.
+    \item \textbf{UC16 - Dettagli evento.} Come utente, voglio poter visualizzare tutte le informazioni relative all’evento per poter valutare se iscrivermi o meno.
+    \item \textbf{UC17 - Eliminazione evento.} Come organizzatore voglio poter cancellare un evento che ho creato.
+    \item \textbf{UC18 - Creazione evento.} Come organizzatore voglio poter creare un evento.
+\end{itemize}
+\clearpage
+
+\subsection{Priorità dei casi d'uso}
+
+I casi d'uso possono essere ripartiti all'interno di tre code, a seconda della loro priorità nel processo di sviluppo.
+\begin{itemize}
+    \item Coda ad alta priorità: contiene i requisiti ritenuti fondamentali per il funzionamento dell'applicativo, ossia la creazione dei profili utente, la creazione di nuovi eventi ed il sistema di iscrizione agli eventi stessi.
+    \item Coda a media priorità: coda contenente funzionalità di supporto, principalmente legate alla visualizzazione di informazioni ulteriori riguardo agli utenti e/o agli eventi.
+    \item Coda a bassa priorità: coda nella quale vengono indicate le funzionalità meno rilevanti, o che verranno implementate in iterazioni future.
+\end{itemize}
+
+In particolare, nelle tabelle di seguito [\ref*{tab: alta-priorità},\ref*{tab: media-priorità},\ref*{tab: bassa-priorità}] 
+è possibile osservare come i casi d'uso precedentemente individuati possano essere suddivisi.
+\clearpage
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ |c|c|}
+ \hline
+ \textbf{NUMERO}& \textbf{TITOLO} \\ \hline
+ UC1& Login\\ \hline
+ UC2& Signup\\ \hline
+ UC3& Logout\\ \hline
+ UC18& Creazione evento\\ \hline
+ UC17& Eliminazione evento\\ \hline
+ UC10 & Iscrizione ad un nuovo evento\\ \hline
+ UC11 & Cancellazione iscrizione\\ \hline
+ UC7 & Ricerca eventi \\ \hline
+ UC8 & Visualizzazione risultati ricerca \\ \hline
+ UC9 & Visualizzazione specifico risultato \\ \hline
+\end{tabular}
+  \caption{Coda ad alta priorità}
+  \label{tab: alta-priorità}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ |c|c|}
+ \hline
+ \textbf{NUMERO}& \textbf{TITOLO} \\ \hline
+ UC5& Visualizzazione meteo\\ \hline
+ UC6& Visualizzazione consigliati\\ \hline
+ UC15&Algoritmo iscrizione\\ \hline
+ UC13&Visualizzazione profilo utente\\ \hline
+ UC14&Visualizzazione profilo organizzatore\\ \hline
+\end{tabular}
+  \caption{Coda a media priorità}
+  \label{tab: media-priorità}
+\end{center}
+\end{table}
+
+\begin{table}
+\begin{center}
+\begin{tabular}{ |c|c|}
+ \hline
+ \textbf{NUMERO}& \textbf{TITOLO} \\ \hline
+ UC4& Visualizzazione iscrizioni\\ \hline
+ UC12& Visualizzazione partecipanti\\ \hline
+ UC16& Dettagli evento\\ \hline
+\end{tabular}
+  \caption{Coda a bassa priorità}
+  \label{tab: bassa-priorità}
+\end{center}
+\end{table}
+
+\clearpage
+\subsection{Use case diagram}
+I requisiti precedentemente elencati possono essere visualizzati graficamente tramite l'use case diagram riportato in figura.
+
