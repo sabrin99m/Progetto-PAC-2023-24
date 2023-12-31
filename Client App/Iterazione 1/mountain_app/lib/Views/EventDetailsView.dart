@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
+import 'package:mountain_app/Utilities/Constants.dart';
 
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
@@ -67,7 +68,8 @@ class EventDetailsView extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: 110,
-                              child: Text("Organizzatori > ", style: titoletto),
+                              child: Text("Organizzatori > ",
+                                  style: sottotitoloGrassetto),
                             ),
                             showListOfPeople(Utente.listaOrganizzatoriMock, 4)
                           ],
@@ -76,7 +78,8 @@ class EventDetailsView extends StatelessWidget {
                           children: [
                             SizedBox(
                               width: 110,
-                              child: Text("Partecipanti > ", style: titoletto),
+                              child: Text("Partecipanti > ",
+                                  style: sottotitoloGrassetto),
                             ),
                             showListOfPeople(Utente.listaPartecipantiMock, 4)
                           ],
@@ -85,25 +88,26 @@ class EventDetailsView extends StatelessWidget {
                     ),
                   ),
                   customDivider(),
-                  CustomInset(Text("Descrizione Percorso", style: titoletto)),
+                  CustomInset(Text("Descrizione Percorso",
+                      style: sottotitoloGrassetto)),
                   displayTextParagraph(escursione.descrizione),
                   customDivider(),
-                  Text("Strumentazione Richiesta", style: titoletto),
+                  Text("Strumentazione Richiesta", style: sottotitoloGrassetto),
                   displayTextParagraph(escursione.strumentazione),
                   customDivider(),
-                  Text("Ritrovo", style: titoletto),
+                  Text("Ritrovo", style: sottotitoloGrassetto),
                   CustomInset(Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Text("Orario: ", style: titoletto),
+                          Text("Orario: ", style: sottotitoloGrassetto),
                           Text(escursione.oraRitrovo)
                         ],
                       ),
                       Row(
                         children: [
-                          Text("Luogo: ", style: titoletto),
+                          Text("Luogo: ", style: sottotitoloGrassetto),
                           Text(escursione.luogoRitrovo)
                         ],
                       ),
@@ -168,7 +172,7 @@ class EventDetailsView extends StatelessWidget {
           Text(title),
           Text(
             text,
-            style: titoletto,
+            style: sottotitoloGrassetto,
           ),
         ],
       ),
@@ -179,22 +183,10 @@ class EventDetailsView extends StatelessWidget {
     return const Divider(indent: 16, endIndent: 16);
   }
 
-  final TextStyle titoletto = const TextStyle(
-    fontWeight: FontWeight.w600,
-    color: Colors.black,
-    fontSize: 15,
-  );
-
   final TextStyle luogo = const TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.black,
     fontSize: 20,
-  );
-
-  final TextStyle titolo = const TextStyle(
-    fontWeight: FontWeight.w600,
-    color: Colors.black,
-    fontSize: 30,
   );
 
   final TextStyle data = const TextStyle(

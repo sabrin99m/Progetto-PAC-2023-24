@@ -5,3 +5,27 @@ TextStyle tileTitle = const TextStyle(
   color: Colors.white,
   fontSize: 23,
 );
+
+TextStyle titolo = const TextStyle(
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+  fontSize: 30,
+);
+
+TextStyle sottotitoloGrassetto = const TextStyle(
+  fontWeight: FontWeight.w600,
+  color: Colors.black,
+  fontSize: 15,
+);
+
+TextStyle sottotitolo = const TextStyle(
+  fontWeight: FontWeight.w400,
+  color: Colors.black,
+  fontSize: 15,
+);
+
+TextStyle sottotitoloOpaco = const TextStyle(
+  fontWeight: FontWeight.w400,
+  color: Colors.black54,
+  fontSize: 15,
+);
