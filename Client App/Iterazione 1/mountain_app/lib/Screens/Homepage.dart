@@ -20,6 +20,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 80,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
