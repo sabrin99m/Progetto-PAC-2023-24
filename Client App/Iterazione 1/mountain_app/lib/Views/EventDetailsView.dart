@@ -160,15 +160,18 @@ class EventDetailsView extends StatelessWidget {
   }
 
   Widget gridElement(String title, String text) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(title),
-        Text(
-          text,
-          style: titoletto,
-        ),
-      ],
+    return Container(
+      width: 120,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(title),
+          Text(
+            text,
+            style: titoletto,
+          ),
+        ],
+      ),
     );
   }
 
