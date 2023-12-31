@@ -11,87 +11,123 @@ class EventDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          const Image(image: AssetImage("images/Tagliaferri.jpg")),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(escursione.luogo, style: luogo),
-                    Text(escursione.nome, style: titolo),
-                    Text(escursione.data, style: data),
-                  ],
-                ),
-                customDivider(),
-                SizedBox(
-                  height: 120,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Image(image: AssetImage("images/Tagliaferri.jpg")),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          gridElement("Distanza", escursione.distanza),
-                          gridElement("Dislivello", escursione.dislivello),
-                          gridElement("Tempo", escursione.tempo)
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          gridElement("Altezza Max.", escursione.altMax),
-                          gridElement("Altezza Min.", escursione.altMin),
-                          gridElement("Difficoltà", escursione.difficolta.name)
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-                customDivider(),
-                SizedBox(
-                  height: 120,
-                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(escursione.luogo, style: luogo),
+                      Text(escursione.nome, style: titolo),
+                      Text(escursione.data, style: data),
+                    ],
+                  ),
+                  customDivider(),
+                  SizedBox(
+                    height: 120,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            gridElement("Distanza", escursione.distanza),
+                            gridElement("Dislivello", escursione.dislivello),
+                            gridElement("Tempo", escursione.tempo)
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            gridElement("Altezza Max.", escursione.altMax),
+                            gridElement("Altezza Min.", escursione.altMin),
+                            gridElement(
+                                "Difficoltà", escursione.difficolta.name)
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  customDivider(),
+                  SizedBox(
+                    height: 120,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 110,
+                              child: Text("Organizzatori > ", style: titoletto),
+                            ),
+                            showListOfPeople(Utente.listaOrganizzatoriMock, 4)
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: 110,
+                              child: Text("Partecipanti > ", style: titoletto),
+                            ),
+                            showListOfPeople(Utente.listaPartecipantiMock, 4)
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  customDivider(),
+                  CustomInset(Text("Descrizione Percorso", style: titoletto)),
+                  displayTextParagraph(escursione.descrizione),
+                  customDivider(),
+                  Text("Strumentazione Richiesta", style: titoletto),
+                  displayTextParagraph(escursione.strumentazione),
+                  customDivider(),
+                  Text("Ritrovo", style: titoletto),
+                  CustomInset(Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         children: [
-                          Text("Organizzatori > ", style: titoletto),
-                          showListOfPeople(Utente.listaOrganizzatoriMock, 4)
+                          Text("Orario: ", style: titoletto),
+                          Text(escursione.oraRitrovo)
                         ],
                       ),
                       Row(
                         children: [
-                          Text("Partecipanti > ", style: titoletto),
-                          showListOfPeople(Utente.listaPartecipantiMock, 4)
+                          Text("Luogo: ", style: titoletto),
+                          Text(escursione.luogoRitrovo)
                         ],
                       ),
                     ],
-                  ),
-                ),
-                customDivider(),
-                Text("Descrizione Percorso", style: titoletto),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                  child: Text(
-                    escursione.descrizione,
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
-                customDivider(),
-                Text("Ritrovo", style: titoletto),
-              ],
+                  ))
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget displayTextParagraph(String textToDiplay) {
+    return CustomInset(
+      Text(textToDiplay, textAlign: TextAlign.justify),
+    );
+  }
+
+  Widget CustomInset(Widget toInset) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+      child: toInset,
     );
   }
 
