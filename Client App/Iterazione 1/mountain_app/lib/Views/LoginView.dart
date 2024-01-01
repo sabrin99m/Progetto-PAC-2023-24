@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 
@@ -133,7 +134,9 @@ class _LoginViewState extends State<LoginView> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomepageScreen(),
+                                    builder: (context) => HomepageScreen(
+                                      utente: Utente.utenteMock1,
+                                    ),
                                   ),
                                 );
                               },

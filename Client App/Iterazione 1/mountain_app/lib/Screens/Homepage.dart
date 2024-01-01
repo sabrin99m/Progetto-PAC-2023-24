@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
+import 'package:mountain_app/Models/Utente.dart';
 import 'DestinationsScreen.dart';
 import 'ForYouScreen.dart';
 import 'SubscriptionsScreen.dart';
 import '../Views/SearchBarView.dart';
 
 class HomepageScreen extends StatefulWidget {
-  const HomepageScreen({Key? key}) : super(key: key);
+  const HomepageScreen({Key? key, required this.utente}) : super(key: key);
+  final Utente utente;
 
   @override
-  State<HomepageScreen> createState() => _HomepageScreenState();
+  State<HomepageScreen> createState() => _HomepageScreenState(utente: utente);
 }
 
 class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
+  final Utente utente;
+
+  _HomepageScreenState({required this.utente});
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +30,15 @@ class _HomepageScreenState extends State<HomepageScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const CircleAvatar(
-              backgroundImage: AssetImage("images/me.jpg"),
-              radius: 30,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+              child: CircleAvatar(
+                backgroundImage: AssetImage("images/me.jpg"),
+                radius: 30,
+              ),
             ),
-            const Text(
-              "  Ciao, Federico",
+            Text(
+              ("Ciao, " + utente.nome),
               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
             ),
             const Spacer(),

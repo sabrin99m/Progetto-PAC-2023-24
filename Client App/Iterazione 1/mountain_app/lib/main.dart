@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Models/Utente.dart';
 import 'Screens/Homepage.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: HomepageScreen(),
+      home: HomepageScreen(utente: Utente.utenteMock1),
     );
   }
 }
