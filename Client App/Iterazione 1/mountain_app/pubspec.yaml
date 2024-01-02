@@ -59,6 +59,7 @@ flutter:
   assets:
     - images/tagliaferri.jpg
     - images/me.jpg
+    - images/profileBackground.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

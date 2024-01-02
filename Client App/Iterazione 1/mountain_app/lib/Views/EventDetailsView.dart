@@ -179,10 +179,6 @@ class EventDetailsView extends StatelessWidget {
     );
   }
 
-  Widget customDivider() {
-    return const Divider(indent: 16, endIndent: 16);
-  }
-
   final TextStyle luogo = const TextStyle(
     fontWeight: FontWeight.w500,
     color: Colors.black,

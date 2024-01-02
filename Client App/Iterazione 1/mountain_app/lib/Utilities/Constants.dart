@@ -29,3 +29,7 @@ TextStyle sottotitoloOpaco = const TextStyle(
   color: Colors.black54,
   fontSize: 15,
 );
+
+Widget customDivider() {
+  return const Divider(indent: 16, endIndent: 16);
+}
