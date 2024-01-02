@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Views/RegistrationView.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -141,10 +143,7 @@ class _LoginViewState extends State<LoginView> {
                                 );
                               },
                             ),
-                            Text(
-                              "Oppure registrati",
-                              style: sottotitolo,
-                            ),
+                            registestrationSection(),
                           ],
                         ),
                       ),
@@ -153,6 +152,29 @@ class _LoginViewState extends State<LoginView> {
                 )))
       ],
     ));
+  }
+
+  Widget registestrationSection() {
+    return RichText(
+      text: TextSpan(
+        style: sottotitolo,
+        children: <TextSpan>[
+          TextSpan(text: 'Oppure '),
+          TextSpan(
+              text: 'Registrati',
+              style: sottotitoloLink,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RegistrationView(),
+                    ),
+                  );
+                }),
+        ],
+      ),
+    );
   }
 
   Widget CustomTextField(IconData icon, String hintText, String errorText,

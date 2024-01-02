@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Models/Utente.dart';
+import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 
 class RegistrationView extends StatefulWidget {
@@ -160,12 +162,13 @@ class _RegistrationViewState extends State<RegistrationView> {
                                       "Name: $name \n Surname: $surname \n email: $email \n Phone: $phone \n orgCode: $orgCode \n Password: $password \n ");
                                 }
 
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => HomepageScreen(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomepageScreen(
+                                        utente: Utente.utenteMock1),
+                                  ),
+                                );
                               },
                             ),
                             Text("Campi obbligatori*", style: sottotitoloOpaco)

@@ -24,6 +24,12 @@ TextStyle sottotitolo = const TextStyle(
   fontSize: 15,
 );
 
+TextStyle sottotitoloLink = const TextStyle(
+  fontWeight: FontWeight.w400,
+  color: Colors.blueAccent,
+  fontSize: 15,
+);
+
 TextStyle sottotitoloOpaco = const TextStyle(
   fontWeight: FontWeight.w400,
   color: Colors.black54,
