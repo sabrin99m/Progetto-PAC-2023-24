@@ -1,4 +1,4 @@
-package com.pac.gestoreeventi;
+package it.gestoreeventi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,9 +1,9 @@
-package com.pac.gestoreeventi.model;
+package it.gestoreeventi.eventsManagement;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface EventRepo extends JpaRepository<Event, Integer> {
+public interface EventRepository extends JpaRepository<Event, Integer> {
     List<Event> findById(long id);
 }
