@@ -86,7 +86,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                   false,
                                 ),
                                 customTextFieldSection(
-                                  Icons.person,
+                                  Icons.mail,
                                   "Indirizzo Email",
                                   "Inserisci la tua mail...",
                                   _emailFieldcontroller,
@@ -96,7 +96,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                   false,
                                 ),
                                 customTextFieldSection(
-                                  Icons.person,
+                                  Icons.phone,
                                   "Numero di telefono",
                                   "Inserisci il tuo numero di telefono...",
                                   _phoneFieldcontroller,
@@ -106,7 +106,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                   false,
                                 ),
                                 customTextFieldSection(
-                                  Icons.person,
+                                  Icons.numbers,
                                   "Codice Organizzatore",
                                   "Se possiedi un codice inseriscilo...",
                                   _codeFieldcontroller,
@@ -116,7 +116,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                   true,
                                 ),
                                 customTextFieldSection(
-                                  Icons.person,
+                                  Icons.password,
                                   "Password",
                                   "Inserisci la tua password...",
                                   _passwordFieldcontroller,
@@ -195,69 +195,6 @@ class _RegistrationViewState extends State<RegistrationView> {
           style: sottotitoloOpaco,
         ),
       ],
-    );
-  }
-
-  Widget customTextFieldSection(
-    IconData icon,
-    String name,
-    String text,
-    TextEditingController controller,
-    bool isRequired,
-    bool obscured,
-    TextInputType keyboardType,
-    bool allowEmpty,
-  ) {
-    return Container(
-      height: 110,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(
-            "$name" + ((isRequired) ? "*" : ""),
-            style: sottotitoloGrassetto,
-          ),
-          CustomTextField(
-            Icons.person,
-            text,
-            controller,
-            obscured,
-            keyboardType,
-            allowEmpty,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget CustomTextField(
-    IconData icon,
-    String hintText,
-    TextEditingController _controller,
-    bool obscureText,
-    TextInputType keyboardType,
-    bool allowEmpty,
-  ) {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.black38),
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(icon),
-        prefixIconColor: Colors.black38,
-      ),
-      controller: _controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: (value) {
-        if (!allowEmpty && (value == null || value.isEmpty)) {
-          return "Richiesto";
-        }
-
-        return null;
-      },
-      autocorrect: false,
     );
   }
 }
