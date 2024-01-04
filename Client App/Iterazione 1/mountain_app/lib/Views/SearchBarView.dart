@@ -11,6 +11,7 @@ class _SearchBarViewState extends State<SearchBarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SafeArea(
