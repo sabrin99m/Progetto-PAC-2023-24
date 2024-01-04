@@ -1,4 +1,4 @@
-package it.gestoreeventi.eventsManagement;
+package com.pac.gestoreeventi.eventsManagement;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

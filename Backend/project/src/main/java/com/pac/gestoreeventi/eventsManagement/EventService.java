@@ -1,4 +1,4 @@
-package it.gestoreeventi.eventsManagement;
+package com.pac.gestoreeventi.eventsManagement;
 
 import java.util.List;
 import java.util.stream.Collectors;
