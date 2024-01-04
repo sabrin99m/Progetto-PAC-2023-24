@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
+import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Views/CreateEventView.dart';
 import 'DestinationsScreen.dart';
 import 'ForYouScreen.dart';
 import 'SubscriptionsScreen.dart';
@@ -27,21 +29,43 @@ class _HomepageScreenState extends State<HomepageScreen> {
         toolbarHeight: 80,
         automaticallyImplyLeading: false,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage("images/me.jpg"),
-                radius: 30,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage("images/me.jpg"),
+                    radius: 30,
+                  ),
+                ),
+                Text(
+                  ("Ciao, " + utente.nome),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
+                ),
+              ],
+            ),
+            FloatingActionButton.extended(
+              elevation: 0,
+              backgroundColor: Colors.green,
+              hoverElevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32))),
+              label: Text(
+                "Crea Evento",
+                style: sottotitoloGrassetto,
               ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CreateEventView(),
+                  ),
+                );
+              },
             ),
-            Text(
-              ("Ciao, " + utente.nome),
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
-            ),
-            const Spacer(),
             IconButton(
               icon: const Icon(Icons.search),
               iconSize: 30,
@@ -53,7 +77,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 );
               },
             )
-            // Your widgets here
           ],
         ),
       ),
