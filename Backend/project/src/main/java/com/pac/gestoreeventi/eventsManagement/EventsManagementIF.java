@@ -26,5 +26,6 @@ public interface EventsManagementIF {
     /**
 	* Funzione per l'inserimento di un nuovo evento.
 	*/
-	public void insertEvent();
+	public void insertEvent(EventDTO eventDTO);
+
 }
