@@ -49,4 +49,25 @@ public class EventService implements EventsManagementIF{
         eventRepository.save(event);
     }
 
+    @Override
+    public Event getEvent(long idEvent) {
+        Optional<Event> event = eventRepository.findById(idEvent);
+
+        if(!event.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No event found");
+        }
+        return event.get();
+    }
+
+    @Override
+    public void deleteEvent(Long idEvent) {
+        Optional<Event> event = eventRepository.findById(idEvent);
+
+        if(!event.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Request received. No event to delete found");
+        }
+
+         eventRepository.delete(event.get());
+    }
+
 }

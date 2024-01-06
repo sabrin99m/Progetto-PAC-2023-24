@@ -19,9 +19,14 @@ public class EventController {
 		return eventService.getEvents();
 	}
 
+	@GetMapping(path = "/events/{idEvent}")
+	public Event getEvent(@PathVariable("idEvent") long idEvent){return eventService.getEvent(idEvent);}
+
 	@PostMapping(path = "/events/new")
 	public String insertEvent(@RequestBody EventDTO eventDTO){
 			eventService.insertEvent(eventDTO);
 			return "Aggiunto nuovo evento";
 	}
+	@DeleteMapping(path = "/events/{idEvent}")
+	public String deleteEvent(@PathVariable("idEvent") Long idEvent){eventService.deleteEvent(idEvent); return "Evento eliminato";}
 }
