@@ -3,6 +3,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:mountain_app/Views/EventDetailsView.dart';
+import 'package:mountain_app/Views/LoginView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class ProfileView extends StatelessWidget {
@@ -13,6 +14,18 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [
+        IconButton(
+          icon: Icon(Icons.logout),
+          iconSize: 25,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoginView()),
+            );
+          },
+        ),
+      ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -27,10 +40,7 @@ class ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  utente.nome + " " + utente.cognome,
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-                ),
+                nameSurnameSection(),
 
                 //Only show if it is organizer
                 if (utente.isOrganizer) organizerSection(),
@@ -42,35 +52,45 @@ class ProfileView extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
 
-                Container(
-                  height: 1000,
-                  child: ListView.builder(
-                    itemCount: utente.iscrizioniPassate.length,
-                    itemBuilder: (context, index) {
-                      // return TileView(escursione: escursioni[index]);
-                      return ListTile(
-                        title: TileView(
-                            escursione: Escursione.escursioniMock[index]),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EventDetailsView(
-                                escursione: Escursione.escursioniMock[index],
-                                listaEscursioni: utente.iscrizioni,
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
+                excursionListSection(),
               ],
             ),
           )
         ],
       ),
+    );
+  }
+
+  Widget excursionListSection() {
+    return Container(
+      height: 900,
+      child: ListView.builder(
+        itemCount: utente.iscrizioniPassate.length,
+        itemBuilder: (context, index) {
+          // return TileView(escursione: escursioni[index]);
+          return ListTile(
+            title: TileView(escursione: Escursione.escursioniMock[index]),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventDetailsView(
+                    escursione: Escursione.escursioniMock[index],
+                    listaEscursioni: utente.iscrizioni,
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+
+  Text nameSurnameSection() {
+    return Text(
+      utente.nome + " " + utente.cognome,
+      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
     );
   }
 

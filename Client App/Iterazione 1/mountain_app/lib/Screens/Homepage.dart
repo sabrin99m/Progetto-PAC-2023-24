@@ -3,6 +3,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:mountain_app/Views/CreateEventView.dart';
+import 'package:mountain_app/Views/ProfileView.dart';
 import 'DestinationsScreen.dart';
 import 'ForYouScreen.dart';
 import 'SubscriptionsScreen.dart';
@@ -37,9 +38,27 @@ class _HomepageScreenState extends State<HomepageScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage("images/me.jpg"),
-                    radius: 30,
+                  // child: CircleAvatar(
+                  //   backgroundImage: AssetImage("images/me.jpg"),
+                  //   radius: 30,
+                  // ),
+                  child: Container(
+                    width: 60,
+                    height: 60,
+                    child: FloatingActionButton.extended(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ProfileView(utente: this.utente),
+                            ),
+                          );
+                        },
+                        shape: CircleBorder(),
+                        label: CircleAvatar(
+                          backgroundImage: AssetImage("images/me.jpg"),
+                          radius: 30,
+                        )),
                   ),
                 ),
                 Text(
