@@ -56,7 +56,9 @@ class ProfileView extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => EventDetailsView(
-                                  escursione: Escursione.escursioniMock[index]),
+                                escursione: Escursione.escursioniMock[index],
+                                listaEscursioni: utente.iscrizioni,
+                              ),
                             ),
                           );
                         },

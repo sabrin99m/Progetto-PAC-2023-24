@@ -5,8 +5,10 @@ import 'package:mountain_app/Utilities/Constants.dart';
 
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
+  final List<String> listaEscursioni;
 
-  const EventDetailsView({super.key, required this.escursione});
+  const EventDetailsView(
+      {super.key, required this.escursione, required this.listaEscursioni});
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +23,22 @@ class EventDetailsView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(escursione.luogo, style: luogo),
-                      Text(escursione.nome, style: titolo),
-                      Text(escursione.data, style: data),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(escursione.luogo, style: luogo),
+                          Text(escursione.nome, style: titolo),
+                          Text(escursione.data, style: data),
+                        ],
+                      ),
+                      if (isUserSubscribed())
+                        unsubscribeButtonSection()
+                      else
+                        subscribeButtonSection()
                     ],
                   ),
                   customDivider(),
@@ -122,6 +133,36 @@ class EventDetailsView extends StatelessWidget {
     );
   }
 
+  Widget subscribeButtonSection() {
+    return FloatingActionButton.extended(
+      elevation: 0,
+      backgroundColor: Colors.green,
+      hoverElevation: 0,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32))),
+      label: Text(
+        "Iscriviti a questa escursione",
+        style: sottotitoloGrassetto,
+      ),
+      onPressed: () {},
+    );
+  }
+
+  Widget unsubscribeButtonSection() {
+    return FloatingActionButton.extended(
+      elevation: 0,
+      backgroundColor: Colors.green,
+      hoverElevation: 0,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32))),
+      label: Text(
+        "Disiscriviti da questa escursione",
+        style: sottotitoloGrassetto,
+      ),
+      onPressed: () {},
+    );
+  }
+
   Widget displayTextParagraph(String textToDiplay) {
     return CustomInset(
       Text(textToDiplay, textAlign: TextAlign.justify),
@@ -177,6 +218,11 @@ class EventDetailsView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool isUserSubscribed() {
+    if (listaEscursioni.contains(escursione.id)) return true;
+    return false;
   }
 
   final TextStyle luogo = const TextStyle(

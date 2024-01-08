@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
+import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Views/EventDetailsView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
@@ -23,8 +24,10 @@ class DestinationsScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      EventDetailsView(escursione: escursioni[index]),
+                  builder: (context) => EventDetailsView(
+                    escursione: escursioni[index],
+                    listaEscursioni: Utente.utenteMock1.iscrizioni,
+                  ),
                 ),
               );
             },
