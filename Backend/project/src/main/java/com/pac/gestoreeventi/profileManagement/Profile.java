@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.persistence.Id;
 
 @Table(name = "profile")
+@Entity
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +23,9 @@ public class Profile {
     private UserRole userRole;
 
 
+    public Profile(){
+
+    }
     public Profile(long id,String firstName,String lastName,String email,UserRole userRole){
         this.id = id;
         this.firstName = firstName;
