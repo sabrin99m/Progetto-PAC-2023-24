@@ -1,5 +1,6 @@
 package com.pac.gestoreeventi.config;
 
+import com.pac.gestoreeventi.profileManagement.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.SecurityBuilder;
@@ -14,13 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-     //@Autowired
-     //private UserService userService;
+     @Autowired
+     private ProfileService profileService;
 
-     //@Override
-     //protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-     //    auth.userDetailsService(userService);
-     //}
+     @Override
+     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+         auth.userDetailsService(profileService);
+     }
 
      @Override
      protected void configure(HttpSecurity http) throws Exception {

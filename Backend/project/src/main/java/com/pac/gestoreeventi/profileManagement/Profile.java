@@ -19,19 +19,23 @@ public class Profile {
     @Column
     private String email;
 
+    @Column
+    private String password;
+
     @Enumerated(EnumType.STRING)
-    private UserRole userRole;
+    private ProfileRole profileRole;
 
 
     public Profile(){
 
     }
-    public Profile(long id,String firstName,String lastName,String email,UserRole userRole){
+    public Profile(long id, String firstName, String lastName, String email, String password, ProfileRole profileRole){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userRole = userRole;
+        this.password = password;
+        this.profileRole = profileRole;
     }
 
     public void setFirstName(String firstName) {
@@ -46,8 +50,12 @@ public class Profile {
         this.email = email;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setProfileRole(ProfileRole profileRole) {
+        this.profileRole = profileRole;
     }
 
     public String getFirstName() {
@@ -62,8 +70,12 @@ public class Profile {
         return email;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public String getPassword() {
+        return password;
+    }
+
+    public ProfileRole getProfileRole() {
+        return profileRole;
     }
 
     public long getId() {

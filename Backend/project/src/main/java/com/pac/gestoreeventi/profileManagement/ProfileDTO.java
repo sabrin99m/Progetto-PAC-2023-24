@@ -1,14 +1,12 @@
 package com.pac.gestoreeventi.profileManagement;
 
-import javax.persistence.*;
-
 public class ProfileDTO {
 
     private long id;
     private String firstName;
     private String lastName;
     private String email;
-    private UserRole userRole;
+    private ProfileRole profileRole;
 
 
     public ProfileDTO(ProfileDTO p){
@@ -16,15 +14,15 @@ public class ProfileDTO {
         this.firstName = p.getFirstName();
         this.lastName = p.getFirstName();
         this.email = p.getEmail();
-        this.userRole = p.getUserRole();
+        this.profileRole = p.getUserRole();
     }
 
-    public ProfileDTO(long id,String firstName,String lastName,String email,UserRole userRole){
+    public ProfileDTO(long id, String firstName, String lastName, String email, ProfileRole profileRole){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.userRole = userRole;
+        this.profileRole = profileRole;
     }
 
     public void setId(long id) {
@@ -43,8 +41,8 @@ public class ProfileDTO {
         this.email = email;
     }
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setUserRole(ProfileRole profileRole) {
+        this.profileRole = profileRole;
     }
 
     public long getId() {
@@ -63,7 +61,7 @@ public class ProfileDTO {
         return email;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
+    public ProfileRole getUserRole() {
+        return profileRole;
     }
 }

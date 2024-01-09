@@ -4,21 +4,21 @@ public interface ProfileManagementIF {
     /**
      * Funzione che restituisce tutti gli eventi a cui l'utente è iscritto.
      */
-    public void get_signupEvents();
+    public void getSignupEvents();
 
     /**
      * Funzione che restituisce tutti i dettagli del profilo.
      */
-    public void get_profileDetails();
+    public void getProfileDetails();
 
     /**
      * Funzione per l'iscrizione ad un evento.
      */
-    public void insert_eventSignup();
+    public void insertEventSignup();
 
     /**
      * Funzione per annullare l'iscrizione ad un evento.
      */
-    public void delete_eventSignup();
+    public void deleteEventSignup();
 
 }
