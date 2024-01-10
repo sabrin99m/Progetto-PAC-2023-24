@@ -1,24 +1,41 @@
 package com.pac.gestoreeventi.eventsManagement;
 
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
+import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EventDTO {
+
     private long idEvent;
+
     private String name;
-    @CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern="dd-MM-yyyy HH:mm")
-	private Date date;
-    private Double lat;
-    private Double lng;
-    private Integer maxPeople;
+
+    private String place;
+
+    private EventLevel difficulty;
+
+    private Date date;
+
     private String description;
+
+    private String distance;
+
+    private String heightLevel;
+
+    private String minHeight;
+
+    private String tools;
+
+    private String meetingPlace;
+
+    private Integer maxPeople;
+
+    private Time time;
 
     public EventDTO(){
 
@@ -27,30 +44,25 @@ public class EventDTO {
     public EventDTO(Event e){
         this.idEvent = e.getId();
         this.name = e.getName();
+        this.place = e.getPlace();
+        this.difficulty = e.getDifficulty();
         this.date = e.getDate();
-        this.lat = e.getLat();
-        this.lng = e.getLng();
-        this.maxPeople = e.getMaxPeople();
         this.description = e.getDescription();
-    }
-
-    public EventDTO(long idEvent, String name, Date date, Double lat, Double lng, Integer maxPeople,
-            String description) {
-        this.idEvent = idEvent;
-        this.name = name;
-        this.date = date;
-        this.lat = lat;
-        this.lng = lng;
-        this.maxPeople = maxPeople;
-        this.description = description;
+        this.distance = e.getDistance();
+        this.heightLevel = e.getHeightLevel();
+        this.minHeight = e.getMinHeight();
+        this.tools = e.getTools();
+        this.meetingPlace = e.getMeetingPlace();
+        this.time = e.getTime();
+        this.maxPeople = e.getMaxPeople();
     }
 
     public long getIdEvent() {
         return idEvent;
     }
 
-    public void setIdEvent(long idEvent) {
-        this.idEvent = idEvent;
+    public void setIdEvent(long id) {
+        this.idEvent = id;
     }
 
     public String getName() {
@@ -61,6 +73,22 @@ public class EventDTO {
         this.name = name;
     }
 
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public EventLevel getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(EventLevel difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -69,20 +97,60 @@ public class EventDTO {
         this.date = date;
     }
 
-    public Double getLat() {
-        return lat;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLat(Double lat) {
-        this.lat = lat;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Double getLng() {
-        return lng;
+    public String getDistance() {
+        return distance;
     }
 
-    public void setLng(Double lng) {
-        this.lng = lng;
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getHeightLevel() {
+        return heightLevel;
+    }
+
+    public void setHeightLevel(String heightLevel) {
+        this.heightLevel = heightLevel;
+    }
+
+    public String getMinHeight() {
+        return minHeight;
+    }
+
+    public void setMinHeight(String minHeight) {
+        this.minHeight = minHeight;
+    }
+
+    public String getTools() {
+        return tools;
+    }
+
+    public void setTools(String tools) {
+        this.tools = tools;
+    }
+
+    public String getMeetingPlace() {
+        return meetingPlace;
+    }
+
+    public void setMeetingPlace(String meetingPlace) {
+        this.meetingPlace = meetingPlace;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public Integer getMaxPeople() {
@@ -91,13 +159,5 @@ public class EventDTO {
 
     public void setMaxPeople(Integer maxPeople) {
         this.maxPeople = maxPeople;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -1,9 +1,10 @@
 package com.example.demo;
 
+import com.pac.gestoreeventi.Main;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(classes = Main.class)
 class DemoApplicationTests {
 
 	@Test

@@ -2,8 +2,12 @@ package com.pac.gestoreeventi.eventsManagement;
 
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -18,40 +22,70 @@ public class Event {
 
     @Column
     private String name;
-    
+
+    @Column
+    private String place;
+
+    @Enumerated(EnumType.STRING)
+    private EventLevel difficulty;
+
     @Column
     @CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern="dd-MM-yyyy")
 	private Date date;
-    
-    @Column
-    private Double lat;
-
-    @Column
-    private Double lng;
-    
-    @Column
-    private Integer maxPeople;
 
     @Column
     private String description;
 
-    public Event() {
-    }
+    @Column
+    private String distance;
 
-    public Event(long id, String name, Date date, Double lat, Double lng, Integer maxPeople, String description) {
+    @Column
+    private String heightLevel;
+
+    @Column
+    private String minHeight;
+
+    @Column
+    private String tools;
+
+    @Column
+    private String meetingPlace;
+
+    @Column
+    private Integer maxPeople;
+
+    @Column
+    private Time time;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public Event() { }
+
+    public Event(long id, String name, String place, EventLevel difficulty, Date date, String description, String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time, Integer maxPeople) {
         this.id = id;
         this.name = name;
+        this.place = place;
+        this.difficulty = difficulty;
         this.date = date;
-        this.lat = lat;
-        this.lng = lng;
-        this.maxPeople = maxPeople;
         this.description = description;
+        this.distance = distance;
+        this.heightLevel = heightLevel;
+        this.minHeight = minHeight;
+        this.tools = tools;
+        this.meetingPlace = meetingPlace;
+        this.time = time;
+        this.maxPeople = maxPeople;
     }
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -62,6 +96,22 @@ public class Event {
         this.name = name;
     }
 
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public EventLevel getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(EventLevel difficulty) {
+        this.difficulty = difficulty;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -70,20 +120,60 @@ public class Event {
         this.date = date;
     }
 
-    public Double getLat() {
-        return lat;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLat(Double lat) {
-        this.lat = lat;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Double getLng() {
-        return lng;
+    public String getDistance() {
+        return distance;
     }
 
-    public void setLng(Double lng) {
-        this.lng = lng;
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
+
+    public String getHeightLevel() {
+        return heightLevel;
+    }
+
+    public void setHeightLevel(String heightLevel) {
+        this.heightLevel = heightLevel;
+    }
+
+    public String getMinHeight() {
+        return minHeight;
+    }
+
+    public void setMinHeight(String minHeight) {
+        this.minHeight = minHeight;
+    }
+
+    public String getTools() {
+        return tools;
+    }
+
+    public void setTools(String tool) {
+        this.tools = tools;
+    }
+
+    public String getMeetingPlace() {
+        return meetingPlace;
+    }
+
+    public void setMeetingPlace(String meetingPlace) {
+        this.meetingPlace = meetingPlace;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public Integer getMaxPeople() {
@@ -94,11 +184,11 @@ public class Event {
         this.maxPeople = maxPeople;
     }
 
-    public String getDescription() {
-        return description;
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setChildren(Reservation reservation) {
+        this.reservations.add(reservation);
     }
 }
