@@ -19,6 +19,7 @@ public class Main {
 		modelMapper.getConfiguration().setSkipNullEnabled(true);
 
 		return modelMapper;
+		//testing
 	}
 	
 	public static void main(String[] args) {
