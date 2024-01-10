@@ -1,4 +1,5 @@
-package it.gestoreeventi.eventsManagement;
+package com.pac.gestoreeventi.eventsManagement;
+
 
 import javax.persistence.*;
 import java.util.Date;

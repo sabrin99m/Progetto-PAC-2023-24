@@ -1,11 +1,14 @@
-package it.gestoreeventi.eventsManagement;
+package com.pac.gestoreeventi.eventsManagement;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class EventService implements EventsManagementIF{
@@ -41,9 +44,30 @@ public class EventService implements EventsManagementIF{
     }
 
     @Override
-    public void insertEvent() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insert_event'");
+    public void insertEvent(EventDTO eventDTO) {
+        Event event = modelMapper.map(eventDTO,Event.class);
+        eventRepository.save(event);
     }
-    
+
+    @Override
+    public Event getEvent(long idEvent) {
+        Optional<Event> event = eventRepository.findById(idEvent);
+
+        if(!event.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No event found");
+        }
+        return event.get();
+    }
+
+    @Override
+    public void deleteEvent(Long idEvent) {
+        Optional<Event> event = eventRepository.findById(idEvent);
+
+        if(!event.isPresent()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,"Request received. No event to delete found");
+        }
+
+         eventRepository.delete(event.get());
+    }
+
 }
