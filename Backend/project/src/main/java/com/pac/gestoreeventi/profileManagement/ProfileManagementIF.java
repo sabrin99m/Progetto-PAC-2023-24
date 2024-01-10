@@ -21,4 +21,5 @@ public interface ProfileManagementIF {
      */
     public void deleteEventSignup();
 
+    Profile getProfile(Long idProfile);
 }

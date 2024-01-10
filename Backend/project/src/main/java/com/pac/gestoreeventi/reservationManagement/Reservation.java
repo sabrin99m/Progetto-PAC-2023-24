@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "reservation")
 public class Reservation {
@@ -29,9 +30,10 @@ public class Reservation {
     @Column
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern="dd-MM-yyyy hh:mm")
+    @JsonFormat(pattern="dd-MM-yyyy")
     private Date datetime;
 
+    @JsonIgnore
     @Column
     private Boolean confirmation;
 

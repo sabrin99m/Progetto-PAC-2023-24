@@ -1,8 +1,8 @@
 package com.pac.gestoreeventi.profileManagement;
 
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,6 +37,13 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     @Override
     public void deleteEventSignup() {
 
+    }
+
+    @Override
+    public Profile getProfile(Long idProfile) {
+        Optional<Profile> profile = profileRepository.findById(idProfile);
+
+        return profile.get();
     }
 
     @Override
