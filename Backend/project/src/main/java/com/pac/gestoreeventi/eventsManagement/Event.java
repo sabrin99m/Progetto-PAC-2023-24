@@ -1,6 +1,5 @@
 package com.pac.gestoreeventi.eventsManagement;
 
-
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -11,7 +10,6 @@ import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 
 @Table(name = "event")
 @Entity
@@ -31,9 +29,9 @@ public class Event {
 
     @Column
     @CreationTimestamp
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern="dd-MM-yyyy")
-	private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private Date date;
 
     @Column
     private String description;
@@ -62,9 +60,12 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
-    public Event() { }
+    public Event() {
+    }
 
-    public Event(long id, String name, String place, EventLevel difficulty, Date date, String description, String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time, Integer maxPeople) {
+    public Event(long id, String name, String place, EventLevel difficulty, Date date, String description,
+            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
+            Integer maxPeople) {
         this.id = id;
         this.name = name;
         this.place = place;
@@ -157,7 +158,7 @@ public class Event {
     }
 
     public void setTools(String tool) {
-        this.tools = tools;
+        this.tools = tool;
     }
 
     public String getMeetingPlace() {
