@@ -14,4 +14,4 @@ WORKDIR .
 
 COPY --from=maven target/demo-0.0.1-SNAPSHOT.jar ./demo.jar
 
-CMD ["java", "-jar", "./demo.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=dev", "./demo.jar"]
