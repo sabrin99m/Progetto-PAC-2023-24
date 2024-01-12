@@ -1,10 +1,17 @@
-FROM maven:3-eclipse-temurin-8 AS build
-WORKDIR /build
-COPY pom.xml .
+FROM maven:3.5.4-jdk-8-alpine as maven
+
+COPY ./pom.xml ./pom.xml
+
+COPY ./src ./src
+
 RUN mvn dependency:go-offline -B
-COPY . .
+
 RUN mvn package
-FROM eclipse-temurin:8-alpine
-COPY --from=build build/target/demo-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
+
+FROM openjdk:8u171-jre-alpine
+
+WORKDIR .
+
+COPY --from=maven target/demo-0.0.1-SNAPSHOT.jar ./demo.jar
+
+CMD ["java", "-jar", "./demo.jar"]
