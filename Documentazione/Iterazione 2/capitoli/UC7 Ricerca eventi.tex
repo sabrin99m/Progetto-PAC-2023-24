@@ -1,0 +1,32 @@
+\subsection{UC-7 Ricerca Evento}
+Dalla app l'utente può cercare un evento in base al nome, viene mostrata una vista con l'evento dal nome scelto, se viene trovato.
+\\
+\\
+\textit{Breve Descrizione: Il sistema cerca nella lista degli eventi scaricati non ancora conclusi per una corrispondenza del nome. Tutto Lo use case si sviluppa offline} 
+\\
+\\
+\textit{Attori Coinvolti: Sistema, utente}
+\\
+\\
+\textit{Precondizione: L'utente è registrato nell'app}
+\\
+\\
+\textit{Postcondizione: L'utente visualizza l'evento che ha cercato}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item Selezionare l'icona di ricerca in alto a destra;
+	\item Scrivere il nome dell'evento da cercare;
+	\item Se il nome è presente viene mostrato dal sistema.
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1: L'evento con il nome dato non esiste
+	\begin{enumerate}
+		\item Viene mostrato all'utente un messaggio di errore;
+		\item Viene data la possibilità di riprovare o tornare alla homepage;
+	\end{enumerate}
+\end{itemize}
