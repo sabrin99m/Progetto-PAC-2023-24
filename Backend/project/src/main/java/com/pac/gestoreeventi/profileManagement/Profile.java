@@ -117,7 +117,7 @@ public class Profile {
     }
 
     public ProfileLevel getProfileLevel() {
-        return profileLevel;
+        return  profileLevel;
     }
 
     public void setProfileLevel(ProfileLevel profileLevel) {
