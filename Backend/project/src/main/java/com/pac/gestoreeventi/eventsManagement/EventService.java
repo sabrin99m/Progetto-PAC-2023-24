@@ -56,6 +56,7 @@ public class EventService implements EventsManagementIF{
         if(!event.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No event found");
         }
+        
         return event.get();
     }
 

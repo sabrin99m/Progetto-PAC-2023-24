@@ -27,6 +27,7 @@ public class EventController {
 			eventService.insertEvent(eventDTO);
 			return "Aggiunto nuovo evento";
 	}
+	
 	@DeleteMapping(path = "/events/{idEvent}")
 	public String deleteEvent(@PathVariable("idEvent") Long idEvent){eventService.deleteEvent(idEvent); return "Evento eliminato";}
 }

@@ -1,5 +1,7 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import java.util.List;
+
 public interface ProfileManagementIF {
     /**
      * Funzione che restituisce tutti gli eventi a cui l'utente è iscritto.
@@ -22,4 +24,16 @@ public interface ProfileManagementIF {
     public void deleteEventSignup();
 
     Profile getProfile(Long idProfile);
+
+	public ProfileDTO login(UserDetailsImpl profileInfo);
+
+	public List<ProfileDTO> getProfiles();
+	
+    public ProfileDTO getProfile(Integer idProfile);
+	
+    public ProfileDTO addProfile(ProfileDTO profileDto);
+	
+    public ProfileDTO modifyProfile(ProfileDTO profileDto);
+	
+    public void deleteProfile(Integer idProfile);
 }
