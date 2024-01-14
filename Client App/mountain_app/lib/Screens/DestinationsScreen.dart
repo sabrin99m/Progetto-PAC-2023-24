@@ -17,7 +17,6 @@ class DestinationsScreen extends StatelessWidget {
       body: ListView.builder(
         itemCount: escursioni.length,
         itemBuilder: (context, index) {
-          // return TileView(escursione: escursioni[index]);
           return ListTile(
             title: TileView(escursione: escursioni[index]),
             onTap: () {

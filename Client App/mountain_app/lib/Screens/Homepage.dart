@@ -91,7 +91,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const SearchBarView(),
+                    builder: (context) =>
+                        SearchBarView(escursioni: Escursione.escursioniMock),
                   ),
                 );
               },
