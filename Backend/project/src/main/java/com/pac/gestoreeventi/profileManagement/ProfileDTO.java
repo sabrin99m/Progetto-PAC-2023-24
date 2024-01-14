@@ -1,67 +1,123 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToMany;
+
+import com.pac.gestoreeventi.eventsManagement.Event;
+import com.pac.gestoreeventi.reservationManagement.Reservation;
+
 public class ProfileDTO {
 
     private long id;
     private String firstName;
     private String lastName;
+    private ProfileLevel profileLevel;
     private String email;
+    private String phone;
+    private String password;
     private ProfileRole profileRole;
+    private List<Event> events = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>();
 
-
-    public ProfileDTO(ProfileDTO p){
-        this.id = p.getId();
-        this.firstName = p.getFirstName();
-        this.lastName = p.getFirstName();
-        this.email = p.getEmail();
-        this.profileRole = p.getUserRole();
-    }
-
-    public ProfileDTO(long id, String firstName, String lastName, String email, ProfileRole profileRole){
-        this.id = id;
+    public ProfileDTO(String firstName, String lastName, ProfileLevel profileLevel, String email, String phone,
+            String password, ProfileRole profileRole, List<Event> events, List<Reservation> reservations) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.profileLevel = profileLevel;
         this.email = email;
+        this.phone = phone;
+        this.password = password;
         this.profileRole = profileRole;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setUserRole(ProfileRole profileRole) {
-        this.profileRole = profileRole;
+        this.events = events;
+        this.reservations = reservations;
     }
 
     public long getId() {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getFirstName() {
         return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
         return lastName;
     }
 
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public ProfileLevel getProfileLevel() {
+        return profileLevel;
+    }
+
+    public void setProfileLevel(ProfileLevel profileLevel) {
+        this.profileLevel = profileLevel;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    public ProfileRole getUserRole() {
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public ProfileRole getProfileRole() {
         return profileRole;
     }
+    
+    public void setProfileRole(ProfileRole profileRole) {
+        this.profileRole = profileRole;
+    }
+    
+    public List<Event> getEvents() {
+        return events;
+    }
+    
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+    
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+    
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+    
+
+   
 }

@@ -4,6 +4,7 @@ package com.pac.gestoreeventi.profileManagement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -51,7 +52,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByEmail(String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<Profile> profile = profileRepository.findByEmail(email);
 
         profile.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
@@ -61,9 +62,10 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
     @Override
 	public ProfileDTO login(UserDetailsImpl profileInfo) {
+		//getUsername è un override ma prendiamo la email come campo univoco
 		Optional<Profile> profile = profileRepository.findByEmail(profileInfo.getUsername());
 
-		profile.orElseThrow(() -> new UsernameNotFoundException(profileInfo.getProfilename() + " not found."));
+		profile.orElseThrow(() -> new UsernameNotFoundException(profileInfo.getUsername() + " not found."));
 
 		return profile.map(ProfileDTO::new).get();
 	}
@@ -86,9 +88,9 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 	@Override
 	public ProfileDTO addProfile(ProfileDTO profileDto) {
-		Optional<Profile> profile = profileRepository.findByProfilename(profileDto.getProfilename());
+		Optional<Profile> profile = profileRepository.findByEmail(profileDto.getEmail());
 
-		if (!profile.isEmpty())
+		if (!profile.isPresent())
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profile already exists");
 		
 		Profile newProfile = modelMapper.map(profileDto, Profile.class);
@@ -99,7 +101,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 	@Override
 	public ProfileDTO modifyProfile(ProfileDTO profileDto) {
-		Optional<Profile> profileToModify = profileRepository.findByProfilename(profileDto.getProfilename());
+		Optional<Profile> profileToModify = profileRepository.findByEmail(profileDto.getEmail());
 
 		if (!profileToModify.isPresent())
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile to delete");
@@ -120,4 +122,5 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 		profileRepository.delete(profileToDelete.get());
 	}
+
 }

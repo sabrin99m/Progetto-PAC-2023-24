@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -57,6 +58,10 @@ public class Event {
     @Column
     private Time time;
 
+    @ManyToOne
+    @JoinColumn(name = "idProfile")
+    private Profile profile;
+
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
@@ -67,6 +72,7 @@ public class Event {
             String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
             Integer maxPeople) {
         this.id = id;
+        this.profile = profile;
         this.name = name;
         this.place = place;
         this.difficulty = difficulty;
@@ -183,6 +189,14 @@ public class Event {
 
     public void setMaxPeople(Integer maxPeople) {
         this.maxPeople = maxPeople;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
     }
 
     public List<Reservation> getReservations() {
