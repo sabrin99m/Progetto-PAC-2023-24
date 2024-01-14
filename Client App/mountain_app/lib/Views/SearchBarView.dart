@@ -76,16 +76,20 @@ class _SearchBarViewState extends State<SearchBarView> {
                   });
                 },
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                child: SizedBox(
-                  height: 1000,
-                  child: DestinationsScreen(escursioni: displayedEvents),
-                ),
-              )
+              eventDisplaySection()
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Padding eventDisplaySection() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+      child: SizedBox(
+        height: 1000,
+        child: DestinationsScreen(escursioni: displayedEvents),
       ),
     );
   }

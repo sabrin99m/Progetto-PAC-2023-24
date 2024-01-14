@@ -82,9 +82,10 @@ class _LoginViewState extends State<LoginView> {
                                       CustomTextField(
                                         Icons.mail_outline,
                                         "Inserisci la tua mail...",
-                                        "Inserisci una mail valida",
                                         _usernameFieldController,
                                         false,
+                                        TextInputType.name,
+                                        true,
                                       ),
                                     ],
                                   ),
@@ -104,8 +105,9 @@ class _LoginViewState extends State<LoginView> {
                                       CustomTextField(
                                         Icons.password_outlined,
                                         "Inserisci la tua password...",
-                                        "Fornisci una password",
                                         _passwordFieldcontroller,
+                                        true,
+                                        TextInputType.name,
                                         true,
                                       ),
                                     ],
@@ -174,29 +176,6 @@ class _LoginViewState extends State<LoginView> {
                 }),
         ],
       ),
-    );
-  }
-
-  Widget CustomTextField(IconData icon, String hintText, String errorText,
-      TextEditingController _controller, bool obscureText) {
-    return TextFormField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: Colors.black38),
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(icon),
-        prefixIconColor: Colors.black38,
-      ),
-      controller: _controller,
-      obscureText: obscureText,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return errorText;
-        }
-
-        return null;
-      },
-      autocorrect: false,
     );
   }
 }
