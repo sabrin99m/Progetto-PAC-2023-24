@@ -61,13 +61,13 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     }
 
     @Override
-	public ProfileDTO login(UserDetailsImpl profileInfo) {
+	public Profile login(UserDetailsImpl profileInfo) {
 		//getUsername è un override ma prendiamo la email come campo univoco
 		Optional<Profile> profile = profileRepository.findByEmail(profileInfo.getUsername());
 
 		profile.orElseThrow(() -> new UsernameNotFoundException(profileInfo.getUsername() + " not found."));
 
-		return profile.map(ProfileDTO::new).get();
+		return profile.get();
 	}
 
 	@Override

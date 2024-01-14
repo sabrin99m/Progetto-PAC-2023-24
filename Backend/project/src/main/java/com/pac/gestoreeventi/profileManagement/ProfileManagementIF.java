@@ -25,7 +25,7 @@ public interface ProfileManagementIF {
 
     Profile getProfile(Long idProfile);
 
-	public ProfileDTO login(UserDetailsImpl profileInfo);
+	public Profile login(UserDetailsImpl profileInfo);
 
 	public List<ProfileDTO> getProfiles();
 	
