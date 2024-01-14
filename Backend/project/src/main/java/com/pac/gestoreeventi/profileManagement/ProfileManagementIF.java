@@ -23,17 +23,17 @@ public interface ProfileManagementIF {
      */
     public void deleteEventSignup();
 
-    Profile getProfile(Long idProfile);
+    Profile getProfile(Integer idProfile);
 
-	public Profile login(UserDetailsImpl profileInfo);
+	public ProfileDTO login(UserDetailsImpl profileInfo);
 
 	public List<ProfileDTO> getProfiles();
 	
-    public ProfileDTO getProfile(Integer idProfile);
+    public ProfileDTO getProfile(int idProfile);
 	
     public ProfileDTO addProfile(ProfileDTO profileDto);
 	
     public ProfileDTO modifyProfile(ProfileDTO profileDto);
 	
-    public void deleteProfile(Integer idProfile);
+    public void deleteProfile(int idProfile);
 }

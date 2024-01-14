@@ -50,7 +50,7 @@ public class EventService implements EventsManagementIF{
     }
 
     @Override
-    public Event getEvent(long idEvent) {
+    public Event getEvent(int idEvent) {
         Optional<Event> event = eventRepository.findById(idEvent);
 
         if(!event.isPresent()){
@@ -61,7 +61,7 @@ public class EventService implements EventsManagementIF{
     }
 
     @Override
-    public void deleteEvent(Long idEvent) {
+    public void deleteEvent(Integer idEvent) {
         Optional<Event> event = eventRepository.findById(idEvent);
 
         if(!event.isPresent()){

@@ -13,7 +13,7 @@ import java.util.List;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column
     private String firstName;
@@ -46,7 +46,7 @@ public class Profile {
 
     }
 
-    public Profile(long id, String firstName, String lastName, String email, ProfileLevel profileLevel, String password, ProfileRole profileRole){
+    public Profile(int id, String firstName, String lastName, String email, ProfileLevel profileLevel, String password, ProfileRole profileRole){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -96,7 +96,7 @@ public class Profile {
         return profileRole;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 

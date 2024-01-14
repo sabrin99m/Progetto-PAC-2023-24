@@ -42,14 +42,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     @Override
     public void deleteEventSignup() {
 
-    }
-
-    @Override
-    public Profile getProfile(Long idProfile) {
-        Optional<Profile> profile = profileRepository.findById(idProfile);
-
-        return profile.get();
-    }
+	}
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -61,13 +54,13 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     }
 
     @Override
-	public Profile login(UserDetailsImpl profileInfo) {
+	public ProfileDTO login(UserDetailsImpl profileInfo) {
 		//getUsername è un override ma prendiamo la email come campo univoco
 		Optional<Profile> profile = profileRepository.findByEmail(profileInfo.getUsername());
 
 		profile.orElseThrow(() -> new UsernameNotFoundException(profileInfo.getUsername() + " not found."));
 
-		return profile.get();
+    return modelMapper.map(profile.get(), ProfileDTO.class);
 	}
 
 	@Override
@@ -77,7 +70,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 	}
 
 	@Override
-	public ProfileDTO getProfile(Integer idProfile) {
+	public ProfileDTO getProfile(int idProfile) {
 		Optional<Profile> profile = profileRepository.findById(idProfile);
 
 		if (!profile.isPresent())
@@ -104,7 +97,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 		Optional<Profile> profileToModify = profileRepository.findByEmail(profileDto.getEmail());
 
 		if (!profileToModify.isPresent())
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile to delete");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile to modify");
 
 		Profile profile = profileToModify.get();
 
@@ -114,7 +107,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 	}
 
 	@Override
-	public void deleteProfile(Integer idProfile) {
+	public void deleteProfile(int idProfile) {
 		Optional<Profile> profileToDelete = profileRepository.findById(idProfile);
 
 		if (!profileToDelete.isPresent())
@@ -122,5 +115,12 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 		profileRepository.delete(profileToDelete.get());
 	}
+
+    @Override
+    public Profile getProfile(Integer idProfile) {
+        Optional<Profile> profile = profileRepository.findById(idProfile);
+
+        return profile.get();
+    }
 
 }

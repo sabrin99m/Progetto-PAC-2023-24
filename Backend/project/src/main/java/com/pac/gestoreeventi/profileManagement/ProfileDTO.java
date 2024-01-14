@@ -3,18 +3,12 @@ package com.pac.gestoreeventi.profileManagement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
-
 import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 
 public class ProfileDTO {
 
-    private long id;
+    private int id;
     private String firstName;
     private String lastName;
     private ProfileLevel profileLevel;
@@ -38,11 +32,11 @@ public class ProfileDTO {
         this.reservations = reservations;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -117,7 +111,5 @@ public class ProfileDTO {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
-    
-
    
 }

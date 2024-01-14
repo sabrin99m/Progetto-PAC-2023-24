@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class EventDTO {
 
-    private long idEvent;
+    private int idEvent;
 
     private String name;
 
@@ -57,11 +57,11 @@ public class EventDTO {
         this.maxPeople = e.getMaxPeople();
     }
 
-    public long getIdEvent() {
+    public int getIdEvent() {
         return idEvent;
     }
 
-    public void setIdEvent(long id) {
+    public void setIdEvent(int id) {
         this.idEvent = id;
     }
 

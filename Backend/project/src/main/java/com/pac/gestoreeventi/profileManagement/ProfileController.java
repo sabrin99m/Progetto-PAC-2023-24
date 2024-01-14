@@ -27,7 +27,7 @@ public class ProfileController {
 
     @GetMapping(path = "/login")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public Profile login() {
+	public ProfileDTO login() {
 		return profileService.login(
 				(UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 	}
@@ -38,7 +38,7 @@ public class ProfileController {
 	}
 
 	@GetMapping(path = "/profiles/{idProfile}")
-	public ProfileDTO getProfile(@PathVariable Integer idProfile) {
+	public ProfileDTO getProfile(@PathVariable int idProfile) {
 		return profileService.getProfile(idProfile);
 	}
 

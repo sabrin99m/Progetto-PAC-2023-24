@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
     @Column
     private String name;
@@ -68,7 +68,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(long id, String name, String place, EventLevel difficulty, Date date, String description,
+    public Event(int id, String name, String place, EventLevel difficulty, Date date, String description,
             String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
             Integer maxPeople) {
         this.id = id;
@@ -87,11 +87,11 @@ public class Event {
         this.maxPeople = maxPeople;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
