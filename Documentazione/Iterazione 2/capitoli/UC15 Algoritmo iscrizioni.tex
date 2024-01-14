@@ -1,1 +1,56 @@
 \subsection{UC-15 Algoritmo per selezionare i partecipanti}
+Selezione degli utenti iscritti ad un evento con strategia Greedy.
+\\
+\\
+\textit{Breve Descrizione: Se il numero di iscritti ad un evento eccede il numero massimo di partecipanti, vengono selezionati in base alla loro esperienza.} 
+\\
+\\
+\textit{Attori Coinvolti:Sistema}
+\\
+\\
+\textit{Precondizione: Raggiungimento della data massima per iscriversi a un evento.}
+\\
+\\
+\textit{Postcondizione: Gli utenti non selezionati vengono eliminati dai partecipanti dell'evento}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item Lanciare un trigger ogni giorno fino al raggiungimento della data ultima per l'iscrizione;
+	\item L'algoritmo viene applicato sulla lista degli iscritti all'evento.
+\end{enumerate}
+\\
+\\
+\textit{FlowChart e pseudocodice: L'approccio si basa sull'idea di selezionare in modo iterativo gli utenti con il livello più
+adatto, iniziando dal livello dell'evento e ampliando la ricerca ai livelli adiacenti solo se
+necessario.}
+\\
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{images/flowchart.png}
+    \includegraphics[width = 0.5\textwidth]{images/pseudocodice.png}
+\end{figure}
+\\
+\\
+\textit{Analisi di Complessità: l'algoritmo ha una complessità temporale più significativa rispetto a quella spaziale, la sua efficienza dipende dal rapporto tra il numero massimo di posti disponibili e la dimensione totale della lista degli iscritti.}
+\begin{enumerate}
+	\item Complessità temporale: 
+        \begin{itemize}
+            \item Caso Migliore (Numero di iscritti <= Numero massimo di posti):
+                Nel caso in cui il numero di iscritti sia inferiore o uguale al numero massimo di posti disponibili, l'algoritmo esegue una copia di tutti gli iscritti nella lista `S`.
+                Complessità Temporale: O(n), dove n è la dimensione della lista degli iscritti.
+            \item Caso Peggiore (Numero di iscritti > Numero massimo di posti):
+                Nel caso in cui il numero di iscritti superi il numero massimo di posti, l'algoritmo utilizza due cicli while annidati. Il ciclo esterno viene eseguito fino a quando non vengono occupati tutti i posti desiderati o la lista degli iscritti è vuota, mentre il ciclo interno verifica la presenza di utenti con il livello desiderato nella lista degli iscritti.
+                Nel peggiore dei casi, il numero di iterazioni del ciclo esterno è limitato dal numero massimo di posti e dalla dimensione della lista degli iscritti.
+                Complessità Temporale: O(limiteMax * n), dove n è la dimensione della lista degli
+                iscritti.
+        \end{itemize}
+	\item Complessità spaziale: 
+        \begin{itemize}
+            \item Spazio Ausiliario (Variabili e Strutture Dati): La lista `S` contiene gli             iscritti selezionati. Nel caso peggiore, sarà di dimensione`limiteMax`.
+            \item Altre variabili ausiliarie occupano uno spazio costante.
+        \end{itemize}    
+            Complessità Spaziale: O(limiteMax).
+\end{enumerate}
+
+
