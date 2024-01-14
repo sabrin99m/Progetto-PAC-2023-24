@@ -37,12 +37,6 @@ class _SearchBarViewState extends State<SearchBarView> {
                     onTap: () {
                       controller.openView();
                     },
-                    onChanged: (_) {
-                      controller.openView();
-                    },
-                    onSubmitted: (value) {
-                      print("changed: $value");
-                    },
                     leading: const Icon(Icons.search),
                     trailing: <Widget>[
                       Tooltip(
@@ -60,26 +54,26 @@ class _SearchBarViewState extends State<SearchBarView> {
                 },
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {
-                  return List<ListTile>.generate(
-                    escursioni.length,
-                    (index) {
-                      return ListTile(
-                        title: Text(escursioni[index].nome),
-                        onTap: () {
-                          setState(() {
-                            controller.closeView(escursioni[index].nome);
+                  List<Escursione> filtered = escursioni
+                      .where((element) => element.nome
+                          .toLowerCase()
+                          .contains(controller.text.toLowerCase()))
+                      .toList();
 
-                            displayedEvents = escursioni
-                                .where((element) => element.nome
-                                    .contains(escursioni[index].nome))
-                                .toList();
+                  return List<ListTile>.generate(filtered.length, (index) {
+                    return ListTile(
+                      title: Text(escursioni[index].nome),
+                      onTap: () {
+                        setState(() {
+                          controller.closeView(escursioni[index].nome);
 
-                            print(displayedEvents.map((e) => e.nome));
-                          });
-                        },
-                      );
-                    },
-                  );
+                          displayedEvents = filtered;
+
+                          print(displayedEvents.map((e) => e.nome));
+                        });
+                      },
+                    );
+                  });
                 },
               ),
               Padding(
