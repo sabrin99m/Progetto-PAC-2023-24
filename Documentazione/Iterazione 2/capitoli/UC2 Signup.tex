@@ -1,1 +1,52 @@
 \subsection{UC-2 Signup}
+\textit{Breve descrizione:} Un nuovo utente compila il form per iscriversi alla piattaforma. Se è in possesso di codice organizzatore è necessario che lo inserisca affinché venga registrato come organizzatore.
+\\
+\\
+\textit{Attori coinvolti:} Utente, Sistema.
+\\
+\\
+\textit{Precondizione:} Il nuovo utente è nella pagina di registrazione raggiungibile dalla pagina di login mostrata all'apertura della app.
+\\
+\\
+\textit{Postcondizione:} Il nuovo utente viene inserito nel database con il realtivo ruolo e può accedere ai servizi.
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item Il nuovo utente fornisce le seguenti informazioni:
+	\begin{itemize}
+		\item Nome;
+		\item Cognome;
+		\item Email;
+		\item Telefono;
+		\item Codice organizzatore (se ne possiede uno);
+		\item Password;
+	\end{itemize}
+	\item Dalla pagina di login il nuovo utente seleziona ``registrati'';
+	\item L'utente compila i campi obbligatori;
+	\item Il sistema verifica che tutti i campi obbligatoru siano stati compilati [E1: ci sono dei campi vuoti];
+	\item Il sistema aggiunge l'utente con i rispettivi dati nel database [E2: la mail è già associata ad un account];
+	\item Se l'utente inserito dispone di un codice organizzatore valido, il sistema imposta l'utente come caposquadra della squadra selezionata [E3: codice organizzatore non è valido].
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+  \item E1:
+  \begin{enumerate}
+    \item Il form non viene mandato;
+    \item Viene notificato un errore all'utente;
+    \item Ritorno al passo 3 di ``Procedimento''.
+	\end{enumerate}
+	\item E2:
+	\begin{enumerate}
+		\item il sistema comunica al nuovo utente che i dati sono già associati ad un altro utente;
+		\item ritorno al passo 3 di ``Procedimento''.
+	\end{enumerate}
+  \item E3:
+	\begin{enumerate}
+		\item il sistema comunica al nuovo utente che il suo codice organizzatore non è valido;
+		\item ritorno al passo 3 di ``Procedimento'';
+		\item L'utente può inserirne uno corretto o registrarsi come normale utente.
+	\end{enumerate}
+\end{itemize}

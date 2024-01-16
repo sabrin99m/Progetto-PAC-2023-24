@@ -1,1 +1,34 @@
 \subsection{UC-1 Login}
+Per l'autenticazione abbiamo utilizzato il framework Spring Security con il metodo ``Basic Access Authentication'': si tratta di una tecnica che non necessita dell'utilizzo di cookie o di mentenere una sessione tra client e server, ma utilizza gli header HTTP per fornire le informazioni di accesso. I campi username e password vengono codificati con base64 e sono poi trasmessi nell'header ogni volta che viene chiamata una API. Il sistema, prima di elaborare una richieta, verifica che lo username e la password trasmessi appartengano effettivamente ad un utente presente nel database. 
+\\
+\\
+\textit{Breve descrizione:} l'utente compila il form per eseguire il login: in caso di credenziali corrette il sistema consente l'accesso ai servizi, altrimenti notifica l'utente della non correttezza delle credenziali.
+\\
+\\
+\textit{Attori coinvolti:} Utente, sistema.
+\\
+\\
+\textit{Precondizione:} l'utente è registrato nel sistema e apre la app.
+\\
+\\
+\textit{Postcondizione:} l'utente accede alla app (in caso le credenziali siano corrette) oppure viene avvertito che le credenziali sono sbagliate.
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item il sistema richiede all'utente le informazioni di accesso: username e password;
+	\item l'utente inserisce le informazioni di accesso;
+	\item il sistema controlla le informazioni fornite;
+	\item le informazioni sono corrette. [E1: le informazioni sono sbagliate].
+	\item l'utente viene indirizzato alla homepage dell'applicazione.
+\end{enumerate}
+\newpage
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1:
+	\begin{enumerate}
+		\item le informazioni sono sbagliate;
+		\item il sistema comunica all'utente che le informazioni inserite non sono corrette;
+		\item ritorno al passo 1 di ``Procedimento''.
+	\end{enumerate}
+\end{itemize}
