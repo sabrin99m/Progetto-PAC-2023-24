@@ -6,9 +6,11 @@ import 'package:mountain_app/Views/TileView.dart';
 
 class DestinationsScreen extends StatelessWidget {
   final List<Escursione> escursioni;
+  final Utente utente;
   const DestinationsScreen({
     Key? key,
     required this.escursioni,
+    required this.utente,
   }) : super(key: key);
 
   @override
@@ -26,6 +28,7 @@ class DestinationsScreen extends StatelessWidget {
                   builder: (context) => EventDetailsView(
                     escursione: escursioni[index],
                     listaEscursioni: Utente.utenteMock1.iscrizioni,
+                    utente: utente,
                   ),
                 ),
               );

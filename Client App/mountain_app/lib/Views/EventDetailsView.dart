@@ -1,3 +1,6 @@
+import 'dart:js';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
@@ -5,10 +8,14 @@ import 'package:mountain_app/Utilities/Constants.dart';
 
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
+  final Utente utente;
   final List<String> listaEscursioni;
 
   const EventDetailsView(
-      {super.key, required this.escursione, required this.listaEscursioni});
+      {super.key,
+      required this.escursione,
+      required this.listaEscursioni,
+      required this.utente});
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +130,33 @@ class EventDetailsView extends StatelessWidget {
                         ],
                       ),
                     ],
-                  ))
+                  )),
                 ],
               ),
             ),
+            if (escursione.organizzatori.contains(utente))
+              deleteEventSection(context)
           ],
         ),
+      ),
+    );
+  }
+
+  Widget deleteEventSection(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: sottotitolo,
+        children: <TextSpan>[
+          TextSpan(
+              text: 'Cancella evento',
+              style: sottotitoloRed,
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  String idEvento = escursione.id;
+                  print("Evento $idEvento cancelallato");
+                  Navigator.pop(context);
+                }),
+        ],
       ),
     );
   }

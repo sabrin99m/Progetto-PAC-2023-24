@@ -91,8 +91,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        SearchBarView(escursioni: Escursione.escursioniMock),
+                    builder: (context) => SearchBarView(
+                      escursioni: Escursione.escursioniMock,
+                      utente: utente,
+                    ),
                   ),
                 );
               },
@@ -126,7 +128,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ]),
       body: SafeArea(
         child: <Widget>[
-          DestinationsScreen(escursioni: Escursione.escursioniMock),
+          DestinationsScreen(
+            escursioni: Escursione.escursioniMock,
+            utente: utente,
+          ),
           SubscriptionsScreen(),
           ForYouScreen(),
         ][currentPageIndex],
