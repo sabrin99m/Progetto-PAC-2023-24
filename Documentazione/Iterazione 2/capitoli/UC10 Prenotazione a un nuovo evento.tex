@@ -1,1 +1,33 @@
 \subsection{UC-10 Prenotazione a un nuovo evento}
+L'utente può prenotarsi a un evento dalla pagina che dettaglia le specifiche di quello a cui è interessato.
+\\
+\\
+\textit{Breve Descrizione: Aprendo un evento l'utente visualizza un bottone in alto a destra che gli permette di iscriversi a un evento. Il suo codice utente viene inviato e viene aggiunto alla lista delle prenotazioni.} 
+\\
+\\
+\textit{Attori Coinvolti: Utente, Sistema}
+\\
+\\
+\textit{Precondizione: L'utente è loggato nella app e si trova sulla pagina che dettaglia le speficiche dell'evento}
+\\
+\\
+\textit{Postcondizione: L'utente pronota il suo posto per un evento}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item Dalla homepage selezionare un evento a cui si è interessati;
+	\item Dalla pagina del dettaglio, in alto a destra, premere il bottone ``Prenotati a questa escursione'';
+	\item Viene visualizzata la conferma o un errore nel caso di problemi di connessione [E1: problemi di connessione] 
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1:
+	\begin{enumerate}
+		\item L'utente viene notificato del problema;
+		\item Viene proposto di riprovare;
+		\item Ritorna al passo 2 di ``Procedimento''.
+	\end{enumerate}
+\end{itemize}

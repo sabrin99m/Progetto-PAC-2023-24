@@ -169,7 +169,7 @@ class EventDetailsView extends StatelessWidget {
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(32))),
       label: Text(
-        "Iscriviti a questa escursione",
+        "Prenotati a questa escursione",
         style: sottotitoloGrassetto,
       ),
       onPressed: () {},

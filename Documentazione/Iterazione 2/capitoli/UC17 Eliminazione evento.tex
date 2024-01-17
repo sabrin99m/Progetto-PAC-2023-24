@@ -1,1 +1,35 @@
 \subsection{UC-17 Eliminazione di un evento}
+L'organizzatore di un evento può cancellarlo
+\\
+\\
+\textit{Breve Descrizione: Dalla scritta in basso al centro della pagina che dettagli un evento, il relativo organizzatore può eliminarlo} 
+\\
+\\
+\textit{Attori Coinvolti: Utente, Sistema}
+\\
+\\
+\textit{Precondizione: L'utente è loggato nell'app ed ha in passato creato l'evento considerato}
+\\
+\\
+\textit{Postcondizione: L'evento viene cancellato}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item L'organizzatore naviga alla pagina dei dettagli dell'evento che voule cancellare;
+	\item L'utente scorre la pagina del dettaglio fino in fondo;
+	\item L'utente preme ``Cancella evento'';
+	\item L'evento viene rimosso dal database a meno di problemi di connessione [E1: Problemi di connessione];
+	\item Viene cancellata la prenotazione per ogni utente che aveva espresso interesse
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1:
+	\begin{enumerate}
+		\item L'utente viene notificato del problema;
+		\item Viene proposto di riprovare;
+		\item Ritorna al passo 2 di ``Procedimento''.
+	\end{enumerate}
+\end{itemize}
