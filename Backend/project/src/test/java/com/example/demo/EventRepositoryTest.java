@@ -1,4 +1,4 @@
-package com.pac.gestoreeventi.eventsManagement;
+package com.example.demo;
 
 
 import java.sql.Time;
