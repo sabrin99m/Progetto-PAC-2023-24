@@ -50,13 +50,12 @@ public class EventService implements EventsManagementIF{
     }
 
     @Override
-    public Event getEvent(int idEvent) {
+    public Event getEvent(Integer idEvent) {
         Optional<Event> event = eventRepository.findById(idEvent);
 
         if(!event.isPresent()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,"No event found");
         }
-        
         return event.get();
     }
 

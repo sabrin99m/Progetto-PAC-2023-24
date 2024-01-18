@@ -35,7 +35,7 @@ public interface EventsManagementIF {
 	 * @param idEvent id dell'evento richiesto
 	 * @return evento richiesto
 	 */
-	public Event getEvent(int idEvent);
+	public Event getEvent(Integer idEvent);
 
 	/**
 	 *

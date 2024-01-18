@@ -3,6 +3,7 @@ package com.pac.gestoreeventi.profileManagement;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,24 +39,23 @@ public class ProfileController {
 	}
 
 	@GetMapping(path = "/profiles/{idProfile}")
-	public ProfileDTO getProfile(@PathVariable int idProfile) {
-		return profileService.getProfile(idProfile);
+	public ProfileDTO getProfile(@PathVariable Integer idProfile) {
+		return profileService.getProfileDTO(idProfile);
 	}
 
 	@DeleteMapping(path = "/profiles/{idProfile}")
-	@ResponseStatus(HttpStatus.ACCEPTED)
 	public void deleteProfile(@PathVariable Integer idProfile) {
 		profileService.deleteProfile(idProfile);
 	}
 
 	@PutMapping(path = "/profiles")
-	public ProfileDTO modifyProfile(@RequestBody ProfileDTO profileDto) {
+	public ProfileDTO modifyProfile(@Valid @RequestBody ProfileDTO profileDto) {
 		return profileService.modifyProfile(profileDto);
 	}
 
 	@PostMapping(path = "/profiles")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ProfileDTO addProfile(@RequestBody ProfileDTO profileDto) {
+	public ProfileDTO addProfile(@Valid @RequestBody ProfileDTO profileDto) {
 		return profileService.addProfile(profileDto);
 	}
 }

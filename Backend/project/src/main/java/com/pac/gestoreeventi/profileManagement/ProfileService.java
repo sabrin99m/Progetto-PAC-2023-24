@@ -3,14 +3,17 @@ package com.pac.gestoreeventi.profileManagement;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.pac.gestoreeventi.eventsManagement.EventDTO;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,49 +45,55 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
     @Override
     public void deleteEventSignup() {
 
-	}
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<Profile> profile = profileRepository.findByEmail(email);
-
-        profile.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
-
-        return profile.map(UserDetailsImpl::new).get();
     }
 
     @Override
-	public ProfileDTO login(UserDetailsImpl profileInfo) {
-		//getUsername è un override ma prendiamo la email come campo univoco
-		Optional<Profile> profile = profileRepository.findByEmail(profileInfo.getUsername());
+    public Profile getProfile(Integer idProfile) {
+        Optional<Profile> profile = profileRepository.findById(idProfile);
 
-		profile.orElseThrow(() -> new UsernameNotFoundException(profileInfo.getUsername() + " not found."));
+        return profile.get();
+    }
 
-    return modelMapper.map(profile.get(), ProfileDTO.class);
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Profile> user = profileRepository.findByEmail(email);
+
+        user.orElseThrow(() -> new UsernameNotFoundException(email + " not found."));
+
+        return user.map(UserDetailsImpl::new).get();
+    }
+
+    @Override
+	public ProfileDTO login(UserDetailsImpl userInfo) {
+		Optional<Profile> profile = profileRepository.findByEmail(userInfo.getUsername());
+
+        profile.orElseThrow(() -> new UsernameNotFoundException(userInfo.getUsername() + " not found."));
+
+		return modelMapper.map(profile.get(), ProfileDTO.class);
 	}
 
 	@Override
 	public List<ProfileDTO> getProfiles() {
-		return profileRepository.findAll(Sort.by(Sort.Direction.ASC, "idProfile")).stream()
+		return profileRepository.findAll(Sort.by(Sort.Direction.ASC, "id")).stream()
 				.map(profile -> modelMapper.map(profile, ProfileDTO.class)).collect(Collectors.toList());
 	}
 
 	@Override
-	public ProfileDTO getProfile(int idProfile) {
+	public ProfileDTO getProfileDTO(Integer idProfile) {
 		Optional<Profile> profile = profileRepository.findById(idProfile);
 
 		if (!profile.isPresent())
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Profile doesn't exist");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User doesn't exist");
 
 		return modelMapper.map(profile.get(), ProfileDTO.class);
 	}
 
 	@Override
 	public ProfileDTO addProfile(ProfileDTO profileDto) {
-		Optional<Profile> profile = profileRepository.findByEmail(profileDto.getEmail());
+		Optional<Profile> user = profileRepository.findByEmail(profileDto.getEmail());
 
-		if (!profile.isPresent())
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Profile already exists");
+		if (user.isPresent())
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User already exists");
 		
 		Profile newProfile = modelMapper.map(profileDto, Profile.class);
 		newProfile = profileRepository.save(newProfile);
@@ -97,7 +106,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 		Optional<Profile> profileToModify = profileRepository.findByEmail(profileDto.getEmail());
 
 		if (!profileToModify.isPresent())
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile to modify");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user to delete");
 
 		Profile profile = profileToModify.get();
 
@@ -107,20 +116,12 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 	}
 
 	@Override
-	public void deleteProfile(int idProfile) {
+	public void deleteProfile(Integer idProfile) {
 		Optional<Profile> profileToDelete = profileRepository.findById(idProfile);
 
 		if (!profileToDelete.isPresent())
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No profile to delete");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user to delete");
 
 		profileRepository.delete(profileToDelete.get());
 	}
-
-    @Override
-    public Profile getProfile(Integer idProfile) {
-        Optional<Profile> profile = profileRepository.findById(idProfile);
-
-        return profile.get();
-    }
-
 }

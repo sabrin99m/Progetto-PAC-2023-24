@@ -20,7 +20,7 @@ public class EventController {
 	}
 
 	@GetMapping(path = "/events/{idEvent}")
-	public Event getEvent(@PathVariable("idEvent") int idEvent){return eventService.getEvent(idEvent);}
+	public Event getEvent(@PathVariable("idEvent") Integer idEvent){return eventService.getEvent(idEvent);}
 
 	@PostMapping(path = "/events/new")
 	public String insertEvent(@RequestBody EventDTO eventDTO){

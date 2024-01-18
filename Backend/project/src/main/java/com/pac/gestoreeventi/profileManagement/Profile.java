@@ -1,5 +1,6 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 
@@ -13,16 +14,13 @@ import java.util.List;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column
     private String firstName;
 
     @Column
     private String lastName;
-
-    @Enumerated(EnumType.STRING)
-    private ProfileLevel profileLevel;
 
     @Column
     private String email;
@@ -37,21 +35,22 @@ public class Profile {
     private ProfileRole profileRole;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Event> events = new ArrayList<>();
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
     public Profile(){
 
     }
 
-    public Profile(int id, String firstName, String lastName, String email, ProfileLevel profileLevel, String password, ProfileRole profileRole){
+    public Profile(Integer id, String firstName, String lastName, String email, String password, ProfileRole profileRole){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.profileLevel = profileLevel;
         this.password = password;
         this.profileRole = profileRole;
     }
@@ -96,31 +95,23 @@ public class Profile {
         return profileRole;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(Reservation reservation) {
-        this.reservations.add(reservation);
     }
 
     public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvent(Event event) {
+    public void setEvents(Event event) {
         this.events.add(event);
     }
-
-    public ProfileLevel getProfileLevel() {
-        return  profileLevel;
+    
+    public List<Reservation> getReservations() {
+        return reservations;
     }
 
-    public void setProfileLevel(ProfileLevel profileLevel) {
-        this.profileLevel = profileLevel;
+    public void setReservations(Reservation reservation) {
+        this.reservations.add(reservation);
     }
 }

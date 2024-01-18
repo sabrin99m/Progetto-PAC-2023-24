@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.hibernate.annotations.CreationTimestamp;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
 
     @Column
     private String name;
@@ -56,23 +57,24 @@ public class Event {
     private Integer maxPeople;
 
     @Column
-    private Time time;
-
+    private String time;
+    
     @ManyToOne
     @JoinColumn(name = "idProfile")
+    @JsonIgnore
     private Profile profile;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
     public Event() {
     }
 
-    public Event(int id, String name, String place, EventLevel difficulty, Date date, String description,
-            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, Time time,
+    public Event(Integer id, String name, String place, EventLevel difficulty, Date date, String description,
+            String distance, String heightLevel, String minHeight, String tools, String meetingPlace, String time,
             Integer maxPeople) {
         this.id = id;
-        this.profile = profile;
         this.name = name;
         this.place = place;
         this.difficulty = difficulty;
@@ -87,11 +89,11 @@ public class Event {
         this.maxPeople = maxPeople;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -175,11 +177,11 @@ public class Event {
         this.meetingPlace = meetingPlace;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -191,19 +193,19 @@ public class Event {
         this.maxPeople = maxPeople;
     }
 
-    public Profile getProfile() {
-        return profile;
-    }
-
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
-
     public List<Reservation> getReservations() {
         return reservations;
     }
 
     public void setChildren(Reservation reservation) {
         this.reservations.add(reservation);
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public Profile getProfile() {
+        return profile;
     }
 }
