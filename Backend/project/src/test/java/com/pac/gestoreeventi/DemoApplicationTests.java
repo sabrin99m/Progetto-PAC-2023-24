@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.pac.gestoreeventi;
 
 import com.pac.gestoreeventi.Main;
 import org.junit.jupiter.api.Test;

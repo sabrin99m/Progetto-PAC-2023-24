@@ -71,10 +71,9 @@ public class Event {
     public Event() {
     }
 
-    public Event(Integer id, String name, String place, EventLevel difficulty, Date date, String description,
+    public Event(String name, String place, EventLevel difficulty, Date date, String description,
             String distance, String heightLevel, String minHeight, String tools, String meetingPlace, String time,
             Integer maxPeople) {
-        this.id = id;
         this.name = name;
         this.place = place;
         this.difficulty = difficulty;
