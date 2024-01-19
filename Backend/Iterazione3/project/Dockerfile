@@ -1,8 +1,8 @@
 FROM maven:3.5.4-jdk-8-alpine as maven
 
-COPY ./pom.xml ./pom.xml
+COPY ./Backend/Iterazione3/project/pom.xml ./pom.xml
 
-COPY ./src ./src
+COPY ./Backend/Iterazione3/project/src ./src
 
 RUN mvn dependency:go-offline -B
 
