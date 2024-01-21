@@ -180,5 +180,5 @@ function buildResponse(response, res) {
 
 const PORT = 8085
 app.listen(PORT, () => {
-  console.log(`Gateway is running on port: ${PORT}`);
+  console.log(`Radio Nowhere is playing on port: ${PORT}`);
 });
