@@ -1,18 +1,31 @@
-# syntax=docker/dockerfile:1
+# # syntax=docker/dockerfile:1
 
-ARG NODE_VERSION=21.2.0
-FROM node:${NODE_VERSION}-alpine
-ENV NODE_ENV production
-WORKDIR /usr/src/app
-RUN --mount=type=bind,source=./Backend/Iterazione3/gateway/package.json,target=package.json \
-    --mount=type=bind,source=./Backend/Iterazione3/gateway/package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+# ARG NODE_VERSION=21.2.0
+# FROM node:${NODE_VERSION}-alpine
+# ENV NODE_ENV production
+# WORKDIR /usr/src/app
+# RUN --mount=type=bind,source=./Backend/Iterazione3/gateway/package.json,target=package.json \
+#     --mount=type=bind,source=./Backend/Iterazione3/gateway/package-lock.json,target=package-lock.json \
+#     --mount=type=cache,target=/root/.npm \
+#     npm ci --omit=dev
 
-USER node
+# USER node
+
+# COPY . .
+
+# EXPOSE 8085
+
+# CMD npm start
+
+FROM node:12.18.1
+
+WORKDIR /app
+
+COPY ./Backend/Iterazione3/gateway/package.json package.json
+COPY ./Backend/Iterazione3/gateway/package-lock.json package-lock.json
+
+RUN npm install
 
 COPY . .
 
-EXPOSE 8085
-
-CMD npm start
+CMD [ "npm", "start" ]
