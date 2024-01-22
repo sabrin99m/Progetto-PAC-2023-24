@@ -116,6 +116,9 @@ public class Event {
         return difficulty;
     }
 
+    public int getDifficultyLevel(){
+        return difficulty.getLevel();
+    }
     public void setDifficulty(EventLevel difficulty) {
         this.difficulty = difficulty;
     }

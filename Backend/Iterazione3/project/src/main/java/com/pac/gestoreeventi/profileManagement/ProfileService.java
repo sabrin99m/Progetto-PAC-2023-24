@@ -1,6 +1,8 @@
 package com.pac.gestoreeventi.profileManagement;
 
 
+import com.pac.gestoreeventi.eventsManagement.Event;
+import com.pac.gestoreeventi.eventsManagement.EventRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -23,6 +25,8 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
     @Autowired
     private ProfileRepository profileRepository;
+	@Autowired
+	private EventRepository eventRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -123,5 +127,14 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No user to delete");
 
 		profileRepository.delete(profileToDelete.get());
+	}
+
+
+	@Override
+	public int profileLevel(Integer idProfile){
+		List<Event> profileEvents = eventRepository.findByProfile(idProfile);
+		int level = profileEvents.stream().mapToInt(event -> event.getDifficultyLevel()).sum();
+
+		return level/profileEvents.size();
 	}
 }
