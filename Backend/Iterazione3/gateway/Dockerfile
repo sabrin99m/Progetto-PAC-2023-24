@@ -21,11 +21,8 @@ FROM node:12.18.1
 
 WORKDIR /app
 
-COPY ./Backend/Iterazione3/gateway/package.json package.json
-COPY ./Backend/Iterazione3/gateway/package-lock.json package-lock.json
+COPY ./Backend/Iterazione3/gateway/ .
 
 RUN npm install
-
-COPY . .
 
 CMD [ "npm", "start" ]
