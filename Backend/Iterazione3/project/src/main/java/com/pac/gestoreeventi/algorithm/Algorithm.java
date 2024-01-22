@@ -30,8 +30,8 @@ public class Algorithm {
                 //se non ci sono altri iscritti di livello target +/- j e ci sono ancora posti liberi, si passa
                 //a considerare gli iscritti con livello immediatamente inferiore o superiore
                 boolean foundUser = false;
-                for (Profile utente : listaIscritti) {
-                    if (profileService.profileLevel(utente.getId()) == livelloTarget + j || profileService.profileLevel(utente.getId()) == livelloTarget - j) {
+                for (Profile profile : listaIscritti) {
+                    if (profileService.profileLevel(profile.getId()) == livelloTarget + j || profileService.profileLevel(profile.getId()) == livelloTarget - j) {
                         foundUser = true;
                     }
                 }
@@ -45,9 +45,9 @@ public class Algorithm {
 
     private Profile seleziona(List<Profile> listaIscritti, int livello, int distanza) {
         // Restituisce un utente con un livello pari a livello + distanza o livello - distanza
-        for (Profile utente : listaIscritti) {
-            if (profileService.profileLevel(utente.getId()) == livello + distanza || profileService.profileLevel(utente.getId()) == livello - distanza) {
-                return utente;
+        for (Profile profile : listaIscritti) {
+            if (profileService.profileLevel(profile.getId()) == livello + distanza || profileService.profileLevel(profile.getId()) == livello - distanza) {
+                return profile;
             }
         }
         return null;
