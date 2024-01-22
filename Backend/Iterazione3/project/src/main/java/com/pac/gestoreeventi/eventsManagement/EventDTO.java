@@ -37,6 +37,8 @@ public class EventDTO {
 
     private String time;
 
+    private Integer profileId;
+
     public EventDTO(){
 
     }
@@ -55,6 +57,7 @@ public class EventDTO {
         this.meetingPlace = e.getMeetingPlace();
         this.time = e.getTime();
         this.maxPeople = e.getMaxPeople();
+        this.profileId = e.getProfile().getId();
     }
 
     public Integer getIdEvent() {
