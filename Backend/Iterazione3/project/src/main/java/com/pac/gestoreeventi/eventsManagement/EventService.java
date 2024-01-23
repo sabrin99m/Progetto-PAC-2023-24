@@ -93,9 +93,11 @@ public class EventService implements EventsManagementIF{
         List<Profile> list = selezionaIscritti(profilesList,event);
         for(Reservation reservation : event.getReservations()){
             if(list.contains(reservation.getProfile())){
-               reservation.setConfirmation(true);
+                reservation.setConfirmation(true);
+               reservationRepository.save(reservation);
             } else{
                 reservation.setConfirmation(false);
+                reservationRepository.save(reservation);
             }
         }
 
