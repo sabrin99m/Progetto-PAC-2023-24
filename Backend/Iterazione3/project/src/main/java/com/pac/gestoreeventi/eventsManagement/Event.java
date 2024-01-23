@@ -61,7 +61,6 @@ public class Event {
     
     @ManyToOne
     @JoinColumn(name = "idProfile")
-    @JsonIgnore
     private Profile profile;
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)

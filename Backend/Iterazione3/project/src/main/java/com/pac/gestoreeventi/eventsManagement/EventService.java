@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.pac.gestoreeventi.profileManagement.ProfileService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,8 @@ public class EventService implements EventsManagementIF{
 
     @Autowired
 	private EventRepository eventRepository;
+    @Autowired
+    private ProfileService profileService;
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -45,7 +48,9 @@ public class EventService implements EventsManagementIF{
 
     @Override
     public void insertEvent(EventDTO eventDTO) {
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         Event event = modelMapper.map(eventDTO,Event.class);
+        event.setProfile(profileService.getProfile(eventDTO.getIdProfile()));
         eventRepository.save(event);
     }
 
