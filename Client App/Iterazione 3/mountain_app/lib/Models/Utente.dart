@@ -1,5 +1,6 @@
 class Utente {
   String id;
+  String basicAuth;
   String nome;
   String cognome;
   bool isLoggedIn;
@@ -11,6 +12,7 @@ class Utente {
 
   Utente(
     this.id,
+    this.basicAuth,
     this.nome,
     this.cognome,
     this.isLoggedIn,
@@ -24,6 +26,7 @@ class Utente {
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
       "1",
+      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Cristian",
       "Tironi",
       true,
@@ -37,6 +40,7 @@ class Utente {
 
   static Utente utenteMock2 = Utente(
       "2",
+      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Federico",
       "Imberti",
       true,
