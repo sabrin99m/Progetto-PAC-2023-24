@@ -3,7 +3,7 @@ import "Utente.dart";
 enum Difficolta { hard, medium, easy }
 
 class Escursione {
-  final String id;
+  final int id;
   final String nome;
   final Difficolta difficolta;
   final String luogo;
@@ -78,7 +78,7 @@ class Escursione {
       };
 
   static Escursione escursioneMock = Escursione(
-    id: "123",
+    id: 123,
     nome: "Tagliaferri",
     difficolta: Difficolta.easy,
     luogo: "Bergamo",

@@ -150,7 +150,7 @@ class EventDetailsView extends StatelessWidget {
               style: sottotitoloRed,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  String idEvento = escursione.id;
+                  int idEvento = escursione.id;
                   print("Evento $idEvento cancelallato");
                   Navigator.pop(context);
                 }),

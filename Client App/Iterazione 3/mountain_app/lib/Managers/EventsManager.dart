@@ -4,7 +4,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:http/http.dart' as http;
 
 /// Manager responsabile delle chiamate http al server. Creato con un pattern Singleton
-class ManagerEscursioni {
+class EventsManger {
   /// Lista della gare scaricate
   late List<Escursione> escursioni;
 
@@ -12,15 +12,15 @@ class ManagerEscursioni {
   late bool isLoading;
 
   //Istanza statica privata della classe
-  static final ManagerEscursioni _instance = ManagerEscursioni._internal();
+  static final EventsManger _instance = EventsManger._internal();
 
   late String _baseIp;
 
-  factory ManagerEscursioni() {
+  factory EventsManger() {
     return _instance;
   }
 
-  ManagerEscursioni._internal() {
+  EventsManger._internal() {
     _baseIp = "http://165.227.152.216:8085";
     isLoading = false;
     escursioni = [];
