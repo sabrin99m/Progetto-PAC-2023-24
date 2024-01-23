@@ -1,5 +1,7 @@
 package com.pac.gestoreeventi.eventsManagement;
 
+import com.pac.gestoreeventi.profileManagement.Profile;
+
 import java.util.List;
 
 public interface EventsManagementIF {
@@ -43,4 +45,12 @@ public interface EventsManagementIF {
 	 * @param idEvent id dell'evento da eliminare
 	 */
    public void deleteEvent(Integer idEvent);
+
+	/**
+	 *
+	 * Funzione che chiama l'algoritmo per determinare gli iscritti
+	 *
+	 * @param idEvent
+	 */
+	public List<Profile> closeEventReservations(Integer idEvent);
 }

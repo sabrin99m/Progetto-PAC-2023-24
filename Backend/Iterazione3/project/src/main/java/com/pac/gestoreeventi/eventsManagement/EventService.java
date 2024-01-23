@@ -1,10 +1,14 @@
 package com.pac.gestoreeventi.eventsManagement;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.pac.gestoreeventi.algorithm.Algorithm;
+import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.profileManagement.ProfileService;
+import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,5 +78,19 @@ public class EventService implements EventsManagementIF{
 
          eventRepository.delete(event.get());
     }
+
+    @Override
+    public List<Profile> closeEventReservations(Integer idEvent) {
+        Algorithm algorithm = new Algorithm();
+        Event event = eventRepository.findById(idEvent).get();
+
+        List<Profile> profilesList = new ArrayList<Profile>();
+        for(Reservation reservation : event.getReservations()){
+            profilesList.add(reservation.getProfile());
+        }
+
+       return algorithm.selezionaIscritti(profilesList,event);
+    }
+
 
 }
