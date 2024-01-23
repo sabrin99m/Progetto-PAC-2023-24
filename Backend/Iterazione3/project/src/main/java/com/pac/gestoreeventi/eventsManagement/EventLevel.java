@@ -1,7 +1,7 @@
 package com.pac.gestoreeventi.eventsManagement;
 
 public enum EventLevel {
-    EASY(1), MEDIUM(2), HARD(3);
+    EASY(10), MEDIUM(20), HARD(30);
 
     private int id;
     private EventLevel(int id){

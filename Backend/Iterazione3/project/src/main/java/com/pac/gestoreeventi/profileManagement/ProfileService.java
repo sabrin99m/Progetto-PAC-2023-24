@@ -132,7 +132,7 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 	@Override
 	public int profileLevel(Integer idProfile){
-		List<Event> profileEvents = eventRepository.findByProfile(idProfile);
+		List<Event> profileEvents = eventRepository.findByProfile(profileRepository.getById(idProfile));
 		int level = profileEvents.stream().mapToInt(event -> event.getDifficultyLevel()).sum();
 
 		return level/profileEvents.size();
