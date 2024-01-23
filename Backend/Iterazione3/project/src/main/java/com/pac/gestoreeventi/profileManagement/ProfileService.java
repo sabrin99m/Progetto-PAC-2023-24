@@ -135,6 +135,6 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 		List<Event> profileEvents = eventRepository.findByProfile(profileRepository.getById(idProfile));
 		int level = profileEvents.stream().mapToInt(event -> event.getDifficultyLevel()).sum();
 
-		return level/profileEvents.size();
+		return (profileEvents.size() == 0) ? 10 : level/profileEvents.size();
 	}
 }

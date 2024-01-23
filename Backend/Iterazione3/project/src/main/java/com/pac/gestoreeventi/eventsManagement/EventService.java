@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import com.pac.gestoreeventi.algorithm.Algorithm;
 import com.pac.gestoreeventi.profileManagement.Profile;
 import com.pac.gestoreeventi.profileManagement.ProfileService;
 import com.pac.gestoreeventi.reservationManagement.Reservation;
+import com.pac.gestoreeventi.reservationManagement.ReservationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +20,8 @@ public class EventService implements EventsManagementIF{
 
     @Autowired
 	private EventRepository eventRepository;
+    @Autowired
+    private ReservationRepository  reservationRepository;
     @Autowired
     private ProfileService profileService;
 
@@ -81,7 +83,6 @@ public class EventService implements EventsManagementIF{
 
     @Override
     public List<Profile> closeEventReservations(Integer idEvent) {
-        Algorithm algorithm = new Algorithm();
         Event event = eventRepository.findById(idEvent).get();
 
         List<Profile> profilesList = new ArrayList<Profile>();
@@ -89,8 +90,61 @@ public class EventService implements EventsManagementIF{
             profilesList.add(reservation.getProfile());
         }
 
-       return algorithm.selezionaIscritti(profilesList,event);
+        List<Profile> list = selezionaIscritti(profilesList,event);
+        for(Reservation reservation : event.getReservations()){
+            if(list.contains(reservation.getProfile())){
+               reservation.setConfirmation(true);
+            } else{
+                reservation.setConfirmation(false);
+            }
+        }
+
+       return list;
     }
 
+    ////ALGORITMO
+    private List<Profile> selezionaIscritti(List<Profile> listaIscritti, Event event) {
+        List<Profile> S = new ArrayList<>();
+        int limiteMax = event.getMaxPeople();
+
+        if (listaIscritti.size() <= limiteMax) {
+            //se il numero di iscritti è inferiore del numero di posti, vengono tutti confermati
+            S.addAll(listaIscritti);
+        } else {
+            int livelloTarget = event.getDifficultyLevel();
+            int i = 0;  // Numero di posti occupati
+            int j = 0;  // Distanza dal livello target
+
+            while ((i != limiteMax) && (!listaIscritti.isEmpty())) {
+                Profile utenteConfermato = seleziona(listaIscritti, livelloTarget, j);
+                listaIscritti.remove(utenteConfermato);
+                S.add(utenteConfermato);
+                i++;
+
+                //se non ci sono altri iscritti di livello target +/- j e ci sono ancora posti liberi, si passa
+                //a considerare gli iscritti con livello immediatamente inferiore o superiore
+                boolean foundUser = false;
+                for (Profile profile : listaIscritti) {
+                    if (profileService.profileLevel(profile.getId()) == livelloTarget + j || profileService.profileLevel(profile.getId()) == livelloTarget - j) {
+                        foundUser = true;
+                    }
+                }
+                if (!foundUser) {
+                    j++;
+                }
+            }
+        }
+        return S;
+    }
+
+    private Profile seleziona(List<Profile> listaIscritti, int livello, int distanza) {
+        // Restituisce un utente con un livello pari a livello + distanza o livello - distanza
+        for (Profile profile : listaIscritti) {
+            if (profileService.profileLevel(profile.getId()) == livello + distanza || profileService.profileLevel(profile.getId()) == livello - distanza) {
+                return profile;
+            }
+        }
+        return null;
+    }
 
 }

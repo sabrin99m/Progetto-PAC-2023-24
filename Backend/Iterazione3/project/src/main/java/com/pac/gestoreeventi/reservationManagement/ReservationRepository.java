@@ -11,5 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation,Integer
     List<Reservation> findByEventId(Integer idEvent);
     List<Reservation> findByProfileId(Integer idProfile);
 
+    Optional<Reservation> findByEventIdAndProfileId(Integer idEvent, Integer idProfile);
+
     Optional<Reservation> findById(Integer idReservation);
 }

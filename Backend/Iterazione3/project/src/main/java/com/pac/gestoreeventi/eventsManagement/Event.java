@@ -63,7 +63,7 @@ public class Event {
     @JoinColumn(name = "idProfile")
     private Profile profile;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
