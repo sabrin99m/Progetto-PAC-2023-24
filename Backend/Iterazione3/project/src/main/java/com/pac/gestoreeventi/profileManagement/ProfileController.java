@@ -53,7 +53,6 @@ public class ProfileController {
 	}
 
 	@GetMapping(path = "/profiles/level/{idProfile}")
-	@ResponseStatus(HttpStatus.CREATED)
 	public Integer getProfileLevel(@PathVariable Integer idProfile) {
 		return profileService.profileLevel(idProfile);
 	}
