@@ -3,6 +3,8 @@ package com.pac.gestoreeventi.profileManagement;
 
 import com.pac.gestoreeventi.eventsManagement.Event;
 import com.pac.gestoreeventi.eventsManagement.EventRepository;
+import com.pac.gestoreeventi.reservationManagement.Reservation;
+import com.pac.gestoreeventi.reservationManagement.ReservationRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -28,6 +30,8 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 	@Autowired
 	private EventRepository eventRepository;
 
+	@Autowired
+	private ReservationRepository reservationRepository;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -132,7 +136,15 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 
 	@Override
 	public int profileLevel(Integer idProfile){
-		List<Event> profileEvents = eventRepository.findByProfile(profileRepository.getById(idProfile));
+		List<Reservation> profileReservations = reservationRepository.findByProfileId(idProfile);
+		List<Event> profileEvents = new ArrayList<>();
+		for(Reservation reservation: profileReservations){
+			if(reservation.getConfirmation() == true) {
+				Optional<Event> event = eventRepository.findById((reservation.getEvent().getId()));
+				profileEvents.add(event.get());
+			}
+		}
+
 		int level = profileEvents.stream().mapToInt(event -> event.getDifficultyLevel()).sum();
 
 		return (profileEvents.size() == 0) ? 10 : level/profileEvents.size();
