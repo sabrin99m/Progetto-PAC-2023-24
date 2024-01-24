@@ -1,9 +1,14 @@
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 const app = express()
 app.use(bodyParser.json())
+app.use(cors({
+  origin: '*',
+  allowedHeaders: 'X-Requested-With, Content-Type, Authorization',
+}))
 
 app.get('/', async (_, res) => {
   res.status(200).send("This is Radio Nowhere, is there anybody alive out there?")
@@ -275,20 +280,25 @@ function buildResponse(response, res) {
   switch (response.status) {
     case 401:
       //Credenziali fornite sono sbagliate
+      console.log('>>> AUTORIZZAZIONE FALLITA\n' + response.data)
       res.sendStatus(401)
       break;
 
     case 404:
       //Risorsa non trovata
+      console.log('>>> RISORSA NON TROVATA\n' + response.data)
       res.sendStatus(404)
+      break;
 
     case 200:
       //Successo
+      console.log('>>> RICHIESTA SODDISFATTA\n' + response.data)
       res.status(200).send(response.data)
       break;
 
     case 201:
       //Successo
+      console.log('>>> RICHIESTA SODDISFATTA\n' + response.data)
       res.status(200).send(response.data)
       break;
 
