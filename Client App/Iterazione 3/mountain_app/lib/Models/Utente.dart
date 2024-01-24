@@ -37,8 +37,8 @@ class Utente {
             ? true
             : false,
         isLoggedIn = false,
-        iscrizioni = [],
-        iscrizioniPassate = [],
+        iscrizioni = [37, 67],
+        iscrizioniPassate = [37, 67],
         esperienza = 0,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth = '';
@@ -62,8 +62,8 @@ class Utente {
       "tiru",
       true,
       true,
-      [37],
-      [38, 42],
+      [37, 67],
+      [37, 67],
       4.2,
       Uri(
           path:
@@ -78,8 +78,8 @@ class Utente {
       "admin",
       true,
       false,
-      [37],
-      [38, 42],
+      [37, 67],
+      [37, 67],
       2,
       Uri(
           path:

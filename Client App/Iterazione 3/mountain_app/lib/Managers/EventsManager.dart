@@ -5,9 +5,6 @@ import 'package:http/http.dart' as http;
 
 /// Manager responsabile delle chiamate http al server. Creato con un pattern Singleton
 class EventsManger {
-  /// Lista della gare scaricate
-  late List<Escursione> escursioni;
-
   ///Indica se la pagina si sta caricando
   late bool isLoading;
 
@@ -25,12 +22,9 @@ class EventsManger {
     _baseIpGateway = "http://165.227.152.216:8085";
     _baseIpLocal = "http://localhost:8085";
     isLoading = false;
-    escursioni = [];
   }
 
-  void fetchEvents() async {
-    String username = "admin@admin.com";
-    String password = "admin";
+  Future<List<Escursione>> fetchEvents(String username, String password) async {
     String basicAuth =
         'Basic ${base64Encode(utf8.encode('$username:$password'))}';
 
@@ -43,12 +37,13 @@ class EventsManger {
       List<Escursione> downEscursioni =
           decoded.map((escursione) => Escursione.fromJson(escursione)).toList();
 
-      escursioni = downEscursioni;
+      return downEscursioni;
     } catch (e) {
       print(e);
     }
 
     isLoading = false;
+    return [];
   }
 
   Future<Escursione> fetchEvent(int id) async {

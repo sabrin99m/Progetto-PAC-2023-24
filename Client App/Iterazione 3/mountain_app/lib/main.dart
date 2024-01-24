@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Mountains App',
       theme: ThemeData(),
       home: HomepageScreen(utente: Utente.utenteMock1),
-      // home: LoginView(),
+      //home: LoginView(),
     );
   }
 }

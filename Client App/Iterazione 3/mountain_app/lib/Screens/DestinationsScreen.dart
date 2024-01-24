@@ -19,35 +19,55 @@ class DestinationsScreen extends StatefulWidget {
 }
 
 class _DestinationsScreenState extends State<DestinationsScreen> {
+  late Future<List<Escursione>> escursioni;
+
+  void fetchEscursioni() async {
+    escursioni =
+        EventsManger().fetchEvents(widget.utente.mail, widget.utente.password);
+  }
+
   @override
   void initState() {
-    EventsManger().fetchEvents();
     super.initState();
+    fetchEscursioni();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        itemCount: EventsManger().escursioni.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: TileView(escursione: EventsManger().escursioni[index]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventDetailsView(
-                    escursione: EventsManger().escursioni[index],
-                    listaEscursioni: Utente.utenteMock1.iscrizioni,
-                    utente: widget.utente,
-                  ),
-                ),
-              );
-            },
-          );
-        },
-      ),
-    );
+        body: FutureBuilder<List<Escursione>>(
+            future: escursioni,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+
+              if (!snapshot.hasData) {
+                return const CircularProgressIndicator();
+              }
+
+              var downEscursioni = snapshot.data!;
+
+              return ListView.builder(
+                  itemCount: downEscursioni.length,
+                  cacheExtent: 10000,
+                  itemBuilder: ((context, index) => ListTile(
+                        title: TileView(
+                          idEscursione: downEscursioni[index].id,
+                        ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EventDetailsView(
+                                escursione: downEscursioni[index],
+                                listaEscursioni: Utente.utenteMock1.iscrizioni,
+                                utente: widget.utente,
+                              ),
+                            ),
+                          );
+                        },
+                      )));
+            }));
   }
 }

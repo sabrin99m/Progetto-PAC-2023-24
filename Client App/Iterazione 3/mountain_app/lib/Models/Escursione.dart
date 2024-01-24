@@ -58,8 +58,8 @@ class Escursione {
         luogoRitrovo = json['meetingPlace'],
         oraRitrovo = json['time'],
         imgUrl = Uri(path: ''),
-        organizzatori = [],
-        partecipanti = [];
+        organizzatori = Utente.listaOrganizzatoriMock,
+        partecipanti = Utente.listaPartecipantiMock;
 
   Map<String, dynamic> toJson(int maxPeople) => {
         'id': id,
