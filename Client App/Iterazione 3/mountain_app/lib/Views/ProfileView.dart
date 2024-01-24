@@ -105,14 +105,6 @@ class ProfileView extends StatelessWidget {
             style: sottotitoloOpaco,
           ),
         ),
-        Text(
-          utente.punteggio.toString(),
-          style: sottotitoloGrassetto,
-        ),
-        Icon(
-          Icons.star,
-          size: sottotitoloGrassetto.fontSize,
-        )
       ],
     );
   }

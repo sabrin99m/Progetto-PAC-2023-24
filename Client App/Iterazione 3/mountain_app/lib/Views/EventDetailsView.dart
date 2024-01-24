@@ -7,7 +7,7 @@ import 'package:mountain_app/Utilities/Constants.dart';
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
   final Utente utente;
-  final List<String> listaEscursioni;
+  final List<int> listaEscursioni;
 
   const EventDetailsView(
       {super.key,
