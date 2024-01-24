@@ -119,10 +119,11 @@ public class EventService implements EventsManagementIF{
 
             while ((i != limiteMax) && (!listaIscritti.isEmpty())) {
                 Profile utenteConfermato = seleziona(listaIscritti, livelloTarget, j);
-                listaIscritti.remove(utenteConfermato);
-                S.add(utenteConfermato);
-                i++;
-
+                if(utenteConfermato != null){
+                    listaIscritti.remove(utenteConfermato);
+                    S.add(utenteConfermato);
+                    i++;
+                }
                 //se non ci sono altri iscritti di livello target +/- j e ci sono ancora posti liberi, si passa
                 //a considerare gli iscritti con livello immediatamente inferiore o superiore
                 boolean foundUser = false;
