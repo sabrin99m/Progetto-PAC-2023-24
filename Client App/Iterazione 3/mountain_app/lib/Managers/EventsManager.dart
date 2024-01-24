@@ -15,7 +15,6 @@ class EventsManger {
   static final EventsManger _instance = EventsManger._internal();
 
   late String _baseIpGateway;
-  late String _baseIpServer;
   late String _baseIpLocal;
 
   factory EventsManger() {
@@ -37,7 +36,7 @@ class EventsManger {
 
     isLoading = true;
     try {
-      final response = await http.get(Uri.parse('$_baseIpLocal/events/'),
+      final response = await http.get(Uri.parse('$_baseIpGateway/events/'),
           headers: {HttpHeaders.authorizationHeader: basicAuth});
 
       List<dynamic> decoded = json.decode(response.body);
@@ -58,7 +57,7 @@ class EventsManger {
     String basicAuth =
         'Basic ${base64Encode(utf8.encode('$username:$password'))}';
 
-    final response = await http.get(Uri.parse('$_baseIpServer/events/$id'),
+    final response = await http.get(Uri.parse('$_baseIpGateway/events/$id'),
         headers: {HttpHeaders.authorizationHeader: basicAuth});
 
     if (response.statusCode == 200) {
