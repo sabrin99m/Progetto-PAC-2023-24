@@ -37,6 +37,8 @@ public class EventDTO {
 
     private String time;
 
+    private Integer idProfile;
+
     public EventDTO(){
 
     }
@@ -55,14 +57,15 @@ public class EventDTO {
         this.meetingPlace = e.getMeetingPlace();
         this.time = e.getTime();
         this.maxPeople = e.getMaxPeople();
+        this.idProfile = e.getProfile().getId();
     }
 
     public Integer getIdEvent() {
         return idEvent;
     }
 
-    public void setIdEvent(Integer id) {
-        this.idEvent = id;
+    public void setIdEvent(Integer idEvent) {
+        this.idEvent = idEvent;
     }
 
     public String getName() {
@@ -160,4 +163,8 @@ public class EventDTO {
     public void setMaxPeople(Integer maxPeople) {
         this.maxPeople = maxPeople;
     }
+    public Integer getIdProfile() {
+        return idProfile;
+    }
+    public void setIdProfile(Integer idProfile) {this.idProfile = idProfile;}
 }

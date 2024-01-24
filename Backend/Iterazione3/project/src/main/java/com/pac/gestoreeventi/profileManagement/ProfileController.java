@@ -7,14 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProfileController {
@@ -57,5 +50,10 @@ public class ProfileController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProfileDTO addProfile(@Valid @RequestBody ProfileDTO profileDto) {
 		return profileService.addProfile(profileDto);
+	}
+
+	@GetMapping(path = "/profiles/level/{idProfile}")
+	public Integer getProfileLevel(@PathVariable Integer idProfile) {
+		return profileService.profileLevel(idProfile);
 	}
 }
