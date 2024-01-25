@@ -47,12 +47,20 @@ app.get('/login', async (req, res) => {
       return res.sendStatus(401)
     }
 
-    //Richiesta get al server
+    //Richiesta get al server per ottenere i dettagli del profilo
     const getResponse = await axios.get('http://64.23.165.209:8080/login', {
       headers: {
         'Authorization': authorization
       }
     });
+
+    //Richiesta get al server per ottenere l'esperienza dell'utente
+    const exp = await axios.get(`http://64.23.165.209:8080/profiles/level/${getResponse.data['id']}`, {
+      headers: {
+        'Authorization': authorization
+      }
+    })
+    getResponse.data['experience'] = exp.data
 
     buildResponse(getResponse, res)
 
@@ -295,11 +303,21 @@ app.post('/events/reservation', async (req, res) => {
 
 })
 
+/**
+ * Gestisce errori inerenti il geteway
+ * @param {*} error 
+ * @param {*} res 
+ */
 function handleError(error, res) {
   console.error(error);
   res.status(500).send('Internal Server Error');
 }
 
+/**
+ * Costruimo la risposta da mandare al client in base alla risposta del server
+ * @param {*} response Risposta del server
+ * @param {*} res Risposta da inviare al client
+ */
 function buildResponse(response, res) {
   switch (response.status) {
     case 401:
@@ -330,6 +348,7 @@ function buildResponse(response, res) {
       //Successo (login)
       console.log('>>> RICHIESTA SODDISFATTA\n' + response.data)
       res.status(202).send(response.data)
+      break
 
     default:
       res.sendStatus(response.status)
