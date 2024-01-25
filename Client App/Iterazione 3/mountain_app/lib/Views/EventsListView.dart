@@ -16,7 +16,7 @@ class EventsListView extends StatelessWidget {
         cacheExtent: 10000,
         itemBuilder: ((context, index) => ListTile(
               title: TileView(
-                idEscursione: escursioni[index].id,
+                escursione: escursioni[index],
               ),
               onTap: () {
                 Navigator.push(
