@@ -7,7 +7,7 @@ import 'package:mountain_app/Utilities/Constants.dart';
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
   final Utente utente;
-  final List<String> listaEscursioni;
+  final List<int> listaEscursioni;
 
   const EventDetailsView(
       {super.key,
@@ -150,7 +150,7 @@ class EventDetailsView extends StatelessWidget {
               style: sottotitoloRed,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  String idEvento = escursione.id;
+                  int idEvento = escursione.id;
                   print("Evento $idEvento cancelallato");
                   Navigator.pop(context);
                 }),

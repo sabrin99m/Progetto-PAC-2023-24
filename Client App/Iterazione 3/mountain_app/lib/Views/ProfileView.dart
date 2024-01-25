@@ -69,7 +69,7 @@ class ProfileView extends StatelessWidget {
         itemBuilder: (context, index) {
           // return TileView(escursione: escursioni[index]);
           return ListTile(
-            title: TileView(escursione: Escursione.escursioniMock[index]),
+            title: TileView(idEscursione: utente.iscrizioniPassate[index]),
             onTap: () {
               Navigator.push(
                 context,
@@ -105,14 +105,6 @@ class ProfileView extends StatelessWidget {
             style: sottotitoloOpaco,
           ),
         ),
-        Text(
-          utente.punteggio.toString(),
-          style: sottotitoloGrassetto,
-        ),
-        Icon(
-          Icons.star,
-          size: sottotitoloGrassetto.fontSize,
-        )
       ],
     );
   }

@@ -3,7 +3,7 @@ import "Utente.dart";
 enum Difficolta { hard, medium, easy }
 
 class Escursione {
-  final String id;
+  final int id;
   final String nome;
   final Difficolta difficolta;
   final String luogo;
@@ -58,8 +58,8 @@ class Escursione {
         luogoRitrovo = json['meetingPlace'],
         oraRitrovo = json['time'],
         imgUrl = Uri(path: ''),
-        organizzatori = [],
-        partecipanti = [];
+        organizzatori = Utente.listaOrganizzatoriMock,
+        partecipanti = Utente.listaPartecipantiMock;
 
   Map<String, dynamic> toJson(int maxPeople) => {
         'id': id,
@@ -78,7 +78,7 @@ class Escursione {
       };
 
   static Escursione escursioneMock = Escursione(
-    id: "123",
+    id: 123,
     nome: "Tagliaferri",
     difficolta: Difficolta.easy,
     luogo: "Bergamo",
