@@ -74,24 +74,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ),
               ],
             ),
-            FloatingActionButton.extended(
-              elevation: 0,
-              backgroundColor: Colors.green,
-              hoverElevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32))),
-              label: Text(
-                "Crea Evento",
-                style: sottotitoloGrassetto,
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CreateEventView(),
-                  ),
-                );
-              },
-            ),
             IconButton(
               icon: const Icon(Icons.search),
               iconSize: 30,
@@ -107,6 +89,24 @@ class _HomepageScreenState extends State<HomepageScreen> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 0,
+        backgroundColor: Colors.green,
+        hoverElevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(32))),
+        label: Text(
+          "Nuova Escursione",
+          style: sottotitoloGrassetto,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const CreateEventView(),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
