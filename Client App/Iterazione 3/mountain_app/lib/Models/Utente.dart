@@ -27,6 +27,10 @@ class Utente {
     this.urlImmagineProfilo,
   ) {}
 
+  ///Informazioni dell'utente loggato nel sistema
+  static Utente loggedUser = Utente(
+      0, "", "", "", "", "password", false, false, [], [], 0, Uri(path: ""));
+
   Utente.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         nome = json['firstName'],
