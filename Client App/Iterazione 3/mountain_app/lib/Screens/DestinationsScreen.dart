@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Views/EventDetailsView.dart';
-import 'package:mountain_app/Views/TileView.dart';
+import 'package:mountain_app/Views/EventsListView.dart';
 
 class DestinationsScreen extends StatefulWidget {
   DestinationsScreen({
@@ -43,27 +42,9 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
               return const CircularProgressIndicator();
             }
 
-            var downEscursioni = snapshot.data!;
+            List<Escursione> downEscursioni = snapshot.data!;
 
-            return ListView.builder(
-                itemCount: downEscursioni.length,
-                cacheExtent: 10000,
-                itemBuilder: ((context, index) => ListTile(
-                      title: TileView(
-                        idEscursione: downEscursioni[index].id,
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EventDetailsView(
-                              escursione: downEscursioni[index],
-                              listaEscursioni: Utente.utenteMock1.iscrizioni,
-                            ),
-                          ),
-                        );
-                      },
-                    )));
+            return EventsListView(escursioni: downEscursioni);
           }),
     ));
   }

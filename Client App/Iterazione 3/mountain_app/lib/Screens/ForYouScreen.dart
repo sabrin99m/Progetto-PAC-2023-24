@@ -3,6 +3,7 @@ import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Views/EventDetailsView.dart';
+import 'package:mountain_app/Views/EventsListView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class ForYouScreen extends StatefulWidget {
@@ -56,31 +57,13 @@ class _ForYouScreenState extends State<ForYouScreen> {
               return const CircularProgressIndicator();
             }
 
-            var downEscursioni = snapshot.data!
+            var suggestedEvents = snapshot.data!
                 .where((element) =>
                     translateDifficulty(element.difficolta) <=
                     Utente.loggedUser.esperienza)
                 .toList();
 
-            return ListView.builder(
-                itemCount: downEscursioni.length,
-                cacheExtent: 10000,
-                itemBuilder: ((context, index) => ListTile(
-                      title: TileView(
-                        idEscursione: downEscursioni[index].id,
-                      ),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => EventDetailsView(
-                              escursione: downEscursioni[index],
-                              listaEscursioni: Utente.utenteMock1.iscrizioni,
-                            ),
-                          ),
-                        );
-                      },
-                    )));
+            return EventsListView(escursioni: suggestedEvents);
           }),
     ));
   }
