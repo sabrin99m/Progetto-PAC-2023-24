@@ -2,6 +2,7 @@ package com.pac.gestoreeventi.eventsManagement;
 
 import java.util.List;
 
+import com.pac.gestoreeventi.profileManagement.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,4 +31,9 @@ public class EventController {
 	
 	@DeleteMapping(path = "/events/{idEvent}")
 	public String deleteEvent(@PathVariable("idEvent") Integer idEvent){eventService.deleteEvent(idEvent); return "Evento eliminato";}
+
+	@GetMapping( path = "events/{idEvent}/close")
+	public List<Profile> closeEventReservations(@PathVariable("idEvent") Integer idEvent){
+		return eventService.closeEventReservations(idEvent);
+	}
 }

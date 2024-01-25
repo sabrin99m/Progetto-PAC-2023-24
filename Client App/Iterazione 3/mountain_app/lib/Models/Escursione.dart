@@ -1,6 +1,6 @@
 import "Utente.dart";
 
-enum Difficolta { facile, medio, difficile }
+enum Difficolta { hard, medium, easy }
 
 class Escursione {
   final String id;
@@ -21,7 +21,7 @@ class Escursione {
   final String oraRitrovo;
   final Uri imgUrl;
 
-  Escursione({
+  const Escursione({
     required this.id,
     required this.nome,
     required this.difficolta,
@@ -41,10 +41,46 @@ class Escursione {
     required this.imgUrl,
   });
 
+  Escursione.fromJson(Map<String, dynamic> json)
+      : id = json['id'] ?? json['idEvent'],
+        nome = json['name'],
+        luogo = json['place'],
+        difficolta = Difficolta.values
+            .byName(json["difficulty"].toString().toLowerCase()),
+        data = json['date'],
+        descrizione = json['description'],
+        distanza = json['distance'],
+        dislivello = json['heightLevel'],
+        tempo = json['time'],
+        altMin = json['minHeight'],
+        altMax = "2000",
+        strumentazione = json['tools'],
+        luogoRitrovo = json['meetingPlace'],
+        oraRitrovo = json['time'],
+        imgUrl = Uri(path: ''),
+        organizzatori = [],
+        partecipanti = [];
+
+  Map<String, dynamic> toJson(int maxPeople) => {
+        'id': id,
+        "name": nome,
+        "place": luogo,
+        "difficulty": difficolta.toString(),
+        "date": data,
+        "description": descrizione,
+        "distance": distanza,
+        "heightLevel": dislivello,
+        "minHeight": altMin,
+        "tools": strumentazione,
+        "meetingPlace": luogoRitrovo,
+        "maxPeople": maxPeople,
+        "time": tempo,
+      };
+
   static Escursione escursioneMock = Escursione(
     id: "123",
     nome: "Tagliaferri",
-    difficolta: Difficolta.facile,
+    difficolta: Difficolta.easy,
     luogo: "Bergamo",
     data: "20 Settembre 2023",
     descrizione:

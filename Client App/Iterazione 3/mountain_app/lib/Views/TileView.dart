@@ -146,10 +146,10 @@ Widget traduceDifficultyToEmoji(Difficolta difficolta) {
   int numElems = 1;
 
   switch (difficolta) {
-    case Difficolta.difficile:
+    case Difficolta.hard:
       numElems = 3;
       break;
-    case Difficolta.medio:
+    case Difficolta.medium:
       numElems = 2;
       break;
     default:

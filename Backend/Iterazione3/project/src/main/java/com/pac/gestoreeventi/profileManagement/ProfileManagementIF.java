@@ -71,4 +71,12 @@ public interface ProfileManagementIF {
 	 * @param idProfile id dell'utente da cancellare.
 	 */
 	public void deleteProfile(Integer idProfile);
+
+	/**
+	 *
+	 * Calcola il livello dell'utente.
+	 *
+	 * @param idProfile id dell'utente di cui calcolare il livello;
+	 */
+	public int profileLevel(Integer idProfile);
 }
