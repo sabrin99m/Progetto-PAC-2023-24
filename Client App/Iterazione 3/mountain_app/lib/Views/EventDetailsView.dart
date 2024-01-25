@@ -4,13 +4,18 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 
-class EventDetailsView extends StatelessWidget {
+class EventDetailsView extends StatefulWidget {
   final Escursione escursione;
   final List<int> listaEscursioni;
 
   EventDetailsView(
       {super.key, required this.escursione, required this.listaEscursioni});
 
+  @override
+  State<EventDetailsView> createState() => _EventDetailsViewState();
+}
+
+class _EventDetailsViewState extends State<EventDetailsView> {
   Utente utente = Utente.loggedUser;
 
   @override
@@ -33,15 +38,11 @@ class EventDetailsView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(escursione.luogo, style: luogo),
-                          Text(escursione.nome, style: titolo),
-                          Text(escursione.data, style: data),
+                          Text(widget.escursione.luogo, style: luogo),
+                          Text(widget.escursione.nome, style: titolo),
+                          Text(widget.escursione.data, style: data),
                         ],
                       ),
-                      if (isUserSubscribed())
-                        unsubscribeButtonSection()
-                      else
-                        subscribeButtonSection()
                     ],
                   ),
                   customDivider(),
@@ -54,18 +55,21 @@ class EventDetailsView extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            gridElement("Distanza", escursione.distanza),
-                            gridElement("Dislivello", escursione.dislivello),
-                            gridElement("Tempo", escursione.tempo)
+                            gridElement("Distanza", widget.escursione.distanza),
+                            gridElement(
+                                "Dislivello", widget.escursione.dislivello),
+                            gridElement("Tempo", widget.escursione.tempo)
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            gridElement("Altezza Max.", escursione.altMax),
-                            gridElement("Altezza Min.", escursione.altMin),
                             gridElement(
-                                "Difficoltà", escursione.difficolta.name)
+                                "Altezza Max.", widget.escursione.altMax),
+                            gridElement(
+                                "Altezza Min.", widget.escursione.altMin),
+                            gridElement(
+                                "Difficoltà", widget.escursione.difficolta.name)
                           ],
                         )
                       ],
@@ -104,10 +108,10 @@ class EventDetailsView extends StatelessWidget {
                   customDivider(),
                   CustomInset(Text("Descrizione Percorso",
                       style: sottotitoloGrassetto)),
-                  displayTextParagraph(escursione.descrizione),
+                  displayTextParagraph(widget.escursione.descrizione),
                   customDivider(),
                   Text("Strumentazione Richiesta", style: sottotitoloGrassetto),
-                  displayTextParagraph(escursione.strumentazione),
+                  displayTextParagraph(widget.escursione.strumentazione),
                   customDivider(),
                   Text("Ritrovo", style: sottotitoloGrassetto),
                   CustomInset(Column(
@@ -116,13 +120,13 @@ class EventDetailsView extends StatelessWidget {
                       Row(
                         children: [
                           Text("Orario: ", style: sottotitoloGrassetto),
-                          Text(escursione.oraRitrovo)
+                          Text(widget.escursione.oraRitrovo)
                         ],
                       ),
                       Row(
                         children: [
                           Text("Luogo: ", style: sottotitoloGrassetto),
-                          Text(escursione.luogoRitrovo)
+                          Text(widget.escursione.luogoRitrovo)
                         ],
                       ),
                     ],
@@ -130,8 +134,20 @@ class EventDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            if (escursione.organizzatori.contains(utente))
-              deleteEventSection(context)
+            SizedBox(
+              height: 100,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  if (isUserSubscribed())
+                    unsubscribeButtonSection()
+                  else
+                    subscribeButtonSection(),
+                  if (widget.escursione.organizzatori.contains(utente))
+                    deleteEventSection(context)
+                ],
+              ),
+            )
           ],
         ),
       ),
@@ -148,7 +164,7 @@ class EventDetailsView extends StatelessWidget {
               style: sottotitoloRed,
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
-                  int idEvento = escursione.id;
+                  int idEvento = widget.escursione.id;
                   print("Evento $idEvento cancelallato");
                   Navigator.pop(context);
                 }),
@@ -245,7 +261,7 @@ class EventDetailsView extends StatelessWidget {
   }
 
   bool isUserSubscribed() {
-    if (listaEscursioni.contains(escursione.id)) return true;
+    if (widget.listaEscursioni.contains(widget.escursione.id)) return true;
     return false;
   }
 

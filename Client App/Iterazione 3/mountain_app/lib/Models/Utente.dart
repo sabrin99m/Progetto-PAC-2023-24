@@ -42,7 +42,7 @@ class Utente {
         isLoggedIn = true,
         iscrizioni = [37, 67],
         iscrizioniPassate = [37, 67],
-        esperienza = 0,
+        esperienza = json['experience'] ?? 3,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth = '';
 
