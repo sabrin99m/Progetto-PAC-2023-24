@@ -33,6 +33,30 @@ app.get('/events', async (req, res) => {
 
 })
 
+app.get('/login', async (req, res) => {
+  try {
+    const { authorization } = req.headers;
+
+    //Se non viene fornita autorizzazione
+    if (!authorization) {
+      return res.sendStatus(401)
+    }
+
+    //Richiesta get al server
+    const getResponse = await axios.get('http://64.23.165.209:8080/login', {
+      headers: {
+        'Authorization': authorization
+      }
+    });
+
+    buildResponse(getResponse, res)
+
+  } catch (error) {
+    handleError(error, res)
+  }
+
+})
+
 app.get('/events/:id', async (req, res) => {
   try {
     const { authorization } = req.headers;
@@ -288,9 +312,13 @@ function buildResponse(response, res) {
       break;
 
     case 201:
-      //Successo
-      res.status(200).send(response.data)
+      //Successo (aggiunta di un elemento)
+      res.status(201).send(response.data)
       break;
+
+    case 202:
+      //Successo (login)
+      res.status(202).send(response.data)
 
     default:
       res.sendStatus(response.status)
