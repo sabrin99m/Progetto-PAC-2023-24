@@ -6,14 +6,12 @@ import 'package:mountain_app/Utilities/Constants.dart';
 
 class EventDetailsView extends StatelessWidget {
   final Escursione escursione;
-  final Utente utente;
   final List<int> listaEscursioni;
 
-  const EventDetailsView(
-      {super.key,
-      required this.escursione,
-      required this.listaEscursioni,
-      required this.utente});
+  EventDetailsView(
+      {super.key, required this.escursione, required this.listaEscursioni});
+
+  Utente utente = Utente.loggedUser;
 
   @override
   Widget build(BuildContext context) {

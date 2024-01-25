@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 

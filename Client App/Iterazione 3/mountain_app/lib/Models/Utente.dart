@@ -28,8 +28,7 @@ class Utente {
   ) {}
 
   ///Informazioni dell'utente loggato nel sistema
-  static Utente loggedUser = Utente(
-      0, "", "", "", "", "password", false, false, [], [], 0, Uri(path: ""));
+  static Utente loggedUser = Utente.utenteMock1;
 
   Utente.fromJson(Map<String, dynamic> json)
       : id = json['id'],

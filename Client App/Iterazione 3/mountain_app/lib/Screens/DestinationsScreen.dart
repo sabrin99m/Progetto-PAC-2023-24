@@ -6,13 +6,9 @@ import 'package:mountain_app/Views/EventDetailsView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class DestinationsScreen extends StatefulWidget {
-  final List<Escursione> escursioni;
-  final Utente utente;
-  const DestinationsScreen({
+  DestinationsScreen({
     Key? key,
-    required this.escursioni,
-    required this.utente,
-  }) : super(key: key);
+  }) : super(key: key) {}
 
   @override
   State<DestinationsScreen> createState() => _DestinationsScreenState();
@@ -22,8 +18,8 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
   late Future<List<Escursione>> escursioni;
 
   void fetchEscursioni() async {
-    escursioni =
-        EventsManger().fetchEvents(widget.utente.mail, widget.utente.password);
+    escursioni = EventsManger()
+        .fetchEvents(Utente.loggedUser.mail, Utente.loggedUser.password);
   }
 
   @override
@@ -62,7 +58,6 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
                               builder: (context) => EventDetailsView(
                                 escursione: downEscursioni[index],
                                 listaEscursioni: Utente.utenteMock1.iscrizioni,
-                                utente: widget.utente,
                               ),
                             ),
                           );

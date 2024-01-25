@@ -5,23 +5,20 @@ import 'package:mountain_app/Screens/DestinationsScreen.dart';
 
 class SearchBarView extends StatefulWidget {
   final List<Escursione> escursioni;
-  final Utente utente;
 
-  const SearchBarView(
-      {super.key, required this.escursioni, required this.utente});
+  const SearchBarView({super.key, required this.escursioni});
 
   @override
   State<SearchBarView> createState() =>
-      _SearchBarViewState(escursioni: escursioni, utente: utente);
+      _SearchBarViewState(escursioni: escursioni);
 }
 
 class _SearchBarViewState extends State<SearchBarView> {
   final List<Escursione> escursioni;
-  final Utente utente;
-
+  Utente utente = Utente.loggedUser;
   List<Escursione> displayedEvents = [];
 
-  _SearchBarViewState({required this.escursioni, required this.utente});
+  _SearchBarViewState({required this.escursioni});
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +90,7 @@ class _SearchBarViewState extends State<SearchBarView> {
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: SizedBox(
         height: 1000,
-        child: DestinationsScreen(
-          escursioni: displayedEvents,
-          utente: utente,
-        ),
+        child: DestinationsScreen(),
       ),
     );
   }

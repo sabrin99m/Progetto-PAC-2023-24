@@ -37,10 +37,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                  // child: CircleAvatar(
-                  //   backgroundImage: AssetImage("images/me.jpg"),
-                  //   radius: 30,
-                  // ),
                   child: Container(
                     width: 60,
                     height: 60,
@@ -92,7 +88,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
                   MaterialPageRoute(
                     builder: (context) => SearchBarView(
                       escursioni: Escursione.escursioniMock,
-                      utente: utente,
                     ),
                   ),
                 );
@@ -127,10 +122,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ]),
       body: SafeArea(
         child: <Widget>[
-          DestinationsScreen(
-            escursioni: Escursione.escursioniMock,
-            utente: utente,
-          ),
+          DestinationsScreen(),
           SubscriptionsScreen(),
           ForYouScreen(),
         ][currentPageIndex],

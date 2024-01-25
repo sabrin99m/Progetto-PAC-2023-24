@@ -77,7 +77,6 @@ class ProfileView extends StatelessWidget {
                   builder: (context) => EventDetailsView(
                     escursione: Escursione.escursioniMock[index],
                     listaEscursioni: utente.iscrizioni,
-                    utente: utente,
                   ),
                 ),
               );
