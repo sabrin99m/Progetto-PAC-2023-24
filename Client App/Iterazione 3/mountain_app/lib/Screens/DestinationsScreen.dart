@@ -6,13 +6,9 @@ import 'package:mountain_app/Views/EventDetailsView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class DestinationsScreen extends StatefulWidget {
-  final List<Escursione> escursioni;
-  final Utente utente;
-  const DestinationsScreen({
+  DestinationsScreen({
     Key? key,
-    required this.escursioni,
-    required this.utente,
-  }) : super(key: key);
+  }) : super(key: key) {}
 
   @override
   State<DestinationsScreen> createState() => _DestinationsScreenState();
@@ -22,8 +18,8 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
   late Future<List<Escursione>> escursioni;
 
   void fetchEscursioni() async {
-    escursioni =
-        EventsManger().fetchEvents(widget.utente.mail, widget.utente.password);
+    escursioni = EventsManger()
+        .fetchEvents(Utente.loggedUser.mail, Utente.loggedUser.password);
   }
 
   @override
@@ -35,39 +31,40 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<List<Escursione>>(
-            future: escursioni,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
+        body: Center(
+      child: FutureBuilder<List<Escursione>>(
+          future: escursioni,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
 
-              if (!snapshot.hasData) {
-                return const CircularProgressIndicator();
-              }
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }
 
-              var downEscursioni = snapshot.data!;
+            var downEscursioni = snapshot.data!;
 
-              return ListView.builder(
-                  itemCount: downEscursioni.length,
-                  cacheExtent: 10000,
-                  itemBuilder: ((context, index) => ListTile(
-                        title: TileView(
-                          idEscursione: downEscursioni[index].id,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EventDetailsView(
-                                escursione: downEscursioni[index],
-                                listaEscursioni: Utente.utenteMock1.iscrizioni,
-                                utente: widget.utente,
-                              ),
+            return ListView.builder(
+                itemCount: downEscursioni.length,
+                cacheExtent: 10000,
+                itemBuilder: ((context, index) => ListTile(
+                      title: TileView(
+                        idEscursione: downEscursioni[index].id,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventDetailsView(
+                              escursione: downEscursioni[index],
+                              listaEscursioni: Utente.utenteMock1.iscrizioni,
                             ),
-                          );
-                        },
-                      )));
-            }));
+                          ),
+                        );
+                      },
+                    )));
+          }),
+    ));
   }
 }

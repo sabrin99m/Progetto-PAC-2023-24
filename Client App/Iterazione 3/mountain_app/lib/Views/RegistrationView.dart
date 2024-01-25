@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 
@@ -165,8 +164,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomepageScreen(
-                                        utente: Utente.utenteMock1),
+                                    builder: (context) => HomepageScreen(),
                                   ),
                                 );
                               },

@@ -27,19 +27,22 @@ class Utente {
     this.urlImmagineProfilo,
   ) {}
 
+  ///Informazioni dell'utente loggato nel sistema
+  static Utente loggedUser = Utente.utenteMock1;
+
   Utente.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         nome = json['firstName'],
         cognome = json['lastName'],
         mail = json['email'],
         password = json['password'],
-        isOrganizer = (json['profileRole'].toString().toLowerCase() == "admin")
-            ? true
-            : false,
-        isLoggedIn = false,
+        isOrganizer = (json['profileRole'].toString().toLowerCase() == "user")
+            ? false
+            : true,
+        isLoggedIn = true,
         iscrizioni = [37, 67],
         iscrizioniPassate = [37, 67],
-        esperienza = 0,
+        esperienza = json['experience'] ?? 3,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth = '';
 
