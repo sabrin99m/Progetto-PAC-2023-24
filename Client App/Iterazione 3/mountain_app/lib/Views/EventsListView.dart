@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Views/EventDetailsView.dart';
+import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class EventsListView extends StatelessWidget {

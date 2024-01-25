@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Utente {
   int id;
   String basicAuth;
@@ -44,7 +46,8 @@ class Utente {
         iscrizioniPassate = [37, 67],
         esperienza = json['experience'] ?? 15,
         urlImmagineProfilo = Uri(path: ''),
-        basicAuth = '';
+        basicAuth =
+            'Basic ${base64Encode(utf8.encode("$json['email']:$json['password']"))}';
 
   Map<String, dynamic> toJson() => {
         "firstName": nome,
@@ -57,7 +60,7 @@ class Utente {
 
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
-      1,
+      131,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Cristian",
       "Tironi",
