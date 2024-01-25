@@ -10,18 +10,17 @@ import 'SubscriptionsScreen.dart';
 import '../Views/SearchBarView.dart';
 
 class HomepageScreen extends StatefulWidget {
-  const HomepageScreen({Key? key, required this.utente}) : super(key: key);
-  final Utente utente;
+  const HomepageScreen({Key? key}) : super(key: key);
 
   @override
-  State<HomepageScreen> createState() => _HomepageScreenState(utente: utente);
+  State<HomepageScreen> createState() => _HomepageScreenState();
 }
 
 class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
-  final Utente utente;
+  Utente utente = Utente.loggedUser;
 
-  _HomepageScreenState({required this.utente});
+  _HomepageScreenState();
 
   @override
   Widget build(BuildContext context) {

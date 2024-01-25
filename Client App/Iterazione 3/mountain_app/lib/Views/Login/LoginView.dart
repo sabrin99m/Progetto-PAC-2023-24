@@ -1,8 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Screens/Homepage.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Views/Login/LoginLoadingView.dart';
 import 'package:mountain_app/Views/RegistrationView.dart';
 
 class LoginView extends StatefulWidget {
@@ -68,7 +67,6 @@ class _LoginViewState extends State<LoginView> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Container(
-                                  height: 100,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -85,13 +83,12 @@ class _LoginViewState extends State<LoginView> {
                                         _usernameFieldController,
                                         false,
                                         TextInputType.name,
-                                        true,
+                                        false,
                                       ),
                                     ],
                                   ),
                                 ),
                                 Container(
-                                  height: 100,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -108,7 +105,7 @@ class _LoginViewState extends State<LoginView> {
                                         _passwordFieldcontroller,
                                         true,
                                         TextInputType.name,
-                                        true,
+                                        false,
                                       ),
                                     ],
                                   ),
@@ -129,20 +126,16 @@ class _LoginViewState extends State<LoginView> {
                               ),
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  String username =
-                                      _usernameFieldController.text;
-                                  String pass = _passwordFieldcontroller.text;
-                                  print("Username: $username Password: $pass");
-                                }
-
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomepageScreen(
-                                      utente: Utente.utenteMock1,
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginLoadingView(
+                                        username: _usernameFieldController.text,
+                                        password: _passwordFieldcontroller.text,
+                                      ),
                                     ),
-                                  ),
-                                );
+                                  );
+                                }
                               },
                             ),
                             registestrationSection(),

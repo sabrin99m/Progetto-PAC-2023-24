@@ -3,7 +3,7 @@ import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:mountain_app/Views/EventDetailsView.dart';
-import 'package:mountain_app/Views/LoginView.dart';
+import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class ProfileView extends StatelessWidget {

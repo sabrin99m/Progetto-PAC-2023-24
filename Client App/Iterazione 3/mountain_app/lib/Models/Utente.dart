@@ -40,7 +40,7 @@ class Utente {
         isOrganizer = (json['profileRole'].toString().toLowerCase() == "admin")
             ? true
             : false,
-        isLoggedIn = false,
+        isLoggedIn = true,
         iscrizioni = [37, 67],
         iscrizioniPassate = [37, 67],
         esperienza = 0,

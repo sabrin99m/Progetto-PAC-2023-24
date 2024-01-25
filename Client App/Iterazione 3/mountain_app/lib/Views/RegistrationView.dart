@@ -165,8 +165,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => HomepageScreen(
-                                        utente: Utente.utenteMock1),
+                                    builder: (context) => HomepageScreen(),
                                   ),
                                 );
                               },
