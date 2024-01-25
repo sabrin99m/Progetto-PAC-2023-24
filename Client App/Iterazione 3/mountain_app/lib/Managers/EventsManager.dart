@@ -70,4 +70,18 @@ class EventsManger {
     } else
       return false;
   }
+
+  Future<bool> deleteEvent(int idEvent) async {
+    final response = await http.delete(
+        Uri.parse('$baseIpGateway/events/$idEvent'),
+        headers: {HttpHeaders.authorizationHeader: _basicAuth});
+
+    if (response.statusCode == 200) {
+      print(response.body.toString());
+      return true;
+    } else {
+      print(response.body.toString());
+      throw Exception('Failed to delete event');
+    }
+  }
 }

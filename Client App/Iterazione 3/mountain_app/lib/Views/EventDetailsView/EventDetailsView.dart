@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
@@ -166,7 +167,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   int idEvento = widget.escursione.id;
-                  print("Evento $idEvento cancelallato");
+                  EventsManger().deleteEvent(idEvento);
                   Navigator.pop(context);
                 }),
         ],
