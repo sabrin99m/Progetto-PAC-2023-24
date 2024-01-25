@@ -31,38 +31,40 @@ class _DestinationsScreenState extends State<DestinationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<List<Escursione>>(
-            future: escursioni,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
+        body: Center(
+      child: FutureBuilder<List<Escursione>>(
+          future: escursioni,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('${snapshot.error}');
+            }
 
-              if (!snapshot.hasData) {
-                return const CircularProgressIndicator();
-              }
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }
 
-              var downEscursioni = snapshot.data!;
+            var downEscursioni = snapshot.data!;
 
-              return ListView.builder(
-                  itemCount: downEscursioni.length,
-                  cacheExtent: 10000,
-                  itemBuilder: ((context, index) => ListTile(
-                        title: TileView(
-                          idEscursione: downEscursioni[index].id,
-                        ),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EventDetailsView(
-                                escursione: downEscursioni[index],
-                                listaEscursioni: Utente.utenteMock1.iscrizioni,
-                              ),
+            return ListView.builder(
+                itemCount: downEscursioni.length,
+                cacheExtent: 10000,
+                itemBuilder: ((context, index) => ListTile(
+                      title: TileView(
+                        idEscursione: downEscursioni[index].id,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EventDetailsView(
+                              escursione: downEscursioni[index],
+                              listaEscursioni: Utente.utenteMock1.iscrizioni,
                             ),
-                          );
-                        },
-                      )));
-            }));
+                          ),
+                        );
+                      },
+                    )));
+          }),
+    ));
   }
 }

@@ -36,9 +36,9 @@ class Utente {
         cognome = json['lastName'],
         mail = json['email'],
         password = json['password'],
-        isOrganizer = (json['profileRole'].toString().toLowerCase() == "admin")
-            ? true
-            : false,
+        isOrganizer = (json['profileRole'].toString().toLowerCase() == "user")
+            ? false
+            : true,
         isLoggedIn = true,
         iscrizioni = [37, 67],
         iscrizioniPassate = [37, 67],
