@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Screens/DestinationsScreen.dart';
 import 'package:mountain_app/Views/EventsListView.dart';
 
 class SearchBarView extends StatefulWidget {
