@@ -17,6 +17,8 @@ class UserManager {
   UserManager._internal() {
     isLoading = false;
   }
+  String _basicAuth =
+      'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
 
   Future<Utente> login(String username, String password) async {
     String basicAuth =
@@ -35,6 +37,32 @@ class UserManager {
 
       default:
         throw Exception('Fallimento');
+    }
+  }
+
+  Future<Utente> addUser(Utente utente) async {
+    var body = json.encode(utente.toJson());
+
+    final response = await http.post(
+      Uri.parse('$baseIpGateway/profiles'),
+      headers: {
+        "Content-Type": "application/json",
+        HttpHeaders.authorizationHeader: _basicAuth,
+      },
+      body: body,
+    );
+
+    switch (response.statusCode) {
+      case 201:
+        print("created");
+        var decoded = json.decode(response.body);
+        return Utente.fromJson(decoded);
+
+      case 401:
+        throw Exception('Login fallito');
+
+      default:
+        throw Exception('Fallimento, forse la mail è ripetuta?');
     }
   }
 }
