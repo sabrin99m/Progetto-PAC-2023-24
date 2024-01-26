@@ -8,10 +8,8 @@ import 'package:mountain_app/Views/EventDetailsView/LoadingSubscibeEventDetailsV
 
 class EventDetailsView extends StatefulWidget {
   final Escursione escursione;
-  final List<int> listaEscursioni;
 
-  EventDetailsView(
-      {super.key, required this.escursione, required this.listaEscursioni});
+  EventDetailsView({super.key, required this.escursione});
 
   @override
   State<EventDetailsView> createState() => _EventDetailsViewState();
@@ -272,7 +270,8 @@ class _EventDetailsViewState extends State<EventDetailsView> {
   }
 
   bool isUserSubscribed() {
-    if (widget.listaEscursioni.contains(widget.escursione.id)) return true;
+    if (Utente.loggedUser.iscrizioni.contains(widget.escursione.id))
+      return true;
     return false;
   }
 

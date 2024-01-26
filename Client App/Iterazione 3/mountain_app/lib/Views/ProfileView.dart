@@ -166,7 +166,6 @@ class _DownloadListTileState extends State<DownloadListTile> {
                   MaterialPageRoute(
                     builder: (context) => EventDetailsView(
                       escursione: downEscursione,
-                      listaEscursioni: widget.utente.iscrizioni,
                     ),
                   ),
                 );
