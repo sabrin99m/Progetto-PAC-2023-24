@@ -1,8 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Views/EventDetailsView/LoadingSubscibeEventDetailsView.dart';
 
 class EventDetailsView extends StatefulWidget {
   final Escursione escursione;
@@ -165,7 +167,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
               recognizer: TapGestureRecognizer()
                 ..onTap = () {
                   int idEvento = widget.escursione.id;
-                  print("Evento $idEvento cancelallato");
+                  EventsManger().deleteEvent(idEvento);
                   Navigator.pop(context);
                 }),
         ],
@@ -184,7 +186,16 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         "Prenotati a questa escursione",
         style: sottotitoloGrassetto,
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => LoadingSubscribeEventDetailsView(
+              idEvent: widget.escursione.id,
+            ),
+          ),
+        );
+      },
     );
   }
 

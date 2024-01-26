@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Screens/Homepage.dart';
+import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Views/RegistrationView/RegistrationLoadingView.dart';
 
 class RegistrationView extends StatefulWidget {
   const RegistrationView({super.key});
@@ -149,24 +150,31 @@ class _RegistrationViewState extends State<RegistrationView> {
                               fillColor: Colors.green[300],
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                  String name = _nameFieldController.text;
-                                  String surname =
-                                      _surnnameFieldController.text;
-                                  String email = _emailFieldcontroller.text;
-                                  String phone = _phoneFieldcontroller.text;
-                                  String orgCode = _codeFieldcontroller.text;
-                                  String password =
-                                      _passwordFieldcontroller.text;
-                                  print(
-                                      "Name: $name \n Surname: $surname \n email: $email \n Phone: $phone \n orgCode: $orgCode \n Password: $password \n ");
-                                }
+                                  Utente utente = Utente(
+                                      -1,
+                                      "",
+                                      _nameFieldController.text,
+                                      _surnnameFieldController.text,
+                                      _emailFieldcontroller.text,
+                                      _passwordFieldcontroller.text,
+                                      true,
+                                      _codeFieldcontroller.text.isEmpty
+                                          ? false
+                                          : true,
+                                      [],
+                                      [],
+                                      0,
+                                      Uri(path: ''));
 
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => HomepageScreen(),
-                                  ),
-                                );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          RegistrationLoadingView(
+                                              utente: utente),
+                                    ),
+                                  );
+                                }
                               },
                             ),
                             Text("Campi obbligatori*", style: sottotitoloOpaco)

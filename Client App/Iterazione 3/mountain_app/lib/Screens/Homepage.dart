@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
-import 'package:mountain_app/Views/CreateEventView.dart';
+import 'package:mountain_app/Views/CreateEventView/CreateEventView.dart';
+import 'package:mountain_app/Views/EventsListView.dart';
 import 'package:mountain_app/Views/ProfileView.dart';
-import 'DestinationsScreen.dart';
 import 'ForYouScreen.dart';
 import 'SubscriptionsScreen.dart';
 import '../Views/SearchBarView.dart';
@@ -20,7 +21,18 @@ class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
   Utente utente = Utente.loggedUser;
 
-  _HomepageScreenState();
+  late Future<List<Escursione>> escursioni;
+
+  void fetchEscursioni() async {
+    escursioni = EventsManger()
+        .fetchEvents(Utente.loggedUser.mail, Utente.loggedUser.password);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchEscursioni();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,24 +74,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ),
               ],
             ),
-            FloatingActionButton.extended(
-              elevation: 0,
-              backgroundColor: Colors.green,
-              hoverElevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32))),
-              label: Text(
-                "Crea Evento",
-                style: sottotitoloGrassetto,
-              ),
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CreateEventView(),
-                  ),
-                );
-              },
-            ),
             IconButton(
               icon: const Icon(Icons.search),
               iconSize: 30,
@@ -95,6 +89,24 @@ class _HomepageScreenState extends State<HomepageScreen> {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        elevation: 0,
+        backgroundColor: Colors.green,
+        hoverElevation: 0,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(32))),
+        label: Text(
+          "Nuova Escursione",
+          style: sottotitoloGrassetto,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const CreateEventView(),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
@@ -120,12 +132,27 @@ class _HomepageScreenState extends State<HomepageScreen> {
               selectedIcon: Icon(Icons.tips_and_updates),
             )
           ]),
-      body: SafeArea(
-        child: <Widget>[
-          DestinationsScreen(),
-          SubscriptionsScreen(),
-          ForYouScreen(),
-        ][currentPageIndex],
+      body: FutureBuilder<List<Escursione>>(
+        future: escursioni,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(snapshot.error.toString()));
+          }
+
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          List<Escursione> events = snapshot.data!;
+
+          return SafeArea(
+            child: <Widget>[
+              EventsListView(escursioni: events),
+              SubscriptionsScreen(),
+              ForYouScreen(escursioni: events),
+            ][currentPageIndex],
+          );
+        },
       ),
     );
   }

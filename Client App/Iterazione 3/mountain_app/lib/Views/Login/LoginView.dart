@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:mountain_app/Views/Login/LoginLoadingView.dart';
-import 'package:mountain_app/Views/RegistrationView.dart';
+import 'package:mountain_app/Views/RegistrationView/RegistrationView.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
