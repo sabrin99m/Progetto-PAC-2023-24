@@ -206,6 +206,46 @@ app.get('/profiles/:id/reservations', async (req, res) => {
   }
 })
 
+/**
+ * Ottieni gli id delle prenotazioni confermate per l'utente dato il suo id
+ */
+app.get('/profiles/:id/reservationsIds', async (req, res) => {
+  try {
+    const { authorization } = req.headers;
+
+    //Se non viene fornita autorizzazione
+    if (!authorization) {
+      return res.sendStatus(401)
+    }
+
+    //Richiesta get al server
+    const getResponse = await axios.get(`http://64.23.165.209:8080/profiles/${req.params.id}/reservations`, {
+      headers: {
+        'Authorization': authorization
+      }
+    });
+
+    var events = getResponse.data.map(function (elem) {
+      return elem.event.id
+    })
+
+    switch (getResponse.status) {
+      case 200:
+        //Successo
+        console.log('>>> RICHIESTA SODDISFATTA\n' + getResponse.data)
+        res.status(200).send(events)
+        break;
+
+      default:
+        res.sendStatus(getResponse.status)
+        break;
+    }
+
+  } catch (error) {
+    handleError(error, res)
+  }
+})
+
 app.delete('/events/:id', async (req, res) => {
   try {
     const { authorization } = req.headers;
