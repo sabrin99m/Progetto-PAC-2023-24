@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
@@ -135,7 +134,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 300,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -144,7 +143,11 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                   else
                     subscribeButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
-                    deleteEventSection(context)
+                    Column(
+                      children: [
+                        deleteEventSection(context),
+                      ],
+                    )
                 ],
               ),
             )
@@ -154,36 +157,36 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     );
   }
 
+  Widget algorithmButtonSection() {
+    return MainButton(
+      text: 'Seleziona partecipanti',
+      width: 250,
+      borderRadius: 30,
+      color: Colors.green,
+      onPressed: () {},
+    );
+  }
+
   Widget deleteEventSection(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        style: sottotitolo,
-        children: <TextSpan>[
-          TextSpan(
-              text: 'Cancella evento',
-              style: sottotitoloRed,
-              recognizer: TapGestureRecognizer()
-                ..onTap = () {
-                  int idEvento = widget.escursione.id;
-                  EventsManger().deleteEvent(idEvento);
-                  Navigator.pop(context);
-                }),
-        ],
-      ),
+    return MainButton(
+      color: Colors.red,
+      text: "Cancella evento",
+      width: 250,
+      borderRadius: 30,
+      onPressed: () {
+        int idEvento = widget.escursione.id;
+        EventsManger().deleteEvent(idEvento);
+        Navigator.pop(context);
+      },
     );
   }
 
   Widget subscribeButtonSection() {
-    return FloatingActionButton.extended(
-      elevation: 0,
-      backgroundColor: Colors.green,
-      hoverElevation: 0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(32))),
-      label: Text(
-        "Prenotati a questa escursione",
-        style: sottotitoloGrassetto,
-      ),
+    return MainButton(
+      text: 'Prenotati a questa escursione',
+      width: 250,
+      borderRadius: 30,
+      color: Colors.green,
       onPressed: () {
         Navigator.push(
           context,
@@ -198,17 +201,11 @@ class _EventDetailsViewState extends State<EventDetailsView> {
   }
 
   Widget unsubscribeButtonSection() {
-    return FloatingActionButton.extended(
-      elevation: 0,
-      backgroundColor: Colors.green,
-      hoverElevation: 0,
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(32))),
-      label: Text(
-        "Disiscriviti da questa escursione",
-        style: sottotitoloGrassetto,
-      ),
-      onPressed: () {},
+    return MainButton(
+      color: Colors.green,
+      borderRadius: 30,
+      width: 250,
+      text: 'Disiscriviti da questa escursione',
     );
   }
 
