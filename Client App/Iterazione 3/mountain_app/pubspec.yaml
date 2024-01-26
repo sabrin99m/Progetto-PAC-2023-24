@@ -59,7 +59,11 @@ flutter:
   uses-material-design: true
   assets:
     - images/tagliaferri.jpg
-    - images/me.jpg
+    - images/meProfile.png
+    - images/me1.png
+    - images/me2.png
+    - images/me3.png
+    - images/me4.png
     - images/profileBackground.jpg
 
 

@@ -63,7 +63,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                         },
                         shape: CircleBorder(),
                         label: CircleAvatar(
-                          backgroundImage: AssetImage("images/me.jpg"),
+                          backgroundImage: AssetImage("images/meProfile.png"),
                           radius: 30,
                         )),
                   ),
