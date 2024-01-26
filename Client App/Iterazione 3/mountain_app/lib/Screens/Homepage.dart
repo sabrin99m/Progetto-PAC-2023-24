@@ -20,6 +20,7 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
   Utente utente = Utente.loggedUser;
+  List<Escursione> downedEvents = [];
 
   late Future<List<Escursione>> escursioni;
 
@@ -80,7 +81,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => SearchBarView(
-                      escursioni: Escursione.escursioniMock,
+                      escursioni: downedEvents,
                     ),
                   ),
                 );
@@ -142,13 +143,13 @@ class _HomepageScreenState extends State<HomepageScreen> {
             return Center(child: CircularProgressIndicator());
           }
 
-          List<Escursione> events = snapshot.data!;
+          downedEvents = snapshot.data!;
 
           return SafeArea(
             child: <Widget>[
-              EventsListView(escursioni: events),
+              EventsListView(escursioni: downedEvents),
               SubscriptionsScreen(),
-              ForYouScreen(escursioni: events),
+              ForYouScreen(escursioni: downedEvents),
             ][currentPageIndex],
           );
         },
