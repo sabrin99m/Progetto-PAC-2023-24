@@ -15,8 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.pac.gestoreeventi.eventsManagement.EventDTO;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -133,7 +131,19 @@ public class ProfileService implements ProfileManagementIF, UserDetailsService {
 		profileRepository.delete(profileToDelete.get());
 	}
 
+	@Override
+	public List<Reservation> profileReservations(Integer idProfile){
+		List<Reservation> profileReservations = reservationRepository.findByProfileId(idProfile);
+		List<Reservation> profileReservationsConfirmed = new ArrayList<>();
 
+		for(Reservation reservation : profileReservations){
+			if(reservation.getConfirmation() == true){
+				profileReservationsConfirmed.add(reservation);
+			}
+		}
+
+		return profileReservationsConfirmed;
+	}
 	@Override
 	public int profileLevel(Integer idProfile){
 		List<Reservation> profileReservations = reservationRepository.findByProfileId(idProfile);

@@ -1,5 +1,7 @@
 package com.pac.gestoreeventi.profileManagement;
 
+import com.pac.gestoreeventi.reservationManagement.Reservation;
+
 import java.util.List;
 
 public interface ProfileManagementIF {
@@ -72,7 +74,9 @@ public interface ProfileManagementIF {
 	 */
 	public void deleteProfile(Integer idProfile);
 
-	/**
+    List<Reservation> profileReservations(Integer idProfile);
+
+    /**
 	 *
 	 * Calcola il livello dell'utente.
 	 *

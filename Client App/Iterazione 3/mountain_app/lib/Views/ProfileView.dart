@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
-import 'package:mountain_app/Views/EventDetailsView.dart';
-import 'package:mountain_app/Views/LoginView.dart';
+import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
+import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'package:mountain_app/Views/TileView.dart';
 
 class ProfileView extends StatelessWidget {
@@ -67,22 +68,7 @@ class ProfileView extends StatelessWidget {
       child: ListView.builder(
         itemCount: utente.iscrizioniPassate.length,
         itemBuilder: (context, index) {
-          // return TileView(escursione: escursioni[index]);
-          return ListTile(
-            title: TileView(escursione: Escursione.escursioniMock[index]),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventDetailsView(
-                    escursione: Escursione.escursioniMock[index],
-                    listaEscursioni: utente.iscrizioni,
-                    utente: utente,
-                  ),
-                ),
-              );
-            },
-          );
+          return DownloadListTile(utente: utente, index: index);
         },
       ),
     );
@@ -105,14 +91,6 @@ class ProfileView extends StatelessWidget {
             style: sottotitoloOpaco,
           ),
         ),
-        Text(
-          utente.punteggio.toString(),
-          style: sottotitoloGrassetto,
-        ),
-        Icon(
-          Icons.star,
-          size: sottotitoloGrassetto.fontSize,
-        )
       ],
     );
   }
@@ -132,6 +110,69 @@ class ProfileView extends StatelessWidget {
       width: 1000,
       child: Image(
           fit: BoxFit.fill, image: AssetImage("images/profileBackground.jpg")),
+    );
+  }
+}
+
+class DownloadListTile extends StatefulWidget {
+  const DownloadListTile({
+    super.key,
+    required this.utente,
+    required this.index,
+  });
+
+  final Utente utente;
+  final int index;
+
+  @override
+  State<DownloadListTile> createState() => _DownloadListTileState();
+}
+
+class _DownloadListTileState extends State<DownloadListTile> {
+  late Future<Escursione> escursione;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchEvent();
+  }
+
+  void fetchEvent() async {
+    escursione = EventsManger()
+        .fetchEvent(Utente.loggedUser.iscrizioniPassate[widget.index]);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: FutureBuilder<Escursione>(
+          future: escursione,
+          builder: ((context, snapshot) {
+            if (snapshot.hasError) {
+              return Text(snapshot.error.toString());
+            }
+
+            if (!snapshot.hasData) {
+              return CircularProgressIndicator();
+            }
+
+            Escursione downEscursione = snapshot.data!;
+
+            return ListTile(
+              title: TileView(escursione: downEscursione),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventDetailsView(
+                      escursione: downEscursione,
+                      listaEscursioni: widget.utente.iscrizioni,
+                    ),
+                  ),
+                );
+              },
+            );
+          })),
     );
   }
 }

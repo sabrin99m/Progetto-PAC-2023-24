@@ -38,7 +38,6 @@ public interface EventsManagementIF {
 	 * @return evento richiesto
 	 */
 	public Event getEvent(Integer idEvent);
-
 	/**
 	 *
 	 * Funzione che elimina l'evento richiesto

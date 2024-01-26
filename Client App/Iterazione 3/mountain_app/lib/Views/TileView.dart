@@ -3,15 +3,19 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 
-class TileView extends StatelessWidget {
+class TileView extends StatefulWidget {
   final Escursione escursione;
 
-  const TileView({super.key, required this.escursione});
+  TileView({super.key, required this.escursione});
 
   @override
+  State<TileView> createState() => _TileViewState();
+}
+
+class _TileViewState extends State<TileView> {
+  @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
+    return Container(
       height: 220,
       child: DecoratedBox(
         decoration: const BoxDecoration(
@@ -36,13 +40,13 @@ class TileView extends StatelessWidget {
                 children: [
                   organizerImageSection(
                     imageAddress:
-                        escursione.organizzatori[0].urlImmagineProfilo,
+                        widget.escursione.organizzatori[0].urlImmagineProfilo,
                   ),
                   Spacer(),
                   dateTitleDifficultySection(
-                    dataEvento: escursione.data,
-                    nomeEvento: escursione.nome,
-                    difficolta: escursione.difficolta,
+                    dataEvento: widget.escursione.data,
+                    nomeEvento: widget.escursione.nome,
+                    difficolta: widget.escursione.difficolta,
                   )
                 ],
               ),
@@ -51,7 +55,7 @@ class TileView extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.all(16),
-                    child: Text("Weaather goes here"),
+                    child: Text("Weather goes here"),
                   )
                 ],
               )

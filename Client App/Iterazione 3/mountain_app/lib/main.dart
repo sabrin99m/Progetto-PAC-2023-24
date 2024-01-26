@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Views/LoginView.dart';
+import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'Screens/Homepage.dart';
 
 void main() {
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mountains App',
       theme: ThemeData(),
-      home: HomepageScreen(utente: Utente.utenteMock1),
+      home: HomepageScreen(),
       // home: LoginView(),
     );
   }

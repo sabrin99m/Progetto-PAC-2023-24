@@ -4,6 +4,8 @@ package com.pac.gestoreeventi.profileManagement;
 import java.util.List;
 
 import javax.validation.Valid;
+
+import com.pac.gestoreeventi.reservationManagement.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,6 +52,11 @@ public class ProfileController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ProfileDTO addProfile(@Valid @RequestBody ProfileDTO profileDto) {
 		return profileService.addProfile(profileDto);
+	}
+
+	@GetMapping(path ="profiles/{idProfile}/reservations")
+	public List<Reservation> getReservations(@PathVariable Integer idProfile){
+		return profileService.profileReservations(idProfile);
 	}
 
 	@GetMapping(path = "/profiles/level/{idProfile}")

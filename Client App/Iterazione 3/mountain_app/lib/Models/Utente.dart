@@ -1,49 +1,92 @@
+import 'dart:convert';
+
 class Utente {
-  String id;
+  int id;
+  String basicAuth;
   String nome;
   String cognome;
+  String mail;
+  String password;
   bool isLoggedIn;
   bool isOrganizer;
-  List<String> iscrizioni;
-  List<String> iscrizioniPassate;
-  double punteggio;
+  List<int> iscrizioni;
+  List<int> iscrizioniPassate;
+  double esperienza;
   Uri urlImmagineProfilo;
 
   Utente(
     this.id,
+    this.basicAuth,
     this.nome,
     this.cognome,
+    this.mail,
+    this.password,
     this.isLoggedIn,
     this.isOrganizer,
     this.iscrizioni,
     this.iscrizioniPassate,
-    this.punteggio,
+    this.esperienza,
     this.urlImmagineProfilo,
   ) {}
 
+  ///Informazioni dell'utente loggato nel sistema
+  static Utente loggedUser = Utente.utenteMock1;
+
+  Utente.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        nome = json['firstName'],
+        cognome = json['lastName'],
+        mail = json['email'],
+        password = json['password'],
+        isOrganizer = (json['profileRole'].toString().toLowerCase() == "user")
+            ? false
+            : true,
+        isLoggedIn = true,
+        iscrizioni = [37, 67],
+        iscrizioniPassate = [37, 67],
+        esperienza = json['experience'] ?? 15,
+        urlImmagineProfilo = Uri(path: ''),
+        basicAuth =
+            'Basic ${base64Encode(utf8.encode("$json['email']:$json['password']"))}';
+
+  Map<String, dynamic> toJson() => {
+        "firstName": nome,
+        "lastName": cognome,
+        "email": mail,
+        "phone": "+390000000000",
+        "password": password,
+        "profileRole": (isOrganizer) ? "ORGANIZER" : "USER"
+      };
+
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
-      "1",
+      131,
+      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Cristian",
       "Tironi",
+      "cri@gmail.com",
+      "tiru",
       true,
       true,
-      ["123"],
-      ["abc123", "cde456", "fgv556"],
-      4.2,
+      [37, 67],
+      [37, 67],
+      15,
       Uri(
           path:
               "https://images.pexels.com/photos/19551874/pexels-photo-19551874/free-photo-of-golden-retriever-in-christmas-headband.jpeg"));
 
   static Utente utenteMock2 = Utente(
-      "2",
+      2,
+      "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Federico",
       "Imberti",
+      "admin@admin.com",
+      "admin",
       true,
       false,
-      ["1234"],
-      ["abc123", "cde456", "fgv556"],
-      0,
+      [37, 67],
+      [37, 67],
+      15,
       Uri(
           path:
               "https://as2.ftcdn.net/v2/jpg/03/26/98/51/1000_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg"));
