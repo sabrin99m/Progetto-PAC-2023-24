@@ -33,11 +33,6 @@ public class ProfileController {
 				(UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 	}
 
-	@GetMapping(path = "/profiles")
-	public List<ProfileDTO> getProfiles() {
-		return profileService.getProfiles();
-	}
-
 	@GetMapping(path = "/profiles/{idProfile}")
 	public ProfileDTO getProfile(@PathVariable Integer idProfile) {
 		return profileService.getProfileDTO(idProfile);
