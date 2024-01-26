@@ -74,6 +74,8 @@ class EventsManger {
   Future<Escursione> addEscursione(Escursione escursione) async {
     var body = json.encode(escursione.toJson(50));
 
+    print(body);
+
     final response = await http.post(
       Uri.parse('$baseIpGateway/profiles'),
       headers: {
@@ -92,7 +94,10 @@ class EventsManger {
         throw Exception('Login fallito');
 
       default:
-        throw Exception('Fallimento, forse la mail è ripetuta?');
+        throw Exception('Fallimento: ' +
+            response.body +
+            " " +
+            response.statusCode.toString());
     }
   }
 

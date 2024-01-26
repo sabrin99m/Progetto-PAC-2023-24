@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
@@ -288,7 +290,7 @@ class _CreateEventViewState extends State<CreateEventView> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   Escursione escursione = Escursione(
-                    id: 0,
+                    id: 0 + Random().nextInt(1000),
                     nome: _nameFieldController.text,
                     difficolta: translateDifficulty(_currentSliderValue),
                     luogo: _placeFieldController.text,
