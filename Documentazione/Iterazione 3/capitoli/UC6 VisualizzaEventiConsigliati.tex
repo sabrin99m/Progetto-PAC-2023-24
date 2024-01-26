@@ -1,33 +1,32 @@
 \subsection{UC-6 Visualizza eventi consigliati}
-Breve introduzione.
+Da una pagiona dedicata sulla app, l'utente può visualizzare una lista di escursioni curata automaticamente in base alla sua esperienza.
 \\
 \\
-\textit{Breve Descrizione:} 
+\textit{Breve Descrizione: Visualizzando la pagina ``per te'' viene presentata una lista di tutti gli eventi disponibili filtrata in base alla loro difficoltà} 
 \\
 \\
-\textit{Attori Coinvolti:}
+\textit{Attori Coinvolti: Sistema, Utente}
 \\
 \\
-\textit{Precondizione:}
+\textit{Precondizione: L'utente è loggato nella app}
 \\
 \\
-\textit{Postcondizione:}
+\textit{Postcondizione: L'utente visualizza gli eventi consigliati}
 \\
 \\
 \textit{Procedimento:}
 \begin{enumerate}
-	\item item1;
-	\item item2;
-	\item item3.
+	\item L'utente accede alla app e si ritrova sulla homepage;
+	\item L'utente seleziona la pagina ``per te'' dal menu in basso nella pagina;
+	\item Il sistema filtra la lista di eventi scaricata dalla hompage;
+	\item Il sistema mostra una lista contente solo gli eventi con una diffocoltà<=all'esperienza dell'utente [E1: Pagina vuota];
 \end{enumerate}
 
 
 \textit{Eccezioni:}
 \begin{itemize}
-	\item E1:
+	\item E1: Pagina vuota
 	\begin{enumerate}
-		\item item1;
-		\item item2;
-		\item item3;
+		\item Viene mostrato all'utente un messaggio indicante che al momento non ci sono eventi consigliati;
 	\end{enumerate}
 \end{itemize}

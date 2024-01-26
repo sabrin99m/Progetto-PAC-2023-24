@@ -1,33 +1,32 @@
 \subsection{UC-5 Visualizzazione Meteo}
-Breve introduzione.
+Per ogni evento, entro 5 giorni dalla sua data, l'utente può visualizzare una breve del meteo.
 \\
 \\
-\textit{Breve Descrizione:} 
+\textit{Breve Descrizione: Usando la posizione e il giorno dell'evento si ottengono le condizioni meteo da mostrare per ogni evento solo prima che manhino 5 giorni allo stesso.} 
 \\
 \\
-\textit{Attori Coinvolti:}
+\textit{Attori Coinvolti: Sistema, Visual Crossing Weather}
 \\
 \\
-\textit{Precondizione:}
+\textit{Precondizione: Mancano almeno 5 giorni da un evento}
 \\
 \\
-\textit{Postcondizione:}
+\textit{Postcondizione: Viene mostrato il meteo per il giorno e il luogo dell'evento}
 \\
 \\
 \textit{Procedimento:}
 \begin{enumerate}
-	\item item1;
-	\item item2;
-	\item item3.
+	\item Quando l'escursione viene preparata dal gateway si verifica se manchino meno di 5 giorni;
+	\item In caso affermativo viene invocata l'API di Visual Crossing Weather per ottenere le previsioni [E1: Errore nell'ottenere il meteo];
+	\item In caso negativo il campo del meteo viene lasciato vuoto.
 \end{enumerate}
 
 
 \textit{Eccezioni:}
 \begin{itemize}
-	\item E1:
+	\item E1: Errore nell'ottenre il meteo
 	\begin{enumerate}
-		\item item1;
-		\item item2;
-		\item item3;
+		\item Viene rilevato l'errore attraverso lo statusCode ritornato dall'API;
+		\item Il campo del meteo viene lasciato vuoto, come se mancassero più di 5 giorni all'evento.
 	\end{enumerate}
 \end{itemize}

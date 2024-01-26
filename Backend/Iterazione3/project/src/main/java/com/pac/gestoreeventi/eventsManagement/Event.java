@@ -61,10 +61,9 @@ public class Event {
     
     @ManyToOne
     @JoinColumn(name = "idProfile")
-    @JsonIgnore
     private Profile profile;
 
-    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
@@ -116,6 +115,9 @@ public class Event {
         return difficulty;
     }
 
+    public int getDifficultyLevel(){
+        return difficulty.getLevel();
+    }
     public void setDifficulty(EventLevel difficulty) {
         this.difficulty = difficulty;
     }
