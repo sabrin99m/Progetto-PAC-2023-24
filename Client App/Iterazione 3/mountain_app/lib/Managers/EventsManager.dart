@@ -71,6 +71,31 @@ class EventsManger {
       return false;
   }
 
+  Future<Escursione> addEscursione(Escursione escursione) async {
+    var body = json.encode(escursione.toJson(50));
+
+    final response = await http.post(
+      Uri.parse('$baseIpGateway/profiles'),
+      headers: {
+        "Content-Type": "application/json",
+        HttpHeaders.authorizationHeader: _basicAuth,
+      },
+      body: body,
+    );
+
+    switch (response.statusCode) {
+      case 201:
+        var decoded = json.decode(response.body);
+        return Escursione.fromJson(decoded);
+
+      case 401:
+        throw Exception('Login fallito');
+
+      default:
+        throw Exception('Fallimento, forse la mail è ripetuta?');
+    }
+  }
+
   Future<bool> deleteEvent(int idEvent) async {
     final response = await http.delete(
         Uri.parse('$baseIpGateway/events/$idEvent'),

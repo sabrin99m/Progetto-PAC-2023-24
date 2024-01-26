@@ -54,7 +54,6 @@ class UserManager {
 
     switch (response.statusCode) {
       case 201:
-        print("created");
         var decoded = json.decode(response.body);
         return Utente.fromJson(decoded);
 

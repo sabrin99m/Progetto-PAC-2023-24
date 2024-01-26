@@ -66,7 +66,7 @@ class Escursione {
         "name": nome,
         "place": luogo,
         "difficulty": difficolta.toString(),
-        "date": data,
+        "date": "2024-02-28",
         "description": descrizione,
         "distance": distanza,
         "heightLevel": dislivello,

@@ -3,7 +3,7 @@ import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
-import 'package:mountain_app/Views/CreateEventView.dart';
+import 'package:mountain_app/Views/CreateEventView/CreateEventView.dart';
 import 'package:mountain_app/Views/EventsListView.dart';
 import 'package:mountain_app/Views/ProfileView.dart';
 import 'ForYouScreen.dart';
