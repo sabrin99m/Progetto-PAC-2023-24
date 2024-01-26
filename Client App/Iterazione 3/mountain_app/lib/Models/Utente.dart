@@ -42,8 +42,8 @@ class Utente {
             ? false
             : true,
         isLoggedIn = true,
-        iscrizioni = [37, 67],
-        iscrizioniPassate = [37, 67],
+        iscrizioni = List.from(json['bookedEvents']),
+        iscrizioniPassate = List.from(json['pastBookedEvents']),
         esperienza = json['experience'] ?? 15,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth =
