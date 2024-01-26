@@ -24,8 +24,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   late Future<List<Escursione>> escursioni;
 
   void fetchEscursioni() async {
-    escursioni = EventsManger()
-        .fetchEvents(Utente.loggedUser.mail, Utente.loggedUser.password);
+    escursioni = EventsManger().fetchEvents();
   }
 
   @override

@@ -60,7 +60,7 @@ class Utente {
 
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
-      131,
+      2,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Cristian",
       "Tironi",
@@ -76,7 +76,7 @@ class Utente {
               "https://images.pexels.com/photos/19551874/pexels-photo-19551874/free-photo-of-golden-retriever-in-christmas-headband.jpeg"));
 
   static Utente utenteMock2 = Utente(
-      2,
+      131,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
       "Federico",
       "Imberti",

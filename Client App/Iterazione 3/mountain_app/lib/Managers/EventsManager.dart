@@ -18,9 +18,28 @@ class EventsManger {
   String _basicAuth =
       'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
 
-  Future<List<Escursione>> fetchEvents(String username, String password) async {
+  Future<List<Escursione>> fetchEvents() async {
     try {
       final response = await http.get(Uri.parse('${baseIpGateway}/events/'),
+          headers: {HttpHeaders.authorizationHeader: _basicAuth});
+
+      List<dynamic> decoded = json.decode(response.body);
+      List<Escursione> downEscursioni =
+          decoded.map((escursione) => Escursione.fromJson(escursione)).toList();
+
+      return downEscursioni;
+    } catch (e) {
+      print(e);
+    }
+
+    return [];
+  }
+
+  Future<List<Escursione>> fetchBookedEvents() async {
+    try {
+      final response = await http.get(
+          Uri.parse(
+              '${baseIpGateway}/profiles/${Utente.loggedUser.id}/reservations'),
           headers: {HttpHeaders.authorizationHeader: _basicAuth});
 
       List<dynamic> decoded = json.decode(response.body);
