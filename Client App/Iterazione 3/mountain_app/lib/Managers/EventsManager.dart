@@ -57,15 +57,15 @@ class EventsManger {
     });
 
     final response = await http.post(
-      Uri.parse('$baseIpLocal/events/reservation'),
+      Uri.parse('$baseIpGateway/events/reservation'),
       headers: {
+        "Content-Type": "application/json",
         HttpHeaders.authorizationHeader: _basicAuth,
       },
       body: body,
     );
 
     if (response.statusCode == 200) {
-      print("success");
       return true;
     } else
       return false;

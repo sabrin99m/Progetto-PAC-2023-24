@@ -27,7 +27,7 @@ class _LoginLoadingViewState extends State<LoadingSubscribeEventDetailsView> {
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
               print(snapshot.error);
-              Navigator.pop(context);
+              Future.microtask(() => Navigator.pop(context));
             }
 
             if (snapshot.hasData) {
