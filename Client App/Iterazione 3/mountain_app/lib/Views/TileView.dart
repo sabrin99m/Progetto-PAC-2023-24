@@ -39,8 +39,7 @@ class _TileViewState extends State<TileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   organizerImageSection(
-                    imageAddress:
-                        widget.escursione.organizzatori[0].urlImmagineProfilo,
+                    imageAddress: Uri(path: ''),
                   ),
                   Spacer(),
                   dateTitleDifficultySection(

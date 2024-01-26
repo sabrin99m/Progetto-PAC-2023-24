@@ -145,7 +145,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                     unsubscribeButtonSection()
                   else
                     subscribeButtonSection(),
-                  if (widget.escursione.organizzatori.contains(utente))
+                  if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
                     deleteEventSection(context)
                 ],
               ),
