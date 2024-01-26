@@ -32,12 +32,6 @@ public class ProfileController {
 		return profileService.login(
 				(UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 	}
-
-	@GetMapping(path = "/profiles/{idProfile}")
-	public ProfileDTO getProfile(@PathVariable Integer idProfile) {
-		return profileService.getProfileDTO(idProfile);
-	}
-
 	@DeleteMapping(path = "/profiles/{idProfile}")
 	public void deleteProfile(@PathVariable Integer idProfile) {
 		profileService.deleteProfile(idProfile);
