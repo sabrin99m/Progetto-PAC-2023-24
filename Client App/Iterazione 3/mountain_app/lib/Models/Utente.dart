@@ -62,14 +62,14 @@ class Utente {
   static Utente utenteMock1 = Utente(
       2,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Cristian",
+      "Cristian(L)",
       "Tironi",
       "cri@gmail.com",
       "tiru",
       true,
       true,
-      [37, 67],
-      [37, 67],
+      [39, 115],
+      [39, 115],
       15,
       Uri(
           path:
@@ -78,7 +78,7 @@ class Utente {
   static Utente utenteMock2 = Utente(
       131,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Federico",
+      "Federico(L)",
       "Imberti",
       "admin@admin.com",
       "admin",
