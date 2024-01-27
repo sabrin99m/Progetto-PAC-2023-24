@@ -70,6 +70,45 @@ app.get('/login', async (req, res) => {
 
 })
 
+/**
+ * Prende una striunga rappresentante una data nel formato dd-mm-yyyy e la restituisce nel formato yyyy-mm-dd
+ * @param {*} inputDate stringa della data in formato dd-mm-yyyy
+ * @returns stringa della data in formato yyyy-mm-dd
+ */
+function formatDateFromString(inputDate) {
+  var parts = inputDate.split("-")
+  var formattedDate = new Date(parts[2], parts[1] - 1, parts[0])
+
+  var year = formattedDate.getFullYear()
+  var month = String(formattedDate.getMonth() + 1).padStart(2, '0')
+  var day = String(formattedDate.getDate()).padStart(2, '0')
+
+  return year + "-" + month + "-" + day
+}
+
+app.get('/events/weather/:date/:location', async (req, res) => {
+
+  const date = formatDateFromString(req.params.date)
+
+  try {
+    const weather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${req.params.location}/${date}/${date}?unitGroup=metric&elements=tempmax%2Ctempmin%2Ctemp%2Cprecipprob%2Cwindspeed%2Cwinddir%2Cvisibility%2Cicon&include=days&key=B57LD5LPUGKMJNZVNEKM9XB6E&contentType=json`)
+
+    const weatherData = weather.data.days[0];
+    const weatherCond = {
+      'descr':
+        `La temperatura massima sarà di ${weatherData.tempmax}℃ e la minima di ${weatherData.tempmin}℃, con una probabilità che piova del ${weatherData.precipprob}%.`,
+      'icon': weatherData.icon,
+      'avgTmp': weatherData.temp,
+      'visibility': weatherData.visibility
+    }
+
+    res.status(200).send(weatherCond)
+
+  } catch (e) {
+    res.status(503).send('Previsioni meteo non disponibili')
+  }
+})
+
 app.get('/events/:id', async (req, res) => {
   try {
     const { authorization } = req.headers;
