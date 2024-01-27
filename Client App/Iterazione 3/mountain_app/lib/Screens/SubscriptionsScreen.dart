@@ -38,7 +38,7 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
           List<Escursione> downEvents = snapshot.data!;
 
           if (downEvents.isEmpty) {
-            return Text("Non ci sono eventi");
+            return Text("Non ci sono iscrizioni");
           } else {
             return EventsListView(escursioni: downEvents);
           }

@@ -77,15 +77,19 @@ class ProfileView extends StatelessWidget {
   }
 
   Widget excursionListSection() {
-    return Container(
-      height: 900,
-      child: ListView.builder(
-        itemCount: utente.iscrizioniPassate.length,
-        itemBuilder: (context, index) {
-          return DownloadListTile(utente: utente, index: index);
-        },
-      ),
-    );
+    return utente.iscrizioniPassate.isEmpty
+        ? SizedBox(
+            height: 500,
+            child: Center(child: Text("Non ci sono esperienze passate.")))
+        : Container(
+            height: 900,
+            child: ListView.builder(
+              itemCount: utente.iscrizioniPassate.length,
+              itemBuilder: (context, index) {
+                return DownloadListTile(utente: utente, index: index);
+              },
+            ),
+          );
   }
 
   Text nameSurnameSection() {
