@@ -5,18 +5,13 @@ import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/ConstantValues.dart';
 
 class UserManager {
-  /// Indica se il sistema sta caricando
-  late bool isLoading;
-
   static final UserManager _instance = UserManager._internal();
 
   factory UserManager() {
     return _instance;
   }
 
-  UserManager._internal() {
-    isLoading = false;
-  }
+  UserManager._internal() {}
   String _basicAuth =
       'Basic ${base64Encode(utf8.encode('${Utente.loggedUser.mail}:${Utente.loggedUser.password}'))}';
 
