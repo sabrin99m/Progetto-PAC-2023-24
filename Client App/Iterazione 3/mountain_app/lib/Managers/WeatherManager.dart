@@ -18,7 +18,7 @@ class WeatherManager {
         .get(Uri.parse('$baseIpGateway/events/weather/$date/$location'));
 
     switch (response.statusCode) {
-      case 202:
+      case 200:
         var decoded = json.decode(response.body);
         return WeatherConditions.fromJson(decoded);
 

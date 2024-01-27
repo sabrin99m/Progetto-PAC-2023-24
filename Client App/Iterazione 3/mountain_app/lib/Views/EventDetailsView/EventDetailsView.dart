@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
+import 'package:mountain_app/Managers/WeatherManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
+import 'package:mountain_app/Models/WeatherConditions.dart';
 import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:mountain_app/Views/EventDetailsView/LoadingSubscibeEventDetailsView.dart';
 
@@ -16,6 +20,15 @@ class EventDetailsView extends StatefulWidget {
 
 class _EventDetailsViewState extends State<EventDetailsView> {
   Utente utente = Utente.loggedUser;
+
+  late Future<WeatherConditions> weather;
+
+  @override
+  void initState() {
+    super.initState();
+    weather = WeatherManager()
+        .fetchWeather(widget.escursione.data, widget.escursione.luogo);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +56,44 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         ],
                       ),
                     ],
+                  ),
+                  customDivider(),
+                  SizedBox(
+                    height: 100,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          "Condizioni meteo",
+                          style: sottotitoloGrassetto,
+                        ),
+                        Center(
+                          child: FutureBuilder<WeatherConditions>(
+                              future: weather,
+                              builder: ((context, snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text(
+                                    "Condizioni meteo al momento non disponibili...",
+                                    textAlign: TextAlign.center,
+                                  );
+                                }
+
+                                if (!snapshot.hasData) {
+                                  return CircularProgressIndicator();
+                                }
+
+                                var weatherCond = snapshot.data!;
+                                return SizedBox(
+                                    width: 500,
+                                    child: Text(
+                                      weatherCond.description,
+                                      textAlign: TextAlign.center,
+                                    ));
+                              })),
+                        )
+                      ],
+                    ),
                   ),
                   customDivider(),
                   SizedBox(
@@ -85,10 +136,11 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                           children: [
                             SizedBox(
                               width: 110,
-                              child: Text("Organizzatori > ",
+                              child: Text("Organizzatore > ",
                                   style: sottotitoloGrassetto),
                             ),
-                            showListOfPeople(Utente.listaOrganizzatoriMock, 4)
+                            showListOfPeople(
+                                [widget.escursione.idOrganizzatore], 1)
                           ],
                         ),
                         Row(
@@ -98,7 +150,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                               child: Text("Partecipanti > ",
                                   style: sottotitoloGrassetto),
                             ),
-                            showListOfPeople(Utente.listaPartecipantiMock, 4)
+                            showListOfPeople(List.filled(10, 0), 4)
                           ],
                         ),
                       ],
@@ -222,7 +274,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     );
   }
 
-  Widget showListOfPeople(List<Utente> people, int maxPeopleToDisplay) {
+  Widget showListOfPeople(List<int> people, int maxPeopleToDisplay) {
     int excessPeople = 0;
     if (people.length >= maxPeopleToDisplay) {
       excessPeople = people.length - maxPeopleToDisplay;
@@ -233,7 +285,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         Row(
           children: List.generate(
             (excessPeople == 0) ? people.length : maxPeopleToDisplay,
-            (index) => personFaceView(people[index].urlImmagineProfilo),
+            (index) => personFaceView(people[index]),
           ),
         ),
         if (excessPeople > 0) personFaceView(null, excessPeople)
@@ -241,11 +293,13 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     );
   }
 
-  Widget personFaceView([Uri? imageUrl, int? number]) {
+  Widget personFaceView([int? userId, int? number]) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
-      child: (imageUrl != null)
-          ? CircleAvatar(foregroundImage: AssetImage("images/me.jpg"))
+      child: (userId != null)
+          ? CircleAvatar(
+              foregroundImage:
+                  AssetImage("images/me${Random().nextInt(4) + 1 % 4}.png"))
           : CircleAvatar(child: Text("+$number")),
     );
   }
