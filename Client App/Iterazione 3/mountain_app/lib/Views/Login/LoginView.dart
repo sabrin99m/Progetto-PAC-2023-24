@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
+import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
 import 'package:mountain_app/Views/Login/LoginLoadingView.dart';
 import 'package:mountain_app/Views/RegistrationView/RegistrationView.dart';
 

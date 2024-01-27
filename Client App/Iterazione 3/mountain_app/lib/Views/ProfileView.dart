@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'package:mountain_app/Views/TileView.dart';

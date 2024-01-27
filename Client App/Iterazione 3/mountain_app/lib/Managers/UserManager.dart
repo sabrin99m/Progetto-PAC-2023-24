@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'dart:io';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/ConstantValues.dart';
+import 'package:mountain_app/Utilities/Constants.dart';
 
 class UserManager {
   static final UserManager _instance = UserManager._internal();

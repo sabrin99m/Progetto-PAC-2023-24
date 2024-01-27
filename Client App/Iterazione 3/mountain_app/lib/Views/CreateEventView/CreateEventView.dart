@@ -1,10 +1,10 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CreateEventView/CreateEventViewLoading.dart';
+import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
 
 class CreateEventView extends StatefulWidget {
   const CreateEventView({super.key});

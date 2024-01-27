@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'Screens/Homepage.dart';

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/ConstantValues.dart';
+import 'package:mountain_app/Utilities/Constants.dart';
 import 'package:http/http.dart' as http;
 
 /// Manager responsabile delle chiamate http al server. Creato con un pattern Singleton

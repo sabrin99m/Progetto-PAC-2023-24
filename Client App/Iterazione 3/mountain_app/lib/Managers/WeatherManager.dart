@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:mountain_app/Models/WeatherConditions.dart';
 import 'package:http/http.dart' as http;
-import 'package:mountain_app/Utilities/ConstantValues.dart';
+import 'package:mountain_app/Utilities/Constants.dart';
 
 class WeatherManager {
   static WeatherManager _instance = WeatherManager._internal();

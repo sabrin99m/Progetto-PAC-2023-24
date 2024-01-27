@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
+import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
 import 'package:mountain_app/Views/RegistrationView/RegistrationLoadingView.dart';
 
 class RegistrationView extends StatefulWidget {
