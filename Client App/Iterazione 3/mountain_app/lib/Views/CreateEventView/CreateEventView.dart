@@ -109,15 +109,16 @@ class _CreateEventViewState extends State<CreateEventView> {
                                   TextInputType.name,
                                   false,
                                 ),
-                                customTextFieldSection(
+                                customTextFieldDateSection(
                                   Icons.date_range,
-                                  "Data",
-                                  "Data scelta",
+                                  "Data dell'escursione",
+                                  "La data dell'evento",
                                   _DateFieldcontroller,
                                   true,
                                   false,
                                   TextInputType.datetime,
                                   false,
+                                  context,
                                 ),
                                 customTextFieldSection(
                                   Icons.text_fields,
@@ -129,42 +130,7 @@ class _CreateEventViewState extends State<CreateEventView> {
                                   TextInputType.name,
                                   false,
                                 ),
-                                Container(
-                                  height: 110,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Difficoltà: ",
-                                            style: sottotitoloGrassetto,
-                                          ),
-                                          Text(translateDifficulty(
-                                                  _currentSliderValue)
-                                              .name),
-                                        ],
-                                      ),
-                                      Slider(
-                                        value: _currentSliderValue,
-                                        max: 30,
-                                        min: 10,
-                                        divisions: 2,
-                                        label: _currentSliderValue
-                                            .round()
-                                            .toString(),
-                                        onChanged: (double value) {
-                                          setState(() {
-                                            _currentSliderValue = value;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                difficultyPickerSection(),
                                 customTextFieldSection(
                                   Icons.map,
                                   "Distanza",
@@ -258,6 +224,39 @@ class _CreateEventViewState extends State<CreateEventView> {
     );
   }
 
+  Container difficultyPickerSection() {
+    return Container(
+      height: 110,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Text(
+                "Difficoltà: ",
+                style: sottotitoloGrassetto,
+              ),
+              Text(translateDifficulty(_currentSliderValue).name),
+            ],
+          ),
+          Slider(
+            value: _currentSliderValue,
+            max: 30,
+            min: 10,
+            divisions: 2,
+            label: _currentSliderValue.round().toString(),
+            onChanged: (double value) {
+              setState(() {
+                _currentSliderValue = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Difficolta translateDifficulty(double difficolta) {
     if (difficolta <= 10)
       return Difficolta.easy;
@@ -267,7 +266,7 @@ class _CreateEventViewState extends State<CreateEventView> {
       return Difficolta.hard;
   }
 
-  Center addEventSection(BuildContext context) {
+  Widget addEventSection(BuildContext context) {
     return Center(
         child: Column(children: [
       Container(
