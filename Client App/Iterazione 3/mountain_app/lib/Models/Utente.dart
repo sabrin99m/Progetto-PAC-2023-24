@@ -42,8 +42,8 @@ class Utente {
             ? false
             : true,
         isLoggedIn = true,
-        iscrizioni = [37, 67],
-        iscrizioniPassate = [37, 67],
+        iscrizioni = List.from(json['bookedEvents']),
+        iscrizioniPassate = List.from(json['pastBookedEvents']),
         esperienza = json['experience'] ?? 15,
         urlImmagineProfilo = Uri(path: ''),
         basicAuth =
@@ -60,25 +60,25 @@ class Utente {
 
 //Dati mock usati per lo sviluppo
   static Utente utenteMock1 = Utente(
-      131,
+      2,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Cristian",
+      "Cristian(L)",
       "Tironi",
       "cri@gmail.com",
       "tiru",
       true,
       true,
-      [37, 67],
-      [37, 67],
+      [39, 115],
+      [39, 115],
       15,
       Uri(
           path:
               "https://images.pexels.com/photos/19551874/pexels-photo-19551874/free-photo-of-golden-retriever-in-christmas-headband.jpeg"));
 
   static Utente utenteMock2 = Utente(
-      2,
+      131,
       "YWRtaW5AYWRtaW4uY29tOmFkbWlu",
-      "Federico",
+      "Federico(L)",
       "Imberti",
       "admin@admin.com",
       "admin",

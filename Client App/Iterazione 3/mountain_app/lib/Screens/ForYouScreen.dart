@@ -42,6 +42,9 @@ class _ForYouScreenState extends State<ForYouScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return EventsListView(escursioni: suggestedEvents);
+    if (suggestedEvents.isEmpty)
+      return Center(child: Text("Non ci sono eventi consigliati"));
+    else
+      return EventsListView(escursioni: suggestedEvents);
   }
 }

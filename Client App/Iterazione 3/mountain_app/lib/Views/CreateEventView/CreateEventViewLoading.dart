@@ -12,26 +12,28 @@ class CreateEventViewLoading extends StatefulWidget {
 }
 
 class _CreateEventViewLoadingState extends State<CreateEventViewLoading> {
-  late Future<Escursione> candidateUser;
+  late Future<Escursione> candidateEvent;
 
   @override
   void initState() {
     super.initState();
-    candidateUser = EventsManger().addEscursione(widget.escursione);
+    candidateEvent = EventsManger().addEscursione(widget.escursione);
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FutureBuilder<Escursione>(
-          future: candidateUser,
+          future: candidateEvent,
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
+              print("Failed");
               print(snapshot.error);
-              Navigator.pop(context);
+              //Navigator.pop(context);
             }
 
             if (snapshot.hasData) {
+              print("Success");
               Future.microtask(() => Navigator.push(
                     context,
                     MaterialPageRoute(

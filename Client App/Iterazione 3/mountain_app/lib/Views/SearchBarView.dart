@@ -9,16 +9,19 @@ class SearchBarView extends StatefulWidget {
   const SearchBarView({super.key, required this.escursioni});
 
   @override
-  State<SearchBarView> createState() =>
-      _SearchBarViewState(escursioni: escursioni);
+  State<SearchBarView> createState() => _SearchBarViewState();
 }
 
 class _SearchBarViewState extends State<SearchBarView> {
-  final List<Escursione> escursioni;
-  Utente utente = Utente.loggedUser;
-  List<Escursione> displayedEvents = [];
+  late Utente utente;
+  late List<Escursione> displayedEvents;
 
-  _SearchBarViewState({required this.escursioni});
+  @override
+  void initState() {
+    super.initState();
+    displayedEvents = [];
+    utente = Utente.loggedUser;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,7 @@ class _SearchBarViewState extends State<SearchBarView> {
                 },
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {
-                  List<Escursione> filtered = escursioni
+                  List<Escursione> filtered = widget.escursioni
                       .where((element) => element.nome
                           .toLowerCase()
                           .contains(controller.text.toLowerCase()))
@@ -63,10 +66,10 @@ class _SearchBarViewState extends State<SearchBarView> {
 
                   return List<ListTile>.generate(filtered.length, (index) {
                     return ListTile(
-                      title: Text(escursioni[index].nome),
+                      title: Text(widget.escursioni[index].nome),
                       onTap: () {
                         setState(() {
-                          controller.closeView(escursioni[index].nome);
+                          controller.closeView(widget.escursioni[index].nome);
 
                           displayedEvents = filtered;
 
