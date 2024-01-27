@@ -143,3 +143,21 @@ class MainButton extends StatelessWidget {
     );
   }
 }
+
+class MenuButton extends StatelessWidget {
+  final void Function()? onPressed;
+  final IconData icon;
+  final double iconSize;
+
+  const MenuButton(
+      {super.key, this.onPressed, required this.icon, required this.iconSize});
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(icon),
+      iconSize: iconSize,
+      onPressed: onPressed ?? () {},
+    );
+  }
+}
