@@ -5,18 +5,19 @@ Selezione degli utenti iscritti ad un evento con strategia Greedy.
 \textit{Breve Descrizione: Se il numero di iscritti ad un evento eccede il numero massimo di partecipanti, vengono selezionati in base alla loro esperienza.} 
 \\
 \\
-\textit{Attori Coinvolti:Sistema}
+\textit{Attori Coinvolti:Sistema, Organizzatore}
 \\
 \\
-\textit{Precondizione: Raggiungimento della data massima per iscriversi a un evento.}
+\textit{Precondizione: L'utente organizzatore avvia la funzione di selezione degli utenti iscritti ad un proprio evento.}
 \\
 \\
-\textit{Postcondizione: Gli utenti non selezionati vengono eliminati dai partecipanti dell'evento}
+\textit{Postcondizione: Gli utenti non selezionati vengono eliminati dai partecipanti dell'evento e viene restituita una lista degli utenti confermati.}
 \\
 \\
 \textit{Procedimento:}
 \begin{enumerate}
-	\item Lanciare un trigger ogni giorno fino al raggiungimento della data ultima per l'iscrizione;
+	\item L'utente organizzatore accede all'app e seleziona un evento che ha creato;
+ 	\item L'opzione 'Seleziona partecipanti' viene selezionata.
 	\item L'algoritmo viene applicato sulla lista degli iscritti all'evento.
 \end{enumerate}
 \textit{FlowChart e pseudocodice: L'approccio si basa sull'idea di selezionare in modo iterativo gli utenti con il livello più
@@ -26,7 +27,8 @@ necessario.}
 \begin{figure}[htb]
     \centering
     \includegraphics[width = 0.5\textwidth]{images/flowchart.png}
-    \includegraphics[width = 0.5\textwidth]{images/pseudocodice.png}
+    \caption{FlowChart}
+	\label{fig:FlowChart}
 \end{figure}
 \\
 \\
