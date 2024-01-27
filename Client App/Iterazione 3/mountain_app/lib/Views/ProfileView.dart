@@ -16,16 +16,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-        IconButton(
-          icon: Icon(Icons.logout),
-          iconSize: 25,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginView()),
-            );
-          },
-        ),
+        if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
       ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +32,10 @@ class ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                nameSurnameSection(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [nameSurnameSection(), experienceSection()],
+                ),
 
                 //Only show if it is organizer
                 if (utente.isOrganizer) organizerSection(),
@@ -59,6 +53,26 @@ class ProfileView extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  IconButton logoutButtonSection(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.logout),
+      iconSize: 25,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginView()),
+        );
+      },
+    );
+  }
+
+  Text experienceSection() {
+    return Text(
+      "Esperienza: " + utente.esperienza.toString() + "/30",
+      style: sottotitoloGrassetto,
     );
   }
 
@@ -100,7 +114,7 @@ class ProfileView extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
       child: CircleAvatar(
         radius: 70,
-        foregroundImage: AssetImage('images/me.jpg'),
+        foregroundImage: AssetImage('images/meProfile.png'),
       ),
     );
   }
