@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 
@@ -39,8 +41,7 @@ class _TileViewState extends State<TileView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   organizerImageSection(
-                    imageAddress:
-                        widget.escursione.organizzatori[0].urlImmagineProfilo,
+                    imageAddress: Uri(path: ''),
                   ),
                   Spacer(),
                   dateTitleDifficultySection(
@@ -74,6 +75,11 @@ class organizerImageSection extends StatelessWidget {
     required this.imageAddress,
   });
 
+  String randomizedImage() {
+    int num = Random().nextInt(4) + 1 % 4;
+    return 'images/me${num.toString()}.png';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -81,7 +87,7 @@ class organizerImageSection extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(foregroundImage: AssetImage("images/me.jpg")),
+          CircleAvatar(foregroundImage: AssetImage(randomizedImage())),
         ],
       ),
     );

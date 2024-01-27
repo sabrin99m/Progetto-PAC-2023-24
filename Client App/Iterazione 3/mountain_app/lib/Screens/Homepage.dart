@@ -20,12 +20,12 @@ class HomepageScreen extends StatefulWidget {
 class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
   Utente utente = Utente.loggedUser;
+  List<Escursione> downedEvents = [];
 
   late Future<List<Escursione>> escursioni;
 
   void fetchEscursioni() async {
-    escursioni = EventsManger()
-        .fetchEvents(Utente.loggedUser.mail, Utente.loggedUser.password);
+    escursioni = EventsManger().fetchEvents();
   }
 
   @override
@@ -63,7 +63,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                         },
                         shape: CircleBorder(),
                         label: CircleAvatar(
-                          backgroundImage: AssetImage("images/me.jpg"),
+                          backgroundImage: AssetImage("images/meProfile.png"),
                           radius: 30,
                         )),
                   ),
@@ -74,18 +74,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ),
               ],
             ),
-            IconButton(
-              icon: const Icon(Icons.search),
-              iconSize: 30,
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => SearchBarView(
-                      escursioni: Escursione.escursioniMock,
-                    ),
-                  ),
-                );
-              },
+            Row(
+              children: [refreshButtonSection(), searchButtonSection(context)],
             )
           ],
         ),
@@ -143,17 +133,41 @@ class _HomepageScreenState extends State<HomepageScreen> {
             return Center(child: CircularProgressIndicator());
           }
 
-          List<Escursione> events = snapshot.data!;
+          downedEvents = snapshot.data!;
 
           return SafeArea(
             child: <Widget>[
-              EventsListView(escursioni: events),
+              EventsListView(escursioni: downedEvents),
               SubscriptionsScreen(),
-              ForYouScreen(escursioni: events),
+              ForYouScreen(escursioni: downedEvents),
             ][currentPageIndex],
           );
         },
       ),
+    );
+  }
+
+  MenuButton refreshButtonSection() {
+    return MenuButton(
+      icon: Icons.refresh,
+      iconSize: 30,
+      onPressed: () {},
+    );
+  }
+
+  MenuButton searchButtonSection(BuildContext context) {
+    return MenuButton(
+      icon: Icons.search,
+      iconSize: 30,
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => SearchBarView(
+              escursioni: downedEvents,
+            ),
+          ),
+        );
+      },
     );
   }
 }

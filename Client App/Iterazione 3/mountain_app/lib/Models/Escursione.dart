@@ -10,7 +10,7 @@ class Escursione {
   final String data;
   final String descrizione;
   final List<Utente> partecipanti;
-  final List<Utente> organizzatori;
+  final int idOrganizzatore;
   final String distanza;
   final String dislivello;
   final String tempo;
@@ -29,7 +29,7 @@ class Escursione {
     required this.data,
     required this.descrizione,
     required this.partecipanti,
-    required this.organizzatori,
+    required this.idOrganizzatore,
     required this.distanza,
     required this.dislivello,
     required this.tempo,
@@ -58,15 +58,15 @@ class Escursione {
         luogoRitrovo = json['meetingPlace'],
         oraRitrovo = json['time'],
         imgUrl = Uri(path: ''),
-        organizzatori = Utente.listaOrganizzatoriMock,
+        idOrganizzatore = json['idProfile'] ?? Utente.utenteMock2.id,
         partecipanti = Utente.listaPartecipantiMock;
 
   Map<String, dynamic> toJson(int maxPeople) => {
         'id': id,
         "name": nome,
         "place": luogo,
-        "difficulty": difficolta.toString(),
-        "date": "2024-02-28",
+        "difficulty": difficolta.name.toUpperCase(),
+        "date": "2024-02-26",
         "description": descrizione,
         "distance": distanza,
         "heightLevel": dislivello,
@@ -75,6 +75,7 @@ class Escursione {
         "meetingPlace": luogoRitrovo,
         "maxPeople": maxPeople,
         "time": tempo,
+        "idProfile": idOrganizzatore,
       };
 
   static Escursione escursioneMock = Escursione(
@@ -86,7 +87,7 @@ class Escursione {
     descrizione:
         "Dalla località Ronco di Schilpario (1075 m) si prende la mulattiera che sale in modo regolare lungo la valle del Vò. In prossimità delle cascate (deviazione sulla destra) il sentiero sale con svolte nel bosco e prosegue sempre lungo il lato sinistro (orografico destro). A quota 1650 (Venano di Mezzo) si attraversa il torrente (ponte di legno) e si sale con più decisione alla conca di Venano di Sopra (1850 m), che si attraversa per riprendere la salita sulla mulattiera, con pendenza costante e con ampi tornanti fino a quota 2202 m. Da qui si svolta in direzione nord e, con percorso più dolce, si arriva al rifugio Nani Tagliaferri (2328 m).",
     partecipanti: Utente.listaPartecipantiMock,
-    organizzatori: Utente.listaOrganizzatoriMock,
+    idOrganizzatore: Utente.utenteMock1.id,
     distanza: "2.3km",
     dislivello: "956m",
     tempo: "7h55",
