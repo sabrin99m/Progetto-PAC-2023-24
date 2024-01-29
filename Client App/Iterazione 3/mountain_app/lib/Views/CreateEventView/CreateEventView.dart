@@ -1,7 +1,10 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Models/Utente.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CreateEventView/CreateEventViewLoading.dart';
+import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
 
 class CreateEventView extends StatefulWidget {
   const CreateEventView({super.key});
@@ -106,15 +109,16 @@ class _CreateEventViewState extends State<CreateEventView> {
                                   TextInputType.name,
                                   false,
                                 ),
-                                customTextFieldSection(
+                                customTextFieldDateSection(
                                   Icons.date_range,
-                                  "Data",
-                                  "Data scelta",
+                                  "Data dell'escursione",
+                                  "La data dell'evento",
                                   _DateFieldcontroller,
                                   true,
                                   false,
                                   TextInputType.datetime,
                                   false,
+                                  context,
                                 ),
                                 customTextFieldSection(
                                   Icons.text_fields,
@@ -126,42 +130,7 @@ class _CreateEventViewState extends State<CreateEventView> {
                                   TextInputType.name,
                                   false,
                                 ),
-                                Container(
-                                  height: 110,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "Difficoltà: ",
-                                            style: sottotitoloGrassetto,
-                                          ),
-                                          Text(translateDifficulty(
-                                                  _currentSliderValue)
-                                              .name),
-                                        ],
-                                      ),
-                                      Slider(
-                                        value: _currentSliderValue,
-                                        max: 30,
-                                        min: 10,
-                                        divisions: 2,
-                                        label: _currentSliderValue
-                                            .round()
-                                            .toString(),
-                                        onChanged: (double value) {
-                                          setState(() {
-                                            _currentSliderValue = value;
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                difficultyPickerSection(),
                                 customTextFieldSection(
                                   Icons.map,
                                   "Distanza",
@@ -255,6 +224,39 @@ class _CreateEventViewState extends State<CreateEventView> {
     );
   }
 
+  Container difficultyPickerSection() {
+    return Container(
+      height: 110,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Row(
+            children: [
+              Text(
+                "Difficoltà: ",
+                style: sottotitoloGrassetto,
+              ),
+              Text(translateDifficulty(_currentSliderValue).name),
+            ],
+          ),
+          Slider(
+            value: _currentSliderValue,
+            max: 30,
+            min: 10,
+            divisions: 2,
+            label: _currentSliderValue.round().toString(),
+            onChanged: (double value) {
+              setState(() {
+                _currentSliderValue = value;
+              });
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
   Difficolta translateDifficulty(double difficolta) {
     if (difficolta <= 10)
       return Difficolta.easy;
@@ -264,7 +266,7 @@ class _CreateEventViewState extends State<CreateEventView> {
       return Difficolta.hard;
   }
 
-  Center addEventSection(BuildContext context) {
+  Widget addEventSection(BuildContext context) {
     return Center(
         child: Column(children: [
       Container(
@@ -287,14 +289,14 @@ class _CreateEventViewState extends State<CreateEventView> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   Escursione escursione = Escursione(
-                    id: 0,
+                    id: 0 + Random().nextInt(1000),
                     nome: _nameFieldController.text,
                     difficolta: translateDifficulty(_currentSliderValue),
                     luogo: _placeFieldController.text,
                     data: _DateFieldcontroller.text,
                     descrizione: _DescriptionFieldcontroller.text,
                     partecipanti: [],
-                    organizzatori: [],
+                    idOrganizzatore: Utente.loggedUser.id,
                     distanza: _distanceFieldcontroller.text,
                     dislivello: _heightVarianceFieldcontroller.text,
                     tempo: _timeFieldcontroller.text,

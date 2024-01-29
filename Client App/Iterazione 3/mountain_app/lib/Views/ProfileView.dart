@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
-import 'package:mountain_app/Utilities/Constants.dart';
+import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/Login/LoginView.dart';
 import 'package:mountain_app/Views/TileView.dart';
@@ -16,16 +16,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-        IconButton(
-          icon: Icon(Icons.logout),
-          iconSize: 25,
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => LoginView()),
-            );
-          },
-        ),
+        if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
       ]),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +32,10 @@ class ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                nameSurnameSection(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [nameSurnameSection(), experienceSection()],
+                ),
 
                 //Only show if it is organizer
                 if (utente.isOrganizer) organizerSection(),
@@ -62,16 +56,40 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget excursionListSection() {
-    return Container(
-      height: 900,
-      child: ListView.builder(
-        itemCount: utente.iscrizioniPassate.length,
-        itemBuilder: (context, index) {
-          return DownloadListTile(utente: utente, index: index);
-        },
-      ),
+  IconButton logoutButtonSection(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.logout),
+      iconSize: 25,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => LoginView()),
+        );
+      },
     );
+  }
+
+  Text experienceSection() {
+    return Text(
+      "Esperienza: " + utente.esperienza.toString() + "/30",
+      style: sottotitoloGrassetto,
+    );
+  }
+
+  Widget excursionListSection() {
+    return utente.iscrizioniPassate.isEmpty
+        ? SizedBox(
+            height: 500,
+            child: Center(child: Text("Non ci sono esperienze passate.")))
+        : Container(
+            height: 900,
+            child: ListView.builder(
+              itemCount: utente.iscrizioniPassate.length,
+              itemBuilder: (context, index) {
+                return DownloadListTile(utente: utente, index: index);
+              },
+            ),
+          );
   }
 
   Text nameSurnameSection() {
@@ -100,7 +118,7 @@ class ProfileView extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 64, 16, 16),
       child: CircleAvatar(
         radius: 70,
-        foregroundImage: AssetImage('images/me.jpg'),
+        foregroundImage: AssetImage('images/meProfile.png'),
       ),
     );
   }
@@ -166,7 +184,6 @@ class _DownloadListTileState extends State<DownloadListTile> {
                   MaterialPageRoute(
                     builder: (context) => EventDetailsView(
                       escursione: downEscursione,
-                      listaEscursioni: widget.utente.iscrizioni,
                     ),
                   ),
                 );
