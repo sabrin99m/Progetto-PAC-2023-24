@@ -22,6 +22,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   int currentPageIndex = 0;
   Utente utente = Utente.loggedUser;
   List<Escursione> downedEvents = [];
+  bool isLoading = false;
 
   late Future<List<Escursione>> escursioni;
 
@@ -124,7 +125,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
             return Center(child: Text(snapshot.error.toString()));
           }
 
-          if (!snapshot.hasData) {
+          if (!snapshot.hasData || isLoading) {
+            isLoading = false;
             return LoadingAnimationView();
           }
 
@@ -146,7 +148,14 @@ class _HomepageScreenState extends State<HomepageScreen> {
     return MenuButton(
       icon: Icons.refresh,
       iconSize: 30,
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          escursioni = Future(() => List.empty());
+          downedEvents = [];
+          isLoading = true;
+          fetchEscursioni();
+        });
+      },
     );
   }
 
