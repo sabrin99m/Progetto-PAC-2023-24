@@ -50,15 +50,6 @@ class _TileViewState extends State<TileView> {
                     difficolta: widget.escursione.difficolta,
                   )
                 ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Text("Weather goes here"),
-                  )
-                ],
               )
             ],
           ),

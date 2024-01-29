@@ -5,6 +5,7 @@ import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CreateEventView/CreateEventViewLoading.dart';
 import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
+import 'package:mountain_app/Views/CutomButotns.dart';
 
 class CreateEventView extends StatefulWidget {
   const CreateEventView({super.key});
@@ -275,17 +276,9 @@ class _CreateEventViewState extends State<CreateEventView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            RawMaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(32))),
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text("Aggiungi Evento",
-                    style:
-                        TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-              ),
-              fillColor: Colors.green[300],
+            MainButton(
+              text: "Aggiungi evento",
+              width: 200,
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                   Escursione escursione = Escursione(

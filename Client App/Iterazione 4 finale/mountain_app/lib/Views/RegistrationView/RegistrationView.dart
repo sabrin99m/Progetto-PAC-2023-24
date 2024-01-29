@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
+import 'package:mountain_app/Views/CutomButotns.dart';
 import 'package:mountain_app/Views/RegistrationView/RegistrationLoadingView.dart';
 
 class RegistrationView extends StatefulWidget {
@@ -136,19 +137,9 @@ class _RegistrationViewState extends State<RegistrationView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            RawMaterialButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(32))),
-                              elevation: 6,
-                              child: Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text("Registrati",
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w600)),
-                              ),
-                              fillColor: Colors.green[300],
+                            MainButton(
+                              text: "Registrati",
+                              width: 200,
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   Utente utente = Utente(

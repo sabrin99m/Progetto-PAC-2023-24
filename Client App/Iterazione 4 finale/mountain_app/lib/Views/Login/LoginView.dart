@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CreateEventView/CustomTextFields.dart';
+import 'package:mountain_app/Views/CutomButotns.dart';
 import 'package:mountain_app/Views/Login/LoginLoadingView.dart';
 import 'package:mountain_app/Views/RegistrationView/RegistrationView.dart';
 
@@ -120,11 +121,9 @@ class _LoginViewState extends State<LoginView> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            FloatingActionButton(
-                              child: Text(
-                                "Accedi",
-                                style: sottotitoloGrassetto,
-                              ),
+                            MainButton(
+                              text: "Accedi",
+                              width: 200,
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   Navigator.push(

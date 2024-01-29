@@ -136,7 +136,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         Row(
                           children: [
                             SizedBox(
-                              width: 110,
+                              width: 140,
                               child: Text("Organizzatore > ",
                                   style: sottotitoloGrassetto),
                             ),
@@ -147,7 +147,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                         Row(
                           children: [
                             SizedBox(
-                              width: 110,
+                              width: 140,
                               child: Text("Partecipanti > ",
                                   style: sottotitoloGrassetto),
                             ),
@@ -158,9 +158,9 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                     ),
                   ),
                   customDivider(),
-                  CustomInset(Text("Descrizione Percorso",
-                      style: sottotitoloGrassetto)),
-                  displayTextParagraph(widget.escursione.descrizione),
+                  Text("Descrizione Percorso", style: sottotitoloGrassetto),
+                  CustomInset(
+                      displayTextParagraph(widget.escursione.descrizione)),
                   customDivider(),
                   Text("Strumentazione Richiesta", style: sottotitoloGrassetto),
                   displayTextParagraph(widget.escursione.strumentazione),
@@ -213,8 +213,8 @@ class _EventDetailsViewState extends State<EventDetailsView> {
   Widget algorithmButtonSection() {
     return MainButton(
       text: 'Seleziona partecipanti',
-      width: 250,
-      borderRadius: 30,
+      width: 350,
+      borderRadius: 32,
       color: Colors.green,
       onPressed: () {},
     );
@@ -224,8 +224,8 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     return MainButton(
       color: Colors.red,
       text: "Cancella evento",
-      width: 250,
-      borderRadius: 30,
+      width: 350,
+      borderRadius: 32,
       onPressed: () {
         int idEvento = widget.escursione.id;
         EventsManger().deleteEvent(idEvento);
@@ -237,9 +237,8 @@ class _EventDetailsViewState extends State<EventDetailsView> {
   Widget subscribeButtonSection() {
     return MainButton(
       text: 'Prenotati a questa escursione',
-      width: 250,
-      borderRadius: 30,
-      color: Colors.green,
+      width: 350,
+      borderRadius: 32,
       onPressed: () {
         Navigator.push(
           context,
@@ -255,9 +254,8 @@ class _EventDetailsViewState extends State<EventDetailsView> {
 
   Widget unsubscribeButtonSection() {
     return MainButton(
-      color: Colors.green,
-      borderRadius: 30,
-      width: 250,
+      borderRadius: 32,
+      width: 350,
       text: 'Disiscriviti da questa escursione',
     );
   }

@@ -71,7 +71,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 ),
                 Text(
                   ("Ciao, " + utente.nome),
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 23),
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 23),
                 ),
               ],
             ),
@@ -81,16 +81,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 0,
-        backgroundColor: Colors.green,
-        hoverElevation: 0,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(32))),
-        label: Text(
-          "Nuova Escursione",
-          style: sottotitoloGrassetto,
-        ),
+      floatingActionButton: MainButton(
+        color: Theme.of(context).colorScheme.secondary,
+        width: 200,
+        text: "Nuova Escursione",
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -99,6 +93,24 @@ class _HomepageScreenState extends State<HomepageScreen> {
           );
         },
       ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   elevation: 0,
+      //   backgroundColor: Colors.green,
+      //   hoverElevation: 0,
+      //   shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.all(Radius.circular(32))),
+      //   label: Text(
+      //     "Nuova Escursione",
+      //     style: sottotitoloGrassetto,
+      //   ),
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) => const CreateEventView(),
+      //       ),
+      //     );
+      //   },
+      // ),
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
