@@ -1,0 +1,31 @@
+\subsection{UC-4 Visualizzazione delle iscrizioni}
+L'utente può visualizzare tutti gli eventi a cui è iscritto.
+\\
+\\
+\textit{Breve Descrizione: Da una pagina dedicata sulla app vengono scaricate tutte le iscrizioni, presenti e passate, a cui ha partecipato l'utente.} 
+\\
+\\
+\textit{Attori Coinvolti: Sistema, Utente.}
+\\
+\\
+\textit{Precondizione: L'utente è iscritto alla piattaforma e loggato nella app.}
+\\
+\\
+\textit{Postcondizione: L'utente visualizza gli eventi a cui è iscritto.}
+\\
+\\
+\textit{Procedimento:}
+\begin{enumerate}
+	\item L'utente visita la pagina ``Iscrizioni'' dal menu in basso nella app;
+	\item Il sistema scarica solo quegli eventi a cui l'utente é iscritto;
+	\item I suddetti eventi vengono mostrati [E1: Nessun evento da mostrare].
+\end{enumerate}
+
+
+\textit{Eccezioni:}
+\begin{itemize}
+	\item E1: Nessun evento da mostrare
+	\begin{enumerate}
+		\item Viene mostrata una schermata che spiega all'utente che non è stato iscritto a nessun evento.
+	\end{enumerate}
+\end{itemize}

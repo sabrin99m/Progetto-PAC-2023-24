@@ -1,0 +1,45 @@
+\section{Sviluppi Futuri}
+\subsection{Status dei casi d'uso}
+Non tutti i casi d'uso definiti sono stati implementati. Di seguito è riportata una tabella riassuntiva dello status du ognuno.
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		\textbf{Codice} & \textbf{Caso d'uso} & \textbf{Implementato} \\ \hline
+		\multicolumn{3}{|c|}{Alta Priorità} \\ \hline
+		\textbf{UC1} & Login & Sì\\ \hline
+		\textbf{UC2} & Signup & Sì \\ \hline
+		\textbf{UC3} & Logout & Sì \\ \hline
+		\textbf{UC7} & Ricerca eventi & Sì \\ \hline
+		\textbf{UC8} & Visualizzazione risultati ricerca & Sì \\ \hline
+		\textbf{UC9} & Visualizzazione specifico risultato & Sì \\ \hline
+		\textbf{UC10} & Iscrizione ad un nuovo evento & Sì \\ \hline
+		\textbf{UC11} & Cancellazione iscrizione & Sì \\ \hline
+		\textbf{UC15} & Algoritmo iscrizione & Sì \\ \hline
+		\textbf{UC17} & Eliminazione evento & Sì \\ \hline
+		\textbf{UC18} & Creazione evento & Sì \\ \hline
+		\multicolumn{3}{|c|}{Media Priorità} \\ \hline
+		\textbf{UC5} & Visualizzazione meteo & Sì\\ \hline
+		\textbf{UC6} & Visualizzazione consigliati & Sì\\ \hline
+		\textbf{UC13} & Visualizzazione profilo utente & Sì\\ \hline
+		\textbf{UC14} & Visualizzazione profilo organizzatore & Sì\\ \hline
+		\textbf{UC16} & Dettagli evento & Sì\\ \hline
+		\multicolumn{3}{|c|}{Bassa Priorità} \\ \hline
+		\textbf{UC4} & Visualizzazione iscrizioni & Sì\\ \hline
+		\textbf{UC12} & Visualizzazione partecipanti & No\\ \hline
+		\textbf{UC19} & Visualizzare profilo partecipanti & No\\ \hline
+		\textbf{UC20} & Cambiare la foto del profilo & No\\ \hline
+		\textbf{UC21} & Cambiare la foto di copertina & No\\ \hline
+		\textbf{UC22} & Cambiare la foto di un evento & No\\ \hline
+	\end{tabular}
+	\caption{\label{tab:table-name}Casi d'uso implementati e mancanti.}
+\end{table}
+\newpage
+\subsection{Punti da trattare}
+Se si volesse procedere oltre nel progetto, i seguenti punti andrebbero certamente trattati:
+\begin{itemize}
+  \item Implementare i restanti casi d'uso a bassa priorità;
+  \item Registrare un dominio e associarlo alla macchina virtuale che pubblica il backedn;
+  \item Acquistare un certificato SSL per il suddetto dominio e implementare un reverse proxy sui server in modo da poter usare HTTPS;
+  \item Usare un sistema di login più sicuro: al momento username e password sono codificati in Base64 vengono inviati per ogni richiesta come parte del corpo della richiesta.
+\end{itemize}
