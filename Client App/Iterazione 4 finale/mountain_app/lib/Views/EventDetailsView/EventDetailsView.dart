@@ -38,7 +38,14 @@ class _EventDetailsViewState extends State<EventDetailsView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image(image: AssetImage(randomizedCoverImage())),
+            Image(
+              height: 300,
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
+              image: AssetImage(
+                randomizedCoverImage(),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -187,20 +194,19 @@ class _EventDetailsViewState extends State<EventDetailsView> {
               ),
             ),
             SizedBox(
-              height: 300,
+              height: 250,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   if (isUserSubscribed())
                     unsubscribeButtonSection()
                   else
                     subscribeButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
-                    Column(
-                      children: [
-                        deleteEventSection(context),
-                      ],
-                    )
+                    algorithmButtonSection(),
+                  if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
+                    deleteEventSection(context)
                 ],
               ),
             )
