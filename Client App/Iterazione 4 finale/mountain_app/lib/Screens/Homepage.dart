@@ -5,6 +5,7 @@ import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Views/CreateEventView/CreateEventView.dart';
 import 'package:mountain_app/Views/CutomButotns.dart';
 import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/LottieAnimations/LoadingAnimationView.dart';
 import 'package:mountain_app/Views/ProfileView.dart';
 import 'ForYouScreen.dart';
 import 'SubscriptionsScreen.dart';
@@ -92,24 +93,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
           );
         },
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   elevation: 0,
-      //   backgroundColor: Colors.green,
-      //   hoverElevation: 0,
-      //   shape: RoundedRectangleBorder(
-      //       borderRadius: BorderRadius.all(Radius.circular(32))),
-      //   label: Text(
-      //     "Nuova Escursione",
-      //     style: sottotitoloGrassetto,
-      //   ),
-      //   onPressed: () {
-      //     Navigator.of(context).push(
-      //       MaterialPageRoute(
-      //         builder: (context) => const CreateEventView(),
-      //       ),
-      //     );
-      //   },
-      // ),
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             setState(() {
@@ -142,7 +125,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
           }
 
           if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
+            return LoadingAnimationView();
           }
 
           downedEvents = snapshot.data!;

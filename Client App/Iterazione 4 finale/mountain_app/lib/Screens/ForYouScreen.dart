@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/LottieAnimations/EmptyStateView.dart';
 
 class ForYouScreen extends StatefulWidget {
   final List<Escursione> escursioni;
@@ -43,7 +44,7 @@ class _ForYouScreenState extends State<ForYouScreen> {
   @override
   Widget build(BuildContext context) {
     if (suggestedEvents.isEmpty)
-      return Center(child: Text("Non ci sono eventi consigliati"));
+      return EmptyStateView(text: "Non ci sono escursioni consigliate...");
     else
       return EventsListView(escursioni: suggestedEvents);
   }

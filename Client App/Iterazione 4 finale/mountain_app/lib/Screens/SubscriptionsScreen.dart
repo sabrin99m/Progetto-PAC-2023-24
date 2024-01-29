@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
 import 'package:mountain_app/Views/EventsListView.dart';
+import 'package:mountain_app/Views/LottieAnimations/EmptyStateView.dart';
+import 'package:mountain_app/Views/LottieAnimations/LoadingAnimationView.dart';
 
 class SubscriptionsScreen extends StatefulWidget {
   const SubscriptionsScreen({
@@ -32,13 +34,13 @@ class _SubscriptionsScreenState extends State<SubscriptionsScreen> {
           }
 
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return LoadingAnimationView();
           }
 
           List<Escursione> downEvents = snapshot.data!;
 
           if (downEvents.isEmpty) {
-            return Text("Non ci sono iscrizioni");
+            return EmptyStateView(text: "Non ci sono iscrizioni...");
           } else {
             return EventsListView(escursioni: downEvents);
           }
