@@ -66,6 +66,14 @@ flutter:
     - images/me3.png
     - images/me4.png
     - images/profileBackground.jpg
+    - images/mountain1.png
+    - images/mountain2.png
+    - images/mountain3.png
+    - images/mountain4.png
+    - images/mountain5.png
+    - images/mountain6.png
+    - images/mountain7.png
+    - images/mountain8.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

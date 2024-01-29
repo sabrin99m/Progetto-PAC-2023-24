@@ -126,8 +126,9 @@ class ProfileView extends StatelessWidget {
   Container backgroundImageSection() {
     return Container(
       width: 1000,
-      child: Image(
-          fit: BoxFit.fill, image: AssetImage("images/profileBackground.jpg")),
+      height: 170,
+      child:
+          Image(fit: BoxFit.cover, image: AssetImage("images/mountain2.png")),
     );
   }
 }

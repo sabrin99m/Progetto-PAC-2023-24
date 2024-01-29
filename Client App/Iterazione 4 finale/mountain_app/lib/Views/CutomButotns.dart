@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mountain_app/Utilities/Misc.dart';
 
 class MainButton extends StatelessWidget {
   final String text;

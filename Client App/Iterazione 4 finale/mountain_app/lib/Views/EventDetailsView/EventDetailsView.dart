@@ -38,7 +38,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const Image(image: AssetImage("images/Tagliaferri.jpg")),
+            Image(image: AssetImage(randomizedCoverImage())),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -208,6 +208,11 @@ class _EventDetailsViewState extends State<EventDetailsView> {
         ),
       ),
     );
+  }
+
+  String randomizedCoverImage() {
+    int num = Random().nextInt(8) + 1 % 8;
+    return 'images/mountain${num.toString()}.png';
   }
 
   Widget algorithmButtonSection() {

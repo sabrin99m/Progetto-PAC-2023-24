@@ -20,10 +20,10 @@ class _TileViewState extends State<TileView> {
     return Container(
       height: 220,
       child: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24)),
           image: DecorationImage(
-            image: AssetImage("images/tagliaferri.jpg"),
+            image: AssetImage(randomizedCoverImage()),
             fit: BoxFit.fitWidth,
           ),
         ),
@@ -66,7 +66,7 @@ class organizerImageSection extends StatelessWidget {
     required this.imageAddress,
   });
 
-  String randomizedImage() {
+  String randomizedProfileImage() {
     int num = Random().nextInt(4) + 1 % 4;
     return 'images/me${num.toString()}.png';
   }
@@ -78,11 +78,16 @@ class organizerImageSection extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(foregroundImage: AssetImage(randomizedImage())),
+          CircleAvatar(foregroundImage: AssetImage(randomizedProfileImage())),
         ],
       ),
     );
   }
+}
+
+String randomizedCoverImage() {
+  int num = Random().nextInt(8) + 1 % 8;
+  return 'images/mountain${num.toString()}.png';
 }
 
 class dateTitleDifficultySection extends StatelessWidget {
