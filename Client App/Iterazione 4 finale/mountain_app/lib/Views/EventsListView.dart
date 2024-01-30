@@ -11,21 +11,22 @@ class EventsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: escursioni.length,
-        cacheExtent: 10000,
-        itemBuilder: ((context, index) => ListTile(
-              title: TileView(
-                escursione: escursioni[index],
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        EventDetailsView(escursione: escursioni[index]),
-                  ),
-                );
-              },
-            )));
+      itemCount: escursioni.length,
+      cacheExtent: 10000,
+      itemBuilder: (context, index) => ListTile(
+        title: TileView(
+          escursione: escursioni[index],
+        ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  EventDetailsView(escursione: escursioni[index]),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

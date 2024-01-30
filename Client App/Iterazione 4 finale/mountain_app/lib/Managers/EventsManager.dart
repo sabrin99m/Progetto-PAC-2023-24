@@ -62,7 +62,6 @@ class EventsManger {
       var decoded = json.decode(response.body);
       return Escursione.fromJson(decoded);
     } else {
-      print(response.statusCode);
       throw Exception('Failed to load escursione');
     }
   }

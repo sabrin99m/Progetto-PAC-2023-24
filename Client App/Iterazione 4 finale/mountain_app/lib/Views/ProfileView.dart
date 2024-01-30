@@ -15,11 +15,12 @@ class ProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
-      ]),
+      appBar: AppBar(
+        actions: [
+          if (utente.id == Utente.loggedUser.id) logoutButtonSection(context)
+        ],
+      ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
@@ -32,21 +33,23 @@ class ProfileView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [nameSurnameSection(), experienceSection()],
+                SizedBox(
+                  height: 90,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      nameSurnameSection(),
+                      experienceSection(),
+                      if (utente.isOrganizer) organizerSection(),
+                    ],
+                  ),
                 ),
-
-                //Only show if it is organizer
-                if (utente.isOrganizer) organizerSection(),
-
                 customDivider(),
-
                 Text(
                   "Esperienze Passate",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
-
                 excursionListSection(),
               ],
             ),
@@ -168,7 +171,8 @@ class _DownloadListTileState extends State<DownloadListTile> {
           future: escursione,
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
+              print(snapshot.error.toString());
+              return SizedBox(height: 0);
             }
 
             if (!snapshot.hasData) {

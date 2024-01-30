@@ -19,6 +19,7 @@ class _TileViewState extends State<TileView> {
   Widget build(BuildContext context) {
     return Container(
       height: 220,
+      width: double.infinity,
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(24)),
