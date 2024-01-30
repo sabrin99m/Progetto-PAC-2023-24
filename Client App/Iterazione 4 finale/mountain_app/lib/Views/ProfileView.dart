@@ -5,7 +5,8 @@ import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/EventDetailsView/EventDetailsView.dart';
 import 'package:mountain_app/Views/Login/LoginView.dart';
-import 'package:mountain_app/Views/TileView.dart';
+import 'package:mountain_app/Views/TileView/LoadingTileView.dart';
+import 'package:mountain_app/Views/TileView/TileView.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key, required this.utente});
@@ -176,7 +177,7 @@ class _DownloadListTileState extends State<DownloadListTile> {
             }
 
             if (!snapshot.hasData) {
-              return CircularProgressIndicator();
+              return LoadingTileView();
             }
 
             Escursione downEscursione = snapshot.data!;
