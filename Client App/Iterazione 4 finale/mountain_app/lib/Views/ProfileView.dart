@@ -23,38 +23,49 @@ class ProfileView extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Stack(
-            children: [
-              backgroundImageSection(),
-              profilePhotoView(),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          Container(
+            height: 200,
+            child: Stack(
               children: [
-                SizedBox(
-                  height: 90,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      nameSurnameSection(),
-                      experienceSection(),
-                      if (utente.isOrganizer) organizerSection(),
-                    ],
-                  ),
-                ),
-                customDivider(),
-                Text(
-                  "Esperienze Passate",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-                excursionListSection(),
+                backgroundImageSection(),
+                profilePhotoView(),
               ],
             ),
-          )
+          ),
+          Container(
+            height: 150,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: Column(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 90,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            nameSurnameSection(),
+                            experienceSection(),
+                            if (utente.isOrganizer) organizerSection(),
+                          ],
+                        ),
+                      ),
+                      customDivider(),
+                      Text(
+                        "Esperienze Passate",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          excursionListSection(),
         ],
       ),
     );
@@ -127,12 +138,12 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Container backgroundImageSection() {
-    return Container(
-      width: 1000,
+  Image backgroundImageSection() {
+    return Image(
+      fit: BoxFit.fitWidth,
       height: 170,
-      child:
-          Image(fit: BoxFit.cover, image: AssetImage("images/mountain2.png")),
+      width: double.infinity,
+      image: AssetImage("images/mountain2.png"),
     );
   }
 }

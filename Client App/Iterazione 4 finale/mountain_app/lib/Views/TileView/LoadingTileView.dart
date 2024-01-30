@@ -1,10 +1,5 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:mountain_app/Models/Escursione.dart';
 
 class LoadingTileView extends StatefulWidget {
   LoadingTileView({super.key});
@@ -17,7 +12,7 @@ class _LoadingTileViewState extends State<LoadingTileView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
       child: Container(
         height: 220,
         width: double.infinity,
