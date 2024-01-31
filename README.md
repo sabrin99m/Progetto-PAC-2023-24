@@ -1,6 +1,4 @@
-<div align="center">
 # Progetto di PAC aa.2023-24: Mountain App 🏔️
-</div>
 
 ## Membri del team
 
