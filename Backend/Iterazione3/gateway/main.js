@@ -65,7 +65,7 @@ app.get('/login', async (req, res) => {
     getResponse.data['experience'] = exp.data
 
     //Richiesta get al server per ottenere la lista degli eventi a cui l'utente è iscritto
-    const bookedEvents = await axios.get(`http://64.23.165.209:8080/profiles/${getResponse.data['id']}/reservations`, {
+    const bookedEvents = await axios.get(`${BASE_IP}/profiles/${getResponse.data['id']}/reservations`, {
       headers: {
         'Authorization': authorization
       }
@@ -443,7 +443,7 @@ app.post('/events/reservation', async (req, res) => {
  */
 function handleError(error, res) {
   console.error(error);
-  res.status(500).send('Internal Server Error');
+  res.status(500).send(error);
 }
 
 /**
