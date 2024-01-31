@@ -3,7 +3,7 @@ Attraverso le GitHub Actions abbiamo implementato un meccanismo di Continuous In
 \subsection{Continuous Integration (CI)}
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=1\textwidth]{images/CI.png}
+  \includegraphics[width=1\textwidth]{Iterazione 3/images/CI.png}
   \caption{Continuous Integration della branch main}
 \end{figure}
 Il nostro backend è organizzato in 2 immagini:
@@ -26,7 +26,7 @@ Per pubblicare l'immagine compilata sul relativo registry di Docker Hub è neces
 \subsection{Continuous Deployment (CD)}
 \begin{figure}[h!]
   \centering
-  \includegraphics[width=1\textwidth]{images/CD.png}
+  \includegraphics[width=1\textwidth]{Iterazione 3/images/CD.png}
   \caption{Continuous Deployment di un immagine}
 \end{figure}
 Una volta che l'immagine su Docker Hub è stata rigenerata è necessario che questi cambiamenti vengano rispecchiati sul server di produzione. Per fare ciò abbiamo usato  \href{https://containrrr.dev/watchtower/}{``Watchtower''}, un programma open-source usato per gestire le immagini Docker salvate su una macchina aggiornandole in automatico quando viene pubblicata una nuova versione. Il controllo e l'aggiornamento avvengono a intervalli regolari impostabili dall'utente. Per evitare che il server venisse riavviato troppe volte durante la giornata abbiamo deciso di limitare l'aggiormamento ad una volta al giorno, verso mezzanotte. Rimane poi la possibilità di accedere alla macchina virtuale e riavviare manualmente il container, oppure, scelta meno consigliata, riavviare per intero il server.
