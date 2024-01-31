@@ -12,7 +12,7 @@
 ## Quickstart
 Eseguire in locale il backedn con il seguente comando, attraverso curl e docker-compose.
 ```
-$ curl -o docker-compose.yml https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/docker-compose.yml && docker compose -p mountain-app up
+curl -o docker-compose.yml https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/production/docker-compose.yml && docker compose -p mountain-app up
 ```
 ## Continuous Integration
 ### Status Ambiente di Sviluppo
