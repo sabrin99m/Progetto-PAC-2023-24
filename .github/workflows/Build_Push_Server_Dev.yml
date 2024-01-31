@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - dockerfile: ./Backend/Iterazione3/project/Dockerfile
-            image: freddy153/ventura_boulevard
+            image: freddy153/ventura-boulevard
           - dockerfile: ./Backend/Iterazione3/gateway/Dockerfile
             image: freddy153/radio-nowhere
 

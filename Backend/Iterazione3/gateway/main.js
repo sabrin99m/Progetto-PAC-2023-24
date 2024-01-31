@@ -10,6 +10,8 @@ app.use(cors({
   allowedHeaders: 'X-Requested-With, Content-Type, Authorization',
 }))
 
+const BASE_IP = 'http://managers:8080'
+
 app.get('/', async (_, res) => {
   res.status(200).send("This is Radio Nowhere, is there anybody alive out there?")
 })
@@ -24,7 +26,7 @@ app.get('/events', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get('http://64.23.165.209:8080/events', {
+    const getResponse = await axios.get(`${BASE_IP}/events`, {
       headers: {
         'Authorization': authorization
       }
@@ -48,14 +50,14 @@ app.get('/login', async (req, res) => {
     }
 
     //Richiesta get al server per ottenere i dettagli del profilo
-    const getResponse = await axios.get('http://64.23.165.209:8080/login', {
+    const getResponse = await axios.get(`${BASE_IP}/login`, {
       headers: {
         'Authorization': authorization
       }
     });
 
     //Richiesta get al server per ottenere l'esperienza dell'utente
-    const exp = await axios.get(`http://64.23.165.209:8080/profiles/level/${getResponse.data['id']}`, {
+    const exp = await axios.get(`${BASE_IP}/profiles/level/${getResponse.data['id']}`, {
       headers: {
         'Authorization': authorization
       }
@@ -119,7 +121,7 @@ app.get('/events/:id', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get(`http://64.23.165.209:8080/events/${req.params.id}`, {
+    const getResponse = await axios.get(`${BASE_IP}/events/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -143,7 +145,7 @@ app.get('/profiles', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get('http://64.23.165.209:8080/profiles', {
+    const getResponse = await axios.get(`${BASE_IP}/profiles`, {
       headers: {
         'Authorization': authorization
       }
@@ -167,7 +169,7 @@ app.get('/profiles/:id', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get(`http://64.23.165.209:8080/profiles/${req.params.id}`, {
+    const getResponse = await axios.get(`${BASE_IP}/profiles/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -191,7 +193,7 @@ app.get('/profile/reservations/:id', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get(`http://64.23.165.209:8080/profile/reservations/${req.params.id}`, {
+    const getResponse = await axios.get(`${BASE_IP}/profile/reservations/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -218,7 +220,7 @@ app.get('/profiles/:id/reservations', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get(`http://64.23.165.209:8080/profiles/${req.params.id}/reservations`, {
+    const getResponse = await axios.get(`${BASE_IP}/profiles/${req.params.id}/reservations`, {
       headers: {
         'Authorization': authorization
       }
@@ -258,7 +260,7 @@ app.get('/profiles/:id/reservationsIds', async (req, res) => {
     }
 
     //Richiesta get al server
-    const getResponse = await axios.get(`http://64.23.165.209:8080/profiles/${req.params.id}/reservations`, {
+    const getResponse = await axios.get(`${BASE_IP}/profiles/${req.params.id}/reservations`, {
       headers: {
         'Authorization': authorization
       }
@@ -295,7 +297,7 @@ app.delete('/events/:id', async (req, res) => {
     }
 
     //Richiesta delete al server
-    const getResponse = await axios.delete(`http://64.23.165.209:8080/events/${req.params.id}`, {
+    const getResponse = await axios.delete(`${BASE_IP}/events/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -319,7 +321,7 @@ app.delete('/profiles/:id', async (req, res) => {
     }
 
     //Richiesta delete al server
-    const getResponse = await axios.delete(`http://64.23.165.209:8080/profiles/${req.params.id}`, {
+    const getResponse = await axios.delete(`${BASE_IP}/profiles/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -343,7 +345,7 @@ app.delete('/reservations/:id', async (req, res) => {
     }
 
     //Richiesta delete al server
-    const getResponse = await axios.delete(`http://64.23.165.209:8080/reservations/${req.params.id}`, {
+    const getResponse = await axios.delete(`${BASE_IP}/reservations/${req.params.id}`, {
       headers: {
         'Authorization': authorization
       }
@@ -366,7 +368,7 @@ app.post('/events/new', async (req, res) => {
       return res.sendStatus(401)
     }
 
-    const postResponse = await axios.post(`http://64.23.165.209:8080/events/new`, req.body, {
+    const postResponse = await axios.post(`${BASE_IP}/events/new`, req.body, {
       headers: {
         'Authorization': authorization
       }
@@ -387,7 +389,7 @@ app.post('/profiles', async (req, res) => {
     if (!authorization) {
       return res.sendStatus(401)
     }
-    const postResponse = await axios.post(`http://64.23.165.209:8080/profiles/`, req.body, {
+    const postResponse = await axios.post(`${BASE_IP}/profiles/`, req.body, {
       headers: {
         'Authorization': authorization
       }
@@ -408,7 +410,7 @@ app.post('/events/reservation', async (req, res) => {
     if (!authorization) {
       return res.sendStatus(401)
     }
-    const postResponse = await axios.post(`http://64.23.165.209:8080/events/reservation/`, req.body, {
+    const postResponse = await axios.post(`${BASE_IP}/events/reservation/`, req.body, {
       headers: {
         'Authorization': authorization
       }

@@ -1,0 +1,40 @@
+version: "3.0"
+services:
+
+  managers:
+    image: freddy153/ventura-boulevard:latest-development
+    container_name: ventura-boulevard
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - shared-net
+
+  gateway:
+    image: freddy153/radio-nowhere:latest-development
+    container_name: radio-nowhere
+    restart: unless-stopped
+    ports:
+      - "8085:8085"
+    networks:
+      - shared-net
+    depends_on:
+      - managers
+    expose:
+      - "8085"
+
+  watchtower:
+    image: containrrr/watchtower
+    # restart: unless-stopped
+    depends_on:
+      - managers
+      - gateway
+    networks:
+      - shared-net
+
+networks:
+  shared-net:
+
+
+volumes:
+  watchtower:
