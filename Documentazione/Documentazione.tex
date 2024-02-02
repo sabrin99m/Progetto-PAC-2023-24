@@ -9,6 +9,7 @@
 \usepackage{pdfpages}
 \usepackage{hyperref}
 \usepackage[italian]{babel}
+\usepackage{import}
 \setstretch{1.5}
 
 \begin{document}
@@ -17,59 +18,106 @@
 \listoffigures
 
 \chapter{Iterazione 0}
-\include{./Iterazione 0/capitoli/introduzione}
-\include{./Iterazione 0/capitoli/casiuso}
-\include{./Iterazione 0/capitoli/architettura}
-\include{./Iterazione 0/capitoli/toolchain}
+\import{./Iterazione 0/capitoli}{introduzione}
+\clearpage
+\import{./Iterazione 0/capitoli}{casiuso}
+\clearpage
+\import{./Iterazione 0/capitoli}{architettura}
+\clearpage
+\import{./Iterazione 0/capitoli}{toolchain}
+\clearpage
 
 \chapter{Iterazione 1}
-\include{./Iterazione 1/capitoli/Introduzione}
-\include{./Iterazione 1/capitoli/DeploymentDiagram}
-\include{./Iterazione 1/capitoli/ComponentDiagram}
-\include{./Iterazione 1/capitoli/DataClassDiagram}
-\include{./Iterazione 1/capitoli/InterfaceDiagram}
-\include{./Iterazione 1/capitoli/MockupAppClient}
+\clearpage
+\import{./Iterazione 1/capitoli}{Introduzione}
+\clearpage
+\import{./Iterazione 1/capitoli}{DeploymentDiagram}
+\clearpage
+\import{./Iterazione 1/capitoli}{ComponentDiagram}
+\clearpage
+\import{./Iterazione 1/capitoli}{DataClassDiagram}
+\clearpage
+\import{./Iterazione 1/capitoli}{InterfaceDiagram}
+\clearpage
+\import{./Iterazione 1/capitoli}{MockupAppClient}
+\clearpage
 
 \chapter{Iterazione 2}
-\include{./Iterazione 2/capitoli/Introduzione}
-\include{./Iterazione 2/capitoli/UseCase}
-\include{./Iterazione 2/capitoli/UC1 Login}
-\include{./Iterazione 2/capitoli/UC2 Signup}
-\include{./Iterazione 2/capitoli/UC3 Logout}
-\include{./Iterazione 2/capitoli/UC7 Ricerca eventi}
-\include{./Iterazione 2/capitoli/UC8 Visualizzazione risultati ricerca}
-\include{./Iterazione 2/capitoli/UC9 Visualizzazione di uno specifico risultato}
-\include{./Iterazione 2/capitoli/UC10 Prenotazione a un nuovo evento}
-\include{./Iterazione 2/capitoli/UC11 Cancellazione da un evento}
-\include{./Iterazione 2/capitoli/UC15 Algoritmo iscrizioni}
-\include{./Iterazione 2/capitoli/UC17 Eliminazione evento}
-\include{./Iterazione 2/capitoli/UC18 Creazione evento}
-\include{./Iterazione 2/capitoli/ComponentDiagram}
-\include{./Iterazione 2/capitoli/DataClassDiagram}
-\include{./Iterazione 2/capitoli/InterfaceDiagram}
-\include{./Iterazione 2/capitoli/DocumentazioneAPI}
-\include{./Iterazione 2/capitoli/Testing}
-\include{./Iterazione 2/capitoli/UnitTest}
+\import{./Iterazione 2/capitoli}{Introduzione}
+\clearpage
+\import{./Iterazione 2/capitoli}{UseCase}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC1 Login}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC2 Signup}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC3 Logout}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC7 Ricerca eventi}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC8 Visualizzazione risultati ricerca}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC9 Visualizzazione di uno specifico risultato}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC10 Prenotazione a un nuovo evento}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC11 Cancellazione da un evento}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC15 Algoritmo iscrizioni}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC17 Eliminazione evento}
+\clearpage
+\import{./Iterazione 2/capitoli}{UC18 Creazione evento}
+\clearpage
+\import{./Iterazione 2/capitoli}{ComponentDiagram}
+\clearpage
+\import{./Iterazione 2/capitoli}{DataClassDiagram}
+\clearpage
+\import{./Iterazione 2/capitoli}{InterfaceDiagram}
+\clearpage
+\import{./Iterazione 2/capitoli}{DocumentazioneAPI}
+\clearpage
+\import{./Iterazione 2/capitoli}{Testing}
+\clearpage
+\import{./Iterazione 2/capitoli}{UnitTest}
+\clearpage
+
 
 \chapter{Iterazione 3}
-\include{./Iterazione 3/capitoli/Introduzione}
-\include{./Iterazione 3/capitoli/ContinuousIntegrationDeployment}
-\include{./Iterazione 3/capitoli/APIGateway}
-\include{./Iterazione 3/capitoli/ClassDiagram}
-\include{./Iterazione 3/capitoli/CasiUso}
-\include{./Iterazione 3/capitoli/UC4 VisualizzaIscrizioni}
-\include{./Iterazione 3/capitoli/UC5 VisualizzaMeteo}
-\include{./Iterazione 3/capitoli/UC6 VisualizzaEventiConsigliati}
-\include{./Iterazione 3/capitoli/UC13 VisualizzaProfiloUtente}
-\include{./Iterazione 3/capitoli/UC14 visualizzaProfiloOrganizzatore}
-\include{./Iterazione 3/capitoli/UC16 DettagliEvento}
-\include{./Iterazione 3/capitoli/GenerazioneMokcup}
+\import{./Iterazione 3/capitoli}{Introduzione}
+\clearpage
+\import{./Iterazione 3/capitoli}{ContinuousIntegrationDeployment}
+\clearpage
+\import{./Iterazione 3/capitoli}{APIGateway}
+\clearpage
+\import{./Iterazione 3/capitoli}{ClassDiagram}
+\clearpage
+\import{./Iterazione 3/capitoli}{CasiUso}
+\clearpage\
+\import{./Iterazione 3/capitoli}{UC4 VisualizzaIscrizioni}
+\clearpage
+\import{./Iterazione 3/capitoli}{UC5 VisualizzaMeteo}
+\clearpage
+\import{./Iterazione 3/capitoli}{UC6 VisualizzaEventiConsigliati}
+\clearpage
+\import{./Iterazione 3/capitoli}{UC13 VisualizzaProfiloUtente}
+\clearpage
+\import{./Iterazione 3/capitoli}{UC14 visualizzaProfiloOrganizzatore}
+\clearpage
+\import{./Iterazione 3/capitoli}{UC16 DettagliEvento}
+\clearpage
+\import{./Iterazione 3/capitoli}{GenerazioneMokcup}
+\clearpage
 
 \chapter{Iterazione 4}
-\include{./Iterazione 4 finale/capitoli/Introduzione}
-\include{./Iterazione 4 finale/capitoli/CasiUso}
-\include{./Iterazione 4 finale/capitoli/UC4 Visualizza iscrizioni}
-\include{./Iterazione 4 finale/capitoli/SviluppiFuturi}
+\import{./Iterazione 4 finale/capitoli}{Introduzione}
+\clearpage
+\import{./Iterazione 4 finale/capitoli}{CasiUso}
+\clearpage
+\import{./Iterazione 4 finale/capitoli}{UC4 Visualizza iscrizioni}
+\clearpage
+\import{./Iterazione 4 finale/capitoli}{SviluppiFuturi}
+\clearpage
 
 
 \end{document}
