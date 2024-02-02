@@ -37,12 +37,9 @@ class EventsManger {
 
   void selectPartecipants(int idEvent) async {
     try {
-      final response = await http.get(
+      final _ = await http.get(
           Uri.parse('${baseIpGateway}/events/${idEvent}/close'),
           headers: {HttpHeaders.authorizationHeader: _basicAuth});
-
-      List<dynamic> decoded = json.decode(response.body);
-      print(decoded);
     } catch (e) {
       print(e);
     }

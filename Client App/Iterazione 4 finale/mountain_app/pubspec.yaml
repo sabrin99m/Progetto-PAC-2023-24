@@ -76,7 +76,8 @@ flutter:
     - assets/mountainman.json
     - assets/empty.json
     - assets/unicorn.json
-
+    - assets/checkmark.json
+    - assets/error.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
