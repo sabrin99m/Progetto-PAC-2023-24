@@ -68,8 +68,8 @@ class Utente {
       "tiru",
       true,
       true,
-      [39, 115],
-      [39, 115],
+      [115],
+      [115],
       15,
       Uri(
           path:

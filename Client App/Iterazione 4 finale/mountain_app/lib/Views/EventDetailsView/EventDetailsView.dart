@@ -204,7 +204,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                   else
                     subscribeButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
-                    algorithmButtonSection(),
+                    selectPartecipantsButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
                     deleteEventSection(context)
                 ],
@@ -221,13 +221,17 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     return 'images/mountain${num.toString()}.png';
   }
 
-  Widget algorithmButtonSection() {
+  Widget selectPartecipantsButtonSection() {
     return MainButton(
       text: 'Seleziona partecipanti',
       width: 350,
       borderRadius: 32,
       color: Colors.green,
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          EventsManger().selectPartecipants(widget.escursione.id);
+        });
+      },
     );
   }
 
