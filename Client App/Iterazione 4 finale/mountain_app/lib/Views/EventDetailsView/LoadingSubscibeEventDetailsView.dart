@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
+import 'package:mountain_app/Views/LottieAnimations/ErrorView.dart';
+import 'package:mountain_app/Views/LottieAnimations/SuccessView.dart';
 
 class LoadingSubscribeEventDetailsView extends StatefulWidget {
   const LoadingSubscribeEventDetailsView({super.key, required this.idEvent});
@@ -27,11 +29,29 @@ class _LoginLoadingViewState extends State<LoadingSubscribeEventDetailsView> {
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
               print(snapshot.error);
-              Future.microtask(() => Navigator.pop(context));
+              Future.microtask(
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return ErrorView(popLevel: 2);
+                    }),
+                  ),
+                ),
+              );
             }
 
             if (snapshot.hasData) {
-              Future.microtask(() => Navigator.pop(context));
+              Future.microtask(
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return SuccessView(text: "Prenotazione inviata!");
+                    }),
+                  ),
+                ),
+              );
             }
 
             return CircularProgressIndicator();

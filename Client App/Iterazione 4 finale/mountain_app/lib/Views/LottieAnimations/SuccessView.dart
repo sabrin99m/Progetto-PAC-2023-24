@@ -34,6 +34,7 @@ class SuccessView extends StatelessWidget {
                     Text(
                       text,
                       style: titolo,
+                      textAlign: TextAlign.center,
                     ),
                     MainButton(
                       text: 'Torna alla homepage',

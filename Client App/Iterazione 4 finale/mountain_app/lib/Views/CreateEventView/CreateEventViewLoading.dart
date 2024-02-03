@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/EventsManager.dart';
 import 'package:mountain_app/Models/Escursione.dart';
-import 'package:mountain_app/Screens/Homepage.dart';
+import 'package:mountain_app/Views/LottieAnimations/ErrorView.dart';
+import 'package:mountain_app/Views/LottieAnimations/SuccessView.dart';
 
 class CreateEventViewLoading extends StatefulWidget {
   const CreateEventViewLoading({super.key, required this.escursione});
@@ -27,19 +28,30 @@ class _CreateEventViewLoadingState extends State<CreateEventViewLoading> {
           future: candidateEvent,
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
-              print("Failed");
               print(snapshot.error);
-              //Navigator.pop(context);
+              Future.microtask(
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return ErrorView(popLevel: 2);
+                    }),
+                  ),
+                ),
+              );
             }
 
             if (snapshot.hasData) {
-              print("Success");
-              Future.microtask(() => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomepageScreen(),
-                    ),
-                  ));
+              Future.microtask(
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return SuccessView(text: "Evento creato!");
+                    }),
+                  ),
+                ),
+              );
             }
 
             return CircularProgressIndicator();

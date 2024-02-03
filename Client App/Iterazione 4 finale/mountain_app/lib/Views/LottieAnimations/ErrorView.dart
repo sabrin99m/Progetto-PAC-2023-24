@@ -3,10 +3,12 @@ import 'package:lottie/lottie.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CutomButotns.dart';
 
+// ignore: must_be_immutable
 class ErrorView extends StatelessWidget {
-  const ErrorView({super.key, required this.text});
+  ErrorView({super.key, this.text, this.popLevel});
 
-  final String text;
+  String? text;
+  int? popLevel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,9 @@ class ErrorView extends StatelessWidget {
             children: [
               Lottie.asset(
                 "error.json",
-                repeat: false,
+                repeat: true,
                 width: 200,
+                reverse: true,
               ),
               Container(
                 height: 120,
@@ -30,8 +33,9 @@ class ErrorView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      text,
+                      text ?? "Si è verificato un errore...",
                       style: titolo,
+                      textAlign: TextAlign.center,
                     ),
                     MainButton(
                       text: 'Ritenta',
@@ -39,7 +43,9 @@ class ErrorView extends StatelessWidget {
                       borderRadius: 32,
                       color: Colors.red.shade700,
                       onPressed: () {
-                        Navigator.pop(context);
+                        int count = 0;
+                        Navigator.popUntil(
+                            context, (_) => count++ >= (popLevel ?? 1));
                       },
                     ),
                   ],
