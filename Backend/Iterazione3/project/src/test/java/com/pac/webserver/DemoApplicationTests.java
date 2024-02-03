@@ -1,4 +1,4 @@
-package com.pac.gestoreeventi;
+package com.pac.webserver;
 
 import com.pac.gestoreeventi.Main;
 import org.junit.jupiter.api.Test;
