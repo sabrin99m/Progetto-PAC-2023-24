@@ -21,11 +21,21 @@ class ErrorView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Lottie.asset(
-                "error.json",
-                repeat: true,
-                width: 200,
-                reverse: true,
+              Stack(
+                children: [
+                  Lottie.asset(
+                    "error.json",
+                    repeat: true,
+                    width: 200,
+                    reverse: true,
+                  ),
+                  Lottie.network(
+                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/Client%20App/Iterazione%204%20finale/mountain_app/assets/error.json',
+                    repeat: true,
+                    width: 200,
+                    reverse: true,
+                  ),
+                ],
               ),
               Container(
                 height: 120,

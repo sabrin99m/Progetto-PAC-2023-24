@@ -60,24 +60,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/meProfile.png
-    - images/me1.png
-    - images/me2.png
-    - images/me3.png
-    - images/me4.png
-    - images/mountain1.png
-    - images/mountain2.png
-    - images/mountain3.png
-    - images/mountain4.png
-    - images/mountain5.png
-    - images/mountain6.png
-    - images/mountain7.png
-    - images/mountain8.png
-    - assets/mountainman.json
-    - assets/empty.json
-    - assets/unicorn.json
-    - assets/checkmark.json
-    - assets/error.json
+    - images/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
