@@ -9,6 +9,7 @@ import 'package:mountain_app/Models/WeatherConditions.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CutomButotns.dart';
 import 'package:mountain_app/Views/EventDetailsView/LoadingSubscibeEventDetailsView.dart';
+import 'package:mountain_app/Views/LottieAnimations/SuccessView.dart';
 
 class EventDetailsView extends StatefulWidget {
   final Escursione escursione;
@@ -230,6 +231,9 @@ class _EventDetailsViewState extends State<EventDetailsView> {
       onPressed: () {
         setState(() {
           EventsManger().selectPartecipants(widget.escursione.id);
+          Navigator.push(context, MaterialPageRoute(builder: ((context) {
+            return SuccessView(text: "Gli iscritti sono stati selezionati!");
+          })));
         });
       },
     );
