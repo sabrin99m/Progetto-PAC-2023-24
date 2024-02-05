@@ -13,7 +13,18 @@ class LoadingAnimationView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Lottie.asset('mountainman.json', height: 400),
+              Stack(
+                children: [
+                  Lottie.network(
+                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/Client%20App/Iterazione%204%20finale/mountain_app/assets/mountainman.json',
+                    height: 400,
+                  ),
+                  Lottie.asset(
+                    'mountainman.json',
+                    height: 400,
+                  ),
+                ],
+              ),
               Text(
                 "Caricando le tue escursioni...",
                 style: TextStyle(fontSize: 20, color: Colors.black),

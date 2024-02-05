@@ -9,6 +9,7 @@ import 'package:mountain_app/Models/WeatherConditions.dart';
 import 'package:mountain_app/Utilities/Misc.dart';
 import 'package:mountain_app/Views/CutomButotns.dart';
 import 'package:mountain_app/Views/EventDetailsView/LoadingSubscibeEventDetailsView.dart';
+import 'package:mountain_app/Views/LottieAnimations/SuccessView.dart';
 
 class EventDetailsView extends StatefulWidget {
   final Escursione escursione;
@@ -204,7 +205,7 @@ class _EventDetailsViewState extends State<EventDetailsView> {
                   else
                     subscribeButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
-                    algorithmButtonSection(),
+                    selectPartecipantsButtonSection(),
                   if (widget.escursione.idOrganizzatore == Utente.loggedUser.id)
                     deleteEventSection(context)
                 ],
@@ -221,13 +222,20 @@ class _EventDetailsViewState extends State<EventDetailsView> {
     return 'images/mountain${num.toString()}.png';
   }
 
-  Widget algorithmButtonSection() {
+  Widget selectPartecipantsButtonSection() {
     return MainButton(
       text: 'Seleziona partecipanti',
       width: 350,
       borderRadius: 32,
       color: Colors.green,
-      onPressed: () {},
+      onPressed: () {
+        setState(() {
+          EventsManger().selectPartecipants(widget.escursione.id);
+          Navigator.push(context, MaterialPageRoute(builder: ((context) {
+            return SuccessView(text: "Gli iscritti sono stati selezionati!");
+          })));
+        });
+      },
     );
   }
 

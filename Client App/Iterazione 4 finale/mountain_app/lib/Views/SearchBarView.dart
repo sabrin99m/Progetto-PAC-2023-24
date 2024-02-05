@@ -19,7 +19,7 @@ class _SearchBarViewState extends State<SearchBarView> {
   @override
   void initState() {
     super.initState();
-    displayedEvents = [];
+    displayedEvents = widget.escursioni;
     utente = Utente.loggedUser;
   }
 
@@ -58,26 +58,30 @@ class _SearchBarViewState extends State<SearchBarView> {
                 },
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {
-                  List<Escursione> filtered = widget.escursioni
-                      .where((element) => element.nome
-                          .toLowerCase()
-                          .contains(controller.text.toLowerCase()))
-                      .toList();
+                  return List<ListTile>.generate(
+                    widget.escursioni
+                        .where((element) => element.nome
+                            .toLowerCase()
+                            .contains(controller.text.toLowerCase()))
+                        .toList()
+                        .length,
+                    (index) {
+                      return ListTile(
+                        title: Text(widget.escursioni[index].nome),
+                        onTap: () {
+                          setState(() {
+                            controller.closeView(widget.escursioni[index].nome);
 
-                  return List<ListTile>.generate(filtered.length, (index) {
-                    return ListTile(
-                      title: Text(widget.escursioni[index].nome),
-                      onTap: () {
-                        setState(() {
-                          controller.closeView(widget.escursioni[index].nome);
-
-                          displayedEvents = filtered;
-
-                          print(displayedEvents.map((e) => e.nome));
-                        });
-                      },
-                    );
-                  });
+                            displayedEvents = widget.escursioni
+                                .where((element) => element.nome
+                                    .toLowerCase()
+                                    .contains(controller.text.toLowerCase()))
+                                .toList();
+                          });
+                        },
+                      );
+                    },
+                  );
                 },
               ),
               eventDisplaySection()
@@ -88,7 +92,7 @@ class _SearchBarViewState extends State<SearchBarView> {
     );
   }
 
-  Padding eventDisplaySection() {
+  Widget eventDisplaySection() {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
       child: SizedBox(

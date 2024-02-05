@@ -299,6 +299,42 @@ app.get('/profiles/:id/reservationsIds', async (req, res) => {
   }
 })
 
+/**
+ * Chiudi un evento per selezionarne i partecipanti dagli iscritti
+ */
+app.get('/events/:id/close', async (req, res) => {
+  try {
+    const { authorization } = req.headers;
+
+    //Se non viene fornita autorizzazione
+    if (!authorization) {
+      return res.sendStatus(401)
+    }
+
+    //Richiesta get al server
+    const getResponse = await axios.get(`${BASE_IP}/events/${req.params.id}/close`, {
+      headers: {
+        'Authorization': authorization
+      }
+    });
+
+    switch (getResponse.status) {
+      case 200:
+        //Successo
+        console.log('>>> RICHIESTA SODDISFATTA\n' + getResponse.data)
+        res.status(200).send(getResponse.data)
+        break;
+
+      default:
+        res.sendStatus(getResponse.status)
+        break;
+    }
+
+  } catch (error) {
+    handleError(error, res)
+  }
+})
+
 app.delete('/events/:id', async (req, res) => {
   try {
     const { authorization } = req.headers;

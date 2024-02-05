@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mountain_app/Managers/UserManager.dart';
 import 'package:mountain_app/Models/Utente.dart';
 import 'package:mountain_app/Screens/Homepage.dart';
+import 'package:mountain_app/Views/LottieAnimations/ErrorView.dart';
 
 class LoginLoadingView extends StatefulWidget {
   const LoginLoadingView(
@@ -30,7 +31,16 @@ class _LoginLoadingViewState extends State<LoginLoadingView> {
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
               print(snapshot.error);
-              Navigator.pop(context);
+              Future.microtask(
+                () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) {
+                      return ErrorView(text: "Login fallito...", popLevel: 2);
+                    }),
+                  ),
+                ),
+              );
             }
 
             if (snapshot.hasData) {

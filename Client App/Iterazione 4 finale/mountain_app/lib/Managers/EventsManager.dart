@@ -35,6 +35,16 @@ class EventsManger {
     return [];
   }
 
+  void selectPartecipants(int idEvent) async {
+    try {
+      final _ = await http.get(
+          Uri.parse('${baseIpGateway}/events/${idEvent}/close'),
+          headers: {HttpHeaders.authorizationHeader: _basicAuth});
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future<List<Escursione>> fetchBookedEvents() async {
     try {
       final response = await http.get(
