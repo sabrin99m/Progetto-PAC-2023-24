@@ -99,13 +99,11 @@ class EventsManger {
       return false;
   }
 
-  Future<Escursione> addEscursione(Escursione escursione) async {
+  Future<bool> addEscursione(Escursione escursione) async {
     var body = json.encode(escursione.toJson(50));
 
-    print(body);
-
     final response = await http.post(
-      Uri.parse('$baseIpGateway/profiles'),
+      Uri.parse('$baseIpGateway/events/new'),
       headers: {
         "Content-Type": "application/json",
         HttpHeaders.authorizationHeader: _basicAuth,
@@ -114,9 +112,8 @@ class EventsManger {
     );
 
     switch (response.statusCode) {
-      case 201:
-        var decoded = json.decode(response.body);
-        return Escursione.fromJson(decoded);
+      case 200:
+        return true;
 
       case 401:
         throw Exception('Login fallito');

@@ -13,19 +13,19 @@ class CreateEventViewLoading extends StatefulWidget {
 }
 
 class _CreateEventViewLoadingState extends State<CreateEventViewLoading> {
-  late Future<Escursione> candidateEvent;
+  late Future<bool> result;
 
   @override
   void initState() {
     super.initState();
-    candidateEvent = EventsManger().addEscursione(widget.escursione);
+    result = EventsManger().addEscursione(widget.escursione);
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<Escursione>(
-          future: candidateEvent,
+      child: FutureBuilder<bool>(
+          future: result,
           builder: ((context, snapshot) {
             if (snapshot.hasError) {
               print(snapshot.error);
