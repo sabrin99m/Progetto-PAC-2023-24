@@ -2,6 +2,7 @@ name: Deployment - Costruisci e Pubblica l'immagine del fronted
 run-name: "Dep - Frontend"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - production

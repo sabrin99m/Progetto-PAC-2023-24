@@ -2,6 +2,7 @@ name: Deployment - Costruisci e Pubblica l'immagine dei managers
 run-name: "Dep - Managers"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - production

@@ -2,6 +2,7 @@ name: Development - Costruisci e Pubblica l'immagine del gateway
 run-name: "Dev - Gateway"
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
