@@ -20,16 +20,13 @@ Selezione degli utenti iscritti ad un evento con strategia Greedy.
  	\item L'opzione 'Seleziona partecipanti' viene selezionata.
 	\item L'algoritmo viene applicato sulla lista degli iscritti all'evento.
 \end{enumerate}
-\textit{FlowChart e pseudocodice: L'approccio si basa sull'idea di selezionare in modo iterativo gli utenti con il livello più
+
+
+
+\textit{FlowChart (\ref*{fig:FlowChart}) e pseudocodice: L'approccio si basa sull'idea di selezionare in modo iterativo gli utenti con il livello più
 adatto, iniziando dal livello dell'evento e ampliando la ricerca ai livelli adiacenti solo se
 necessario.}
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width = 0.5\textwidth]{Iterazione 2/images/flowchart.png}
-    \caption{FlowChart}
-	\label{fig:FlowChart}
-\end{figure}
-\\
+
 % Impostazioni per lo pseudocodice
 \lstset{
     language=Java, % Imposta il linguaggio del codice
@@ -75,8 +72,14 @@ algoritmo selezionaIscritti(Lista listaIscritti)
 funzione seleziona(listaIscritti, livello, distanza)
     return (User con userLevel = livello + distanza) or (User con userLevel - distanza)
 \end{lstlisting}
-\\
-\\
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width = 0.5\textwidth]{Iterazione 2/images/flowchart.png}
+    \caption{FlowChart}
+	\label{fig:FlowChart}
+\end{figure}
+
 \textit{Analisi di Complessità: l'algoritmo ha una complessità temporale più significativa rispetto a quella spaziale, la sua efficienza dipende dal rapporto tra il numero massimo di posti disponibili e la dimensione totale della lista degli iscritti.}
 \begin{enumerate}
 	\item Complessità temporale: 
