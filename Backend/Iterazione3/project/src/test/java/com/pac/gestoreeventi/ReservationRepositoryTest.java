@@ -25,7 +25,7 @@ class ReservationRepositoryTest {
 			
 		//given
 		Date date = new Date(100);
-		Reservation expected = new Reservation(new Integer(1), date, new Boolean(true));
+		Reservation expected = new Reservation(new Integer(48), date, new Boolean(true));
 		underTest.save(expected);
 		
 		//when
