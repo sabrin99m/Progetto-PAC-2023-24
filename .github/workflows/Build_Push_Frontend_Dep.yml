@@ -1,4 +1,4 @@
-name: Deployment - Costruisci e Pubblica l'immagine del fronted
+name: Deployment - Costruisci e Pubblica l'immagine del frontend
 run-name: "Dep - Frontend"
 
 on:
@@ -7,7 +7,7 @@ on:
     branches:
       - production
     paths:
-      - Client App/Iterazione 4 finale/mountain_app/**
+      - ClientApp/Iterazione_4_finale/mountain_app/**
 
 jobs:
   #Set up how to build the images (sources and permissions)
@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - dockerfile: ./Client App/Iterazione 4 finale/mountain_app
+          - dockerfile: ./ClientApp/Iterazione_4_finale/mountain_app
             image: freddy153/zombie-zoo
 
     permissions:
