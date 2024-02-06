@@ -1,4 +1,4 @@
-name: Development - Costruisci e Pubblica l'immagine del gateway
+name: Development - Costruisci e Pubblica l'immagine dei managers
 run-name: "Dev - Managers"
 
 on:

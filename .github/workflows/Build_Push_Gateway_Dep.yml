@@ -1,5 +1,5 @@
-name: Deployment - Costruisci e Pubblica l'immagine dei managers
-run-name: "Dep - Managers"
+name: Deployment - Costruisci e Pubblica l'immagine del gateway
+run-name: "Dep - Gateway"
 
 on:
   workflow_dispatch:
