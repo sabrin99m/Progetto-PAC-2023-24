@@ -27,8 +27,11 @@ RUN flutter config --enable-web
 
 # Copy files to container and build
 RUN mkdir /app/
-COPY . /app/
 WORKDIR /app/
+
+# COPY . .   USARE SOLO IN LOCALE AL POSTO DEL PROSSIMO COPY
+COPY ./ClientApp/Iterazione_4_finale/mountain_app .
+
 RUN flutter build web
 
 # Record the exposed port
