@@ -6,6 +6,7 @@ import java.util.Date;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -31,7 +32,7 @@ class ReservationRepositoryTest {
 		//when
 		Reservation result = underTest.findById(expected.getId()).get();
 		
-		//then
-		assertThat(expected.getId()).isEqualTo(result.getId());
+		//thenà
+		assertEquals(expected.getId(), result.getId());
 	}
 }
