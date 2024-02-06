@@ -29,7 +29,7 @@ class SuccessView extends StatelessWidget {
                     height: 200,
                   ),
                   Lottie.network(
-                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/Client%20App/Iterazione%204%20finale/mountain_app/assets/checkmark.json',
+                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/ClientApp/Iterazione_4_finale/mountain_app/assets/checkmark.json',
                     repeat: false,
                     width: 200,
                     height: 200,

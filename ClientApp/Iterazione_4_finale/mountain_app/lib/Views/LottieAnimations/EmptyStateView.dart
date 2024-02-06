@@ -19,7 +19,7 @@ class EmptyStateView extends StatelessWidget {
                 children: [
                   Lottie.asset('empty.json', height: 400, repeat: false),
                   Lottie.network(
-                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/Client%20App/Iterazione%204%20finale/mountain_app/assets/empty.json',
+                    'https://raw.githubusercontent.com/FI-153/Progetto-PAC-2023-24/main/ClientApp/Iterazione_4_finale/mountain_app/assets/empty.json',
                     height: 400,
                     repeat: false,
                   ),
