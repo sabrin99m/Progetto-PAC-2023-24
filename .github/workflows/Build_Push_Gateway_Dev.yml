@@ -1,5 +1,5 @@
-name: Development - Costruisci e Pubblica l'immagine del gateway
-run-name: "Dev - Gateway"
+#Development - Costruisci e Pubblica l'immagine del gateway
+name: Dev - Gateway
 
 on:
   workflow_dispatch:
